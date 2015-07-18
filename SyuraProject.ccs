@@ -1,0 +1,21 @@
+<Solution>
+  <PropertyGroup Name="SyuraProject" Version="2.3.0.1" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Folder Name="game">
+          <Image Name="analogstick_bg.png" />
+          <Image Name="analogstick_stick.png" />
+          <Image Name="bg_house.png" />
+          <Image Name="bg_house_garden.png" />
+          <Image Name="bg_road.png" />
+          <Image Name="futsuo_icon.png" />
+          <Image Name="haruka_icon.png" />
+          <Image Name="shurabaarea.png" />
+        </Folder>
+        <Project Name="GameScene.csd" Type="Layer" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
