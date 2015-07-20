@@ -16,11 +16,13 @@ using namespace cocostudio::timeline;
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
+:_stage(nullptr)
 {
 }
 
 GameScene::~GameScene()
 {
+    CC_SAFE_RELEASE_NULL(_stage);
 }
 
 
@@ -47,6 +49,11 @@ bool GameScene::init()
     auto size = Director::getInstance()->getVisibleSize();
     
     /* ステージの読み込み */
+    auto stage = Stage::create();
+    this -> addChild(stage);
+    this -> setStage(stage);
+    
+    this->scheduleUpdate();
     
     /* VirtualPadの設置 */
      auto virPad = new VirtualPad(this);
@@ -66,6 +73,8 @@ bool GameScene::init()
     auto rootNode = CSLoader::createNode("GameScene.csb");
     addChild(rootNode);
     */
+    
+    
     return true;
 }
 
@@ -116,4 +125,8 @@ void GameScene::onTouchesEnded(const std::vector<Touch *> &touches, cocos2d::Eve
         iterator++;
     }
     return;
+}
+
+void GameScene::update(float dt){
+    
 }

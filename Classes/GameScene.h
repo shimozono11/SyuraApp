@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include "VirtualPad.h"
+#include "Stage.h"
+
 class GameScene : public cocos2d::Layer
 {
 private:
@@ -21,14 +23,17 @@ public:
     
     static cocos2d::Scene* createScene();
     virtual bool init();
-    
+    void update(float dt)override;
     /* タッチイベントリスナー */
     void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
     void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
     void onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event);
 
+    /* ステージの作成 */
+    CC_SYNTHESIZE_RETAIN(Stage *, _stage, Stage);
     
     CREATE_FUNC(GameScene);
+    
 };
 
 
