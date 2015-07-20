@@ -1,5 +1,5 @@
 <GameProjectFile>
-  <PropertyGroup Type="Layer" Name="GameScene.csd" ID="7591f404-d561-4681-8388-8afc40481abd" Version="2.3.0.1" />
+  <PropertyGroup Type="Layer" Name="GameScene" ID="7591f404-d561-4681-8388-8afc40481abd" Version="2.3.0.1" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
