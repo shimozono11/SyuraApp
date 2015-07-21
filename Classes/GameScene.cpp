@@ -18,6 +18,7 @@ using namespace cocostudio::timeline;
 GameScene::GameScene()
 :_stage(nullptr)
 ,_virPad(nullptr)
+
 {
     
 }
@@ -74,7 +75,6 @@ bool GameScene::init()
     this->addChild(virPad);
     this->setVirtualPad(virPad);
     
-    this->scheduleUpdate();
     
     /* マルチタップリスナーの設置 */
     auto listener = EventListenerTouchAllAtOnce::create();
@@ -85,6 +85,8 @@ bool GameScene::init()
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 
     /* update関数（毎フレーム呼び出す関数）の設置 */
+    this->scheduleUpdate();
+
     /**/
     /**/
     
@@ -110,7 +112,8 @@ void GameScene::onTouchesBegan(const std::vector<Touch *> &touches, cocos2d::Eve
         
         /* VirtualPadの操作開始 */
         _virPad->startPad((int)touch->getLocation().x,(int)touch->getLocation().y,touch->getID());
-
+        _virPad->update((int)touch->getLocation().x,(int)touch->getLocation().y,touch->getID());
+        
         iterator++;
     }
     return;
@@ -156,6 +159,20 @@ void GameScene::onTouchesEnded(const std::vector<Touch *> &touches, cocos2d::Eve
 }
 
 void GameScene::update(float dt){
+    /* バーチャルパッドに触れている間 */
+    if( _virPad->isTouch()){
+        
+        /*　バーチャルパッドの移動量でプレイヤーを操作 */
+        /*　現在の位置を取得　*/
+        Vec2 nowPosition = _stage->getPlayer()->getPosition();
+        /* パッドから読み込んだ移動量を取得 */
+        Vec2 padMovement = Vec2(_virPad->getCosX()*_virPad->getSpeed(), _virPad->getSinY()*_virPad->getSpeed());
+        /* プレイヤーwo新しい位置に設定 */
+        Vec2 newPosition = nowPosition + padMovement;
+        /* プレイヤーの位置を更新 */
+        _stage->getPlayer()->setPosition(newPosition);
+
+    }
     CCLOG("%d\n",_virPad->getSpeed());
     
 }

@@ -36,7 +36,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Stage *, _stage, Stage);
     /* VirutalPadの生成 */
     CC_SYNTHESIZE_RETAIN(VirtualPad *, _virPad, VirtualPad);
-    
+        
     CREATE_FUNC(GameScene);
     
 };

@@ -16,7 +16,7 @@
 
 #include "VirtualPad.h"
 
-#define VIRTUAL_PAD_MAX_RATE 40
+#define VIRTUAL_PAD_MAX_RATE 150
 #define VIRTUAL_PAD_MIN_RATE 10
 
 #define VIRTUAL_PAD_POSITION_RATE_X 1/2
@@ -148,6 +148,7 @@ void VirtualPad::update(int x,int y,int touch_id){
         //制限後のボタン位置
         x = (int)(init_x + max_r * cos(angle));
         y = (int)(init_y + max_r * sin(angle));
+        now_r = max_r;
     }
     //位置をセット
     now_x = x;
@@ -261,7 +262,33 @@ int VirtualPad::get8Way(){
     }
     return -1;
 }
+/**
+ *パッドの移動量からスピードを返す
+ *@return スピードを返す
+ */
 int VirtualPad::getSpeed(){
-    return now_r;
+    
+    if(now_r >= 200){
+        return 8;
+    }
+    
+    if(now_r >= 150){
+        return 6;
+    }
+    
+    if(now_r >= 100){
+        return 4;
+    }
+    
+    if(now_r >= 50){
+        return 2;
+    }
+    
+    if(now_r >= 0){
+        return 0;
+    }
+    /* ここに来ることはないはず */
+    CCLOG("Errorlog in VirtualPad");
+    return -1;
 }
 
