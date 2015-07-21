@@ -28,7 +28,20 @@ GameScene::~GameScene()
 
 Scene* GameScene::createScene()
 {
-    auto scene = Scene::create();
+    /* 物理エンジンを有効にしたシーンを作成 */
+    auto scene = Scene::createWithPhysics();
+    /* 物理空間を取り出す */
+    auto world = scene->getPhysicsWorld();
+    
+    // 重力を設定する
+    world->setGravity(Vec2(0, 0));
+    
+    /* デバッグビルドのとき */
+#if COCOS2D_DEBUG > 0
+    /* 物理空間にデバッグ用の表示を追加する */
+    world -> setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+#endif
+    
     auto layer = GameScene::create();
     scene->addChild(layer);
     

@@ -59,7 +59,7 @@ private:
      *  @param coordinate 対象タイルのあるマップ上の座標
      *  @return タイルのスプライト、またはnullptr
      */
-//    cocos2d::Sprite* addPhysicsBody(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
+    cocos2d::Sprite* addPhysicsBody(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
 };
 
