@@ -34,33 +34,15 @@ bool Stage::init()
     this->setTiledMap(map);
     
     /*　地形レイヤーを取得 */
-//    auto tileLayer = map->getLayer("Tile");
-//    /* オブジェクトレイヤーの取得 */
-//    auto objectLayer = map->getLayer("Object");
-//    
-    
-    
-    /* マップのサイズ */
-//    auto mapSize = map -> getMapSize();
-//    for(int i = 0 ; i < mapSize.width ; ++i){
-//        for(int j = 0 ; mapSize.height ; ++j){
-//            auto coordinate = Vec2(i,j);
-//            
-//            this->addPhysicsBody(tileLayer, coordinate);
-//            this->addPhysicsBody(objectLayer, coordinate);
-//        }
-//    }
-//    // 地形レイヤーを取得する
 //    auto terrainLayer = map->getLayer("Tile");
     // オブジェクトレイヤーを取得する
     auto objectLayer = map->getLayer("Object");
     
     // マップのサイズ
     auto mapSize = map->getMapSize();
-    for (int x = 0; x < mapSize.width; ++x) {
-        for (int y = 0; y < mapSize.height; ++y) {
-            auto coordinate = Vec2(x, y);
-            
+    for (int i = 0; i < mapSize.width; i++) {
+        for (int j = 0; j < mapSize.height; j++) {
+            auto coordinate = Vec2(i, j);
 //            this->addPhysicsBody(terrainLayer, coordinate);
             this->addPhysicsBody(objectLayer, coordinate);
             
@@ -72,6 +54,12 @@ bool Stage::init()
     this->addChild(player);
     this->setPlayer(player);
     
+    /* プレイヤーに画面を追従させる */
+    auto winSize = Director::getInstance()->getWinSize();
+    /*Rectは追従する範囲を決めている Rectは左下を原点としている*/
+    this ->runAction(Follow::create(player,Rect(0, 0, _tiledMap->getContentSize().width, _tiledMap->getContentSize().height) ));
+    
+
     this->scheduleUpdate();
     
     return true;

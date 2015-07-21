@@ -63,7 +63,7 @@ bool GameScene::init()
     }
     
     /* 画面サイズの取得 */
-    auto size = Director::getInstance()->getVisibleSize();
+    auto winSize = Director::getInstance()->getVisibleSize();
     
     /* ステージの読み込み */
     auto stage = Stage::create();
