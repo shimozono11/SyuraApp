@@ -268,27 +268,28 @@ int VirtualPad::get8Way(){
  */
 int VirtualPad::getSpeed(){
     
-    if(now_r >= 200){
-        return 8;
-    }
-    
-    if(now_r >= 150){
-        return 6;
-    }
-    
-    if(now_r >= 100){
-        return 4;
-    }
-    
-    if(now_r >= 50){
-        return 2;
-    }
-    
-    if(now_r >= 0){
-        return 0;
-    }
+//    if(now_r >= 200){
+//        return 8;
+//    }
+//    
+//    if(now_r >= 150){
+//        return 6;
+//    }
+//    
+//    if(now_r >= 100){
+//        return 4;
+//    }
+//    
+//    if(now_r >= 50){
+//        return 2;
+//    }
+//    
+//    if(now_r >= 0){
+//        return 0;
+//    }
     /* ここに来ることはないはず */
-    CCLOG("Errorlog in VirtualPad");
-    return -1;
+//    CCLOG("Errorlog in VirtualPad");
+//    return -1;
+    return now_r;
 }
 

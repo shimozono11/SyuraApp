@@ -170,7 +170,10 @@ void GameScene::update(float dt){
         /* プレイヤーwo新しい位置に設定 */
         Vec2 newPosition = nowPosition + padMovement;
         /* プレイヤーの位置を更新 */
-        _stage->getPlayer()->setPosition(newPosition);
+        //座標で更新
+//        _stage->getPlayer()->setPosition(newPosition);
+        //物理エンジンで更新
+        _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
 
     }
     CCLOG("%d\n",_virPad->getSpeed());
