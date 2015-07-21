@@ -58,6 +58,7 @@ VirtualPad::VirtualPad(class Layer* layer){
         fsin[i]=(float)sin(i*3.1415926535/180);
         fcos[i]=(float)cos(i*3.1415926535/180);
     }
+    now_r =0;
 }
 
 /**
@@ -78,6 +79,7 @@ void VirtualPad::startPad(int x,int y,int touch_id){
     angle = 0;
     way_x = 0;
     way_y = 0;
+    now_r = 0;
 //    
 //    padBack->setVisible(true);
 //    padFront->setVisible(true);
@@ -85,7 +87,7 @@ void VirtualPad::startPad(int x,int y,int touch_id){
 }
 
 /**
- *Padの表示終了
+ *Padの操作終了
  */
 void VirtualPad::endPad(int touch_id){
     if(touch_id != touchID)return;
@@ -97,6 +99,7 @@ void VirtualPad::endPad(int touch_id){
     angle = 0;
     way_x = 0;
     way_y = 0;
+    now_r = 0;
     /* タッチを離したら元の位置に戻す */
     Size size = Director::getInstance()->getVisibleSize();
     padFront->setPosition(Point(size.width*VIRTUAL_PAD_POSITION_RATE_X, size.height*VIRTUAL_PAD_POSITION_RATE_Y));
@@ -119,9 +122,9 @@ void VirtualPad::update(int x,int y,int touch_id){
     //cos,sin
     way_x = cosf(angle);
     way_y = sinf(angle);
-    
+    now_r =sqrt(d_x*d_x + d_y*d_y);
     //円移動範囲外か
-    if (sqrt(d_x*d_x + d_y*d_y)> max_r) {
+    if ( now_r > max_r) {
         //制限後のボタン位置
         x = (int)(init_x + max_r * cos(angle));
         y = (int)(init_y + max_r * sin(angle));
@@ -237,5 +240,8 @@ int VirtualPad::get8Way(){
         return 6;
     }
     return -1;
+}
+int VirtualPad::getSpeed(){
+    return now_r;
 }
 

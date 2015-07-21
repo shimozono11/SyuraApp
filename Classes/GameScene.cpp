@@ -18,6 +18,7 @@ using namespace cocostudio::timeline;
 GameScene::GameScene()
 :_stage(nullptr)
 {
+    
 }
 
 GameScene::~GameScene()
@@ -69,7 +70,7 @@ bool GameScene::init()
     this->scheduleUpdate();
     
     /* VirtualPadの設置 */
-     auto virPad = new VirtualPad(this);
+    virPad = new VirtualPad(this);
     /* マルチタップリスナーの設置 */
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->setEnabled(true);
@@ -102,6 +103,9 @@ void GameScene::onTouchesBegan(const std::vector<Touch *> &touches, cocos2d::Eve
         Touch* touch = (Touch*)(*iterator);
         auto location = touch->getLocation();
         
+        /* VirtualPadの操作開始 */
+        virPad->startPad((int)touch->getLocation().x,(int)touch->getLocation().y,touch->getID());
+
         iterator++;
     }
     return;
@@ -117,6 +121,9 @@ void GameScene::onTouchesMoved(const std::vector<Touch *> &touches, cocos2d::Eve
     while (iterator != touches.end()) {
         Touch* touch = (Touch*)(*iterator);
         auto location = touch->getLocation();
+        
+        /*バーチャルパッド移動中*/
+        virPad->update((int)touch->getLocation().x,(int)touch->getLocation().y,touch->getID());
         
         iterator++;
     }
@@ -135,11 +142,15 @@ void GameScene::onTouchesEnded(const std::vector<Touch *> &touches, cocos2d::Eve
         Touch* touch = (Touch*)(*iterator);
         auto location = touch->getLocation();
         
+        /* バーチャルパッドを離す */
+        virPad->endPad(touch->getID());
+
         iterator++;
     }
     return;
 }
 
 void GameScene::update(float dt){
+    CCLOG("%d\n",virPad->getSpeed());
     
 }

@@ -15,7 +15,7 @@ using namespace cocos2d;
 /**
  *VirtualPadクラス.
  */
-class VirtualPad{
+class VirtualPad {
 private:
     //Layer
     Layer* Layer;
@@ -39,6 +39,8 @@ private:
     float way_y;
     //最大半径
     int max_r;
+    //現在の半径
+    int now_r;
     //角度
     float angle;
     //角度テーブル
@@ -48,8 +50,8 @@ private:
     int touchID;
     
 public:
-    VirtualPad(class Layer* layer);
     
+    VirtualPad(class Layer* layer);
     void startPad(int x,int y,int touch_id);
     void endPad(int touch_id);
     void update(int x,int y,int touch_id);
@@ -58,6 +60,7 @@ public:
     bool isTouch();
     int get4Way();
     int get8Way();
+    int getSpeed();
     
 };
 

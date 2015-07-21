@@ -24,6 +24,9 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
     void update(float dt)override;
+    /* VirtualPad実装 */
+    VirtualPad* virPad;
+    
     /* タッチイベントリスナー */
     void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
     void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
