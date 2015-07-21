@@ -15,16 +15,18 @@ using namespace cocos2d;
 /**
  *VirtualPadクラス.
  */
-class VirtualPad {
+class VirtualPad :public::Layer {
 private:
-    //Layer
-    Layer* Layer;
+    /*コンストラクタ*/
+    VirtualPad();
+    /*デストラクタ*/
+    ~VirtualPad();
     //Pad下地
     Sprite* padBack;
     //Pad
     Sprite* padFront;
     //表示フラグ
-    bool drawFlag;
+    bool touchFlag;
     //Padの初期位置
     int init_x;
     int init_y;
@@ -51,7 +53,10 @@ private:
     
 public:
     
-    VirtualPad(class Layer* layer);
+    void update(float dt)override;
+    CREATE_FUNC(VirtualPad);
+    bool init() override;
+
     void startPad(int x,int y,int touch_id);
     void endPad(int touch_id);
     void update(int x,int y,int touch_id);

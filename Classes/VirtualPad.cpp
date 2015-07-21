@@ -23,12 +23,24 @@
 #define VIRTUAL_PAD_POSITION_RATE_Y 22/100
 
 /**
- *コンストラクタ.
- *@param layer
+ *コンストラクタ
  */
-VirtualPad::VirtualPad(class Layer* layer){
-    //layer
-    Layer = layer;
+VirtualPad::VirtualPad(){
+}
+
+/**
+ *デストラクタ
+ */
+VirtualPad::~VirtualPad(){
+}
+
+
+bool VirtualPad::init(){
+
+    if ( !Layer::init() )
+    {
+        return false;
+    }
     //画面サイズの取得
     Size size = Director::getInstance()->getVisibleSize();
     
@@ -47,8 +59,8 @@ VirtualPad::VirtualPad(class Layer* layer){
     init_y = padFront->getPositionY();
     
     //レイヤーに追加
-    Layer->addChild(padBack,10000);
-    Layer->addChild(padFront,10001);
+    this->addChild(padBack,10000);
+    this->addChild(padFront,10001);
     
     //最大半径
     max_r = VIRTUAL_PAD_MAX_RATE ;
@@ -58,7 +70,20 @@ VirtualPad::VirtualPad(class Layer* layer){
         fsin[i]=(float)sin(i*3.1415926535/180);
         fcos[i]=(float)cos(i*3.1415926535/180);
     }
-    now_r =0;
+
+    angle = 0;
+    way_x = 0;
+    way_y = 0;
+    now_r = 0;
+    d_x = 0;
+    d_y = 0;
+
+
+    return true;
+}
+
+void VirtualPad::update(float dt){
+    
 }
 
 /**
@@ -70,17 +95,12 @@ void VirtualPad::startPad(int x,int y,int touch_id){
     //画面をタッチしたら描画開始
     
     /* TODO : PADの下地部分をタッチしたかどうか　(最初はpad部分をタッチしないと反応しないようにする)*/
-    drawFlag = true;
+    touchFlag = true;
     now_x = x;
     now_y = y;
-    d_x = 0;
-    d_y = 0;
+    
     touchID = touch_id;
-    angle = 0;
-    way_x = 0;
-    way_y = 0;
-    now_r = 0;
-//    
+    //
 //    padBack->setVisible(true);
 //    padFront->setVisible(true);
 //    padFront->setPosition(Point(now_x, now_y));
@@ -158,7 +178,7 @@ float VirtualPad::getSinY(){
  *@return drawFlag trueなら表示中
  */
 bool VirtualPad::isTouch(){
-    return drawFlag;
+    return touchFlag;
 }
 
 /**
