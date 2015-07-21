@@ -16,48 +16,19 @@ const int FRAME_COUNT = 4;
 
 bool Player::init()
 {
-    if (!Sprite::initWithFile("player.png")) {
+    if (!Sprite::initWithFile("futsuo_icon.png")) {
         return false;
     }
-//    
-//    // 1フレームの画像サイズを取得する
-//    auto frameSize = Size(this->getContentSize().width / FRAME_COUNT,
-//                          this->getContentSize().height);
-//    // テクスチャの大きさを1フレーム分にする
-//    this->setTextureRect(Rect(0, 0, frameSize.width, frameSize.height));
-//    
-//    Vector<SpriteFrame *> frames;
-//    for (int i = 0; i < FRAME_COUNT; ++i) {
-//        // 1コマずつアニメーションを作成する
-//        auto frame = SpriteFrame::create("player.png", Rect(frameSize.width * i,
-//                                                            0,
-//                                                            frameSize.width,
-//                                                            frameSize.height));
-//        frames.pushBack(frame);
-//    }
-//    auto animation = Animation::createWithSpriteFrames(frames);
-//    animation->setDelayPerUnit(0.05);
-//    this->runAction(RepeatForever::create(Animate::create(animation)));
-//    
-//    auto material = PhysicsMaterial();
-//    auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
-//    material.friction = 0;
-//    
-//    // 剛体の回転を無効にする
-//    body->setRotationEnable(false);
-//    // カテゴリをPLAYERにセットする
-//    body->setCategoryBitmask(static_cast<int>(Stage::TileType::PLAYER));
-//    // 壁とのみ衝突する
-//    body->setCollisionBitmask(static_cast<int>(Stage::TileType::WALL));
-//    // 全ての剛体と接触判定を行う
-//    body->setContactTestBitmask(INT_MAX);
-//    this->setPhysicsBody(body);
-//    
-//    // 初期加速度を設定する
-//    _acceleration = INITIAL_ACCELERATION;
-//    
-//    this->scheduleUpdate();
-//    
+    
+    /* 剛体の設置 */
+    auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
+    // 剛体の回転を無効にする
+    body->setRotationEnable(false);
+    // 全ての剛体と接触判定を行う
+    this->setPhysicsBody(body);
+    
+    this->scheduleUpdate();
+    
     return true;
 }
 
