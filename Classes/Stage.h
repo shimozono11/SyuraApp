@@ -39,6 +39,7 @@ public:
     void update(float dt)override;
     //タイルマップ
     CC_SYNTHESIZE_RETAIN(cocos2d::TMXTiledMap *, _tiledMap, TiledMap);
+    /* プレイヤー */
     CC_SYNTHESIZE_RETAIN(Player *, _player, Player);
     CREATE_FUNC(Stage);
     /** ステージ番号からステージを生成します
