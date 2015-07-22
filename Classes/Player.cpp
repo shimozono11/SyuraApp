@@ -19,7 +19,7 @@ bool Player::init()
     if (!Sprite::initWithFile("map/futsuo_icon.png")) {
         return false;
     }
-    
+    /* プレイヤーの初期位置を設定 */
     this -> setPosition(Vec2(200, 600));
     /* 剛体の設置 */
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
