@@ -63,7 +63,7 @@ bool GameScene::init()
     }
     
     /* 画面サイズの取得 */
-    auto winSize = Director::getInstance()->getVisibleSize();
+    winSize = Director::getInstance()->getVisibleSize();
     
     /* ステージの読み込み */
     auto stage = Stage::create();
@@ -172,8 +172,13 @@ void GameScene::update(float dt){
         /* プレイヤーの位置を更新 */
         //座標で更新
 //        _stage->getPlayer()->setPosition(newPosition);
-        //物理エンジンで更新
+        //物理エンジンでキャラの位置を移動
         _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
+        
+        /*プレイヤーが画面外に飛び出さないように設定*/
+        auto position = _stage->getPlayer()->getPosition().getClampPoint(Vec2(0,0), _stage->getTiledMap()->getContentSize());
+        _stage->getPlayer()->setPosition(position);
+
 
     }
     CCLOG("%d\n",_virPad->getSpeed());

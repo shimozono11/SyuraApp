@@ -27,6 +27,8 @@ public:
     /* VirtualPad実装 */
     VirtualPad* virPad;
     
+    Size winSize;
+    
     /* タッチイベントリスナー */
     void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
     void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
