@@ -57,8 +57,12 @@ bool Stage::init()
     /* プレイヤーに画面を追従させる */
     auto winSize = Director::getInstance()->getWinSize();
     /*Rectは追従する範囲を決めている Rectは左下を原点としている*/
-    this ->runAction(Follow::create(player,Rect(0, 0, _tiledMap->getContentSize().width, _tiledMap->getContentSize().height) ));
+
     
+    this ->runAction(CustomFollow::create(player,Rect(0, 0, _tiledMap->getContentSize().width, _tiledMap->getContentSize().height) ));
+    /* x軸だけ、y軸だけと指定をする場合　この場合だとマップの範囲が扱えない */
+//    CustomFollowType type = kCustomFollowNone;
+//    this ->runAction(CustomFollow::create(player,type));
 
     this->scheduleUpdate();
     

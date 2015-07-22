@@ -64,6 +64,8 @@
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		79A8D4561B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79A8D4571B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
+		79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */; };
+		79F458831B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		9F8B4F24824617F9A0E5789A /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FC4D32A80EFB11E0A6CF2A /* libcocos2d Mac.a */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -136,6 +138,8 @@
 		791EA94B1B5B1C4A00068774 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		791EA94C1B5B1C4A00068774 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		79A8D4551B5D0191009AD531 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomFollow.cpp; sourceTree = "<group>"; };
+		79F458811B5ECF1E00F2CC00 /* CustomFollow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFollow.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -267,6 +271,8 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				791EA92B1B5B158900068774 /* GameScene.cpp */,
 				791EA92C1B5B158900068774 /* GameScene.h */,
+				79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */,
+				79F458811B5ECF1E00F2CC00 /* CustomFollow.h */,
 				791EA92F1B5B161100068774 /* Stage.cpp */,
 				791EA9301B5B161100068774 /* Stage.h */,
 				791EA9331B5B162B00068774 /* VirtualPad.cpp */,
@@ -466,6 +472,7 @@
 				791EA9451B5B183F00068774 /* PauseScene.cpp in Sources */,
 				791EA9411B5B17E400068774 /* BeginScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */,
 				791EA93D1B5B166400068774 /* PlayScene.cpp in Sources */,
 				791EA9351B5B162B00068774 /* VirtualPad.cpp in Sources */,
 				791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */,
@@ -482,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				79F458831B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */,
 				791EA93E1B5B166400068774 /* PlayScene.cpp in Sources */,
 				791EA9421B5B17E400068774 /* BeginScene.cpp in Sources */,
 				791EA9361B5B162B00068774 /* VirtualPad.cpp in Sources */,

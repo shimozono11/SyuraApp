@@ -13,6 +13,7 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include "CustomFollow.h"
 
 class Stage :public cocos2d::Layer
 {
