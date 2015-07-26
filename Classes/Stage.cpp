@@ -114,7 +114,7 @@ Sprite* Stage::addEnemy(){
     /* 敵の初期位置 */
     enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
     /* 速度の設定 */
-//    enemy->setSpeed((int)rand()%100);
+    enemy->setSpeed((int)rand()%6);
     
     /* ステージに敵を追加 */
     this -> addChild(enemy);
@@ -138,10 +138,9 @@ void Stage::moveEnemys(){
         Vec2 delta = Ppos - Epos;
         /* 角度を算出 */
         auto angle = atan2f(delta.y, delta.x);
-        auto speed = 3;
         /* 動作量 */
-        float enemyMoveX =  cosf(angle)*speed;
-        float enemyMoveY =  sinf(angle)*speed;
+        float enemyMoveX =  cosf(angle)*enemy->getSpeed();
+        float enemyMoveY =  sinf(angle)*enemy->getSpeed();
         
         /* 新しい座標へセット */
         float enemyNewX = enemy->getPositionX() + enemyMoveX;

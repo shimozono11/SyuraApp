@@ -18,11 +18,10 @@ private:
 public:
     
     bool init() override;
-    int _speed;
     void update(float dt) override;
     //    CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vec2, _acceleration, Acceleration);
     /* 敵の移動速度 */
-    
+    CC_SYNTHESIZE(int, _speed, Speed);
     CREATE_FUNC(Enemy);
 };
 
