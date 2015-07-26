@@ -14,34 +14,39 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "CustomFollow.h"
+#include "Enemy.h"
 
 class Stage :public cocos2d::Layer
 {
 public:
     
-//    /// タイルの種類
-//    enum class TileType {
-//        /// 壁
-//        WALL = 1 << 0,
-//        /// プレイヤー
-//        PLAYER = 1 << 1,
-//        /// 敵キャラ
-//        ENEMY = 1 << 2,
-//        /// コイン
-//        COIN = 1 << 3,
-//        /// 収集アイテム
-//        ITEN = 1 << 4
-//    };
-//    
+    /// タイルの種類
+    enum class TileType {
+        /// 壁
+        WALL = 1 << 0,
+        /// プレイヤー
+        PLAYER = 1 << 1,
+        /// 敵キャラ
+        ENEMY = 1 << 2,
+        /// コイン
+        COIN = 1 << 3,
+        /// 収集アイテム
+        ITEN = 1 << 4
+    };
+
 //    void update(float dt) override;
 //    
 //    CC_SYNTHESIZE_READONLY(int, _level, Level);
-    
+    cocos2d::Size winSize;
+
     void update(float dt)override;
-    //タイルマップ
+    
+    /* タイルマップ */
     CC_SYNTHESIZE_RETAIN(cocos2d::TMXTiledMap *, _tiledMap, TiledMap);
     /* プレイヤー */
     CC_SYNTHESIZE_RETAIN(Player *, _player, Player);
+    /* 敵 */
+    CC_SYNTHESIZE(cocos2d::Vector<Enemy*>,_enemys,Enemys);
     CREATE_FUNC(Stage);
     /** ステージ番号からステージを生成します
      *  @param level ステージ番号
@@ -49,19 +54,30 @@ public:
      */
 //    static Stage * createWithLevel(int level);
 protected:
-//    bool initWithLevel(int level);
+//    bool initWithLevel(int level); gmcmnmdnkg8bc
     Stage();
     virtual ~Stage();
     bool init() override;
 private:
+    
     /** 指定のレイヤーの特定位置のタイルに剛体を設置します
      *  指定座標にタイルがなかった場合はnullptrを返します
      *  @param layer 対象のレイヤー
      *  @param coordinate 対象タイルのあるマップ上の座標
      *  @return タイルのスプライト、またはnullptr
      */
-    cocos2d::Sprite* addPhysicsBody(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
+    cocos2d::Sprite* addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
+    /** フィールドに敵を設置
+     *
+     *  @return 敵のスプライト（剛体）
+     */
+    cocos2d::Sprite* addEnemy();
+    
+    /** フィールドの敵を移動
+     * 
+     */
+    void moveEnemys();
 };
 
 
