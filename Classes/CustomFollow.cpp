@@ -60,7 +60,7 @@ void CustomFollow::step(float dt)
     
     if(_boundarySet)
     {
-        CCLOG("HAHAHAH");
+//        CCLOG("HAHAHAH");
         // whole map fits inside a single screen, no need to modify the position - unless map boundaries are increased
         if(_boundaryFullyCovered)
         {

@@ -181,6 +181,6 @@ void GameScene::update(float dt){
 
 
     }
-    CCLOG("%d\n",_virPad->getSpeed());
+//    CCLOG("%d\n",_virPad->getSpeed());
     
 }
