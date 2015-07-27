@@ -14,7 +14,7 @@ const int FRAME_COUNT = 4;
 
 bool Enemy::init()
 {
-    if (!Sprite::initWithFile("map/haruka_icon.png")) {
+    if (!Sprite::initWithFile("img/character/mobu_icon.png")) {
         return false;
     }
     

@@ -32,8 +32,9 @@ bool Stage::init()
     }
     
     /* マップファイルからノードを作成 */
-    auto map = TMXTiledMap::create("map/stage1.tmx");
+    auto map = TMXTiledMap::create("img/map/stage1.tmx");
     this->addChild(map);
+    
     this->setTiledMap(map);
     
     /*　地形レイヤーを取得 */
