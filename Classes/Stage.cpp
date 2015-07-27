@@ -104,15 +104,53 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
 Sprite* Stage::addEnemy(){
     auto enemy = Enemy::create();
     Vec2  nowPos = _player->getPosition();
-    /* 配置する場所を指定 */
-    
+    /* 要リファクタリングTODO */
+    /* 敵を配置する場所を指定 */
     /* プレイヤーからある程度離れた位置に敵追加する */
-    /* x軸のランダムな位置 */
-    float enemyXPos = rand() % static_cast<int>(winSize.width);
-    auto enemySize = enemy -> getContentSize();
-    
-    /* 敵の初期位置 */
-    enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
+    auto addEnemyPos0 = nowPos + Vec2(0,winSize.height/2) ;
+    auto addEnemyPos1 = nowPos + Vec2(winSize.width/2,0);
+    auto addEnemyPos2 = nowPos + winSize/2;
+    auto addEnemyPos3 = nowPos - Vec2(0,winSize.height/2);
+    auto addEnemyPos4 = nowPos - Vec2(winSize.width/2,0);
+    auto addEnemyPos5 = nowPos - winSize/2;
+    /* 敵の初期値を設定 */
+    switch (rand()%6) {
+        case 0:
+            /* 敵の初期位置 */
+            enemy->setPosition(addEnemyPos0);
+            CCLOG("0地点");
+             break;
+        case 1:
+            enemy->setPosition(addEnemyPos1);
+            CCLOG("1地点");
+             break;
+        case 2:
+            enemy->setPosition(addEnemyPos2);
+            CCLOG("2地点");
+             break;
+        case 3:
+            enemy->setPosition(addEnemyPos3);
+            CCLOG("3地点");
+             break;
+        case 4:
+            enemy->setPosition(addEnemyPos4);
+            CCLOG("4地点");
+             break;
+        case 5:
+            enemy->setPosition(addEnemyPos5);
+            CCLOG("5地点");
+             break;
+        default:
+            /* ここに来ることはないはず */
+            CCLOG("デフォルト");
+            break;
+    }
+    //    /* x軸のランダムな位置 */
+    //    float enemyXPos = rand() % static_cast<int>(winSize.width);
+    //    auto enemySize = enemy -> getContentSize();
+    //
+    //    /* 敵の初期位置 */
+    //    enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
     /* 速度の設定 */
     enemy->setSpeed((int)rand()%6);
     
@@ -150,7 +188,7 @@ void Stage::moveEnemys(){
         /* マップ外へ出ないように丸める */
         auto position = enemy->getPosition().getClampPoint(Vec2(0,0), this->getTiledMap()->getContentSize());
         enemy->setPosition(position);
-
+        
         iterator++;
         
     }
@@ -170,7 +208,7 @@ void Stage::update(float dt)
     /* 敵キャラの位置を更新 */
     moveEnemys();
     
-
+    
     
     /* 敵とプレイヤーの当たり判定 */
     /* 修羅場エリアに入った時の処理 */
