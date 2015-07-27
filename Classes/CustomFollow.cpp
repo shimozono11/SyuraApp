@@ -66,28 +66,22 @@ void CustomFollow::step(float dt)
         {
             return;
         }
-//        CCLOG("%f¥n",_halfScreenSize.x);
-//        CCLOG("%f¥n",_halfScreenSize.y);
         auto winSize = Director::getInstance()->getVisibleSize();
         Vec2  newTargetPos = _halfScreenSize + Vec2(0, (winSize.height-640)/2);
         Vec2 tempPos = newTargetPos - _followedNode->getPosition();
-        CCLOG("現在の位置　x座標　：%f",tempPos.x);
-        CCLOG("現在の位置　y座標　：%f",tempPos.y);
-        
-        
+//        CCLOG("現在の位置　x座標　：%f",tempPos.x);
+//        CCLOG("現在の位置　y座標　：%f",tempPos.y);
         _target->setPosition(clampf(tempPos.x, _leftBoundary, _rightBoundary),
                              clampf(tempPos.y, _bottomBoundary, _topBoundary));
-        CCLOG("左　:%f",_leftBoundary);
-        CCLOG("右　:%f",_rightBoundary);
-        CCLOG("した :%f",_bottomBoundary);
-        CCLOG("上　：%f",_topBoundary);
-        CCLOG("現在の位置　x座標　：%f",clampf(tempPos.x, _leftBoundary, _rightBoundary));
-        CCLOG("現在の位置　y座標　：%f",clampf(tempPos.y, _bottomBoundary, _topBoundary));
-
+//        CCLOG("左　:%f",_leftBoundary);
+//        CCLOG("右　:%f",_rightBoundary);
+//        CCLOG("した :%f",_bottomBoundary);
+//        CCLOG("上　：%f",_topBoundary);
+//        CCLOG("現在の位置　x座標　：%f",clampf(tempPos.x, _leftBoundary, _rightBoundary));
+//        CCLOG("現在の位置　y座標　：%f",clampf(tempPos.y, _bottomBoundary, _topBoundary));
     }
     else
     {
-        CCLOG("^2^2^2^2^2^");
         _target->setPosition(_halfScreenSize - _followedNode->getPosition());
     }
 
