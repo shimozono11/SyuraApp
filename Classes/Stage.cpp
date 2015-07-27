@@ -143,11 +143,14 @@ void Stage::moveEnemys(){
         float enemyMoveY =  sinf(angle)*enemy->getSpeed();
         
         /* 新しい座標へセット */
-        float enemyNewX = enemy->getPositionX() + enemyMoveX;
-        float enemyNewY = enemy->getPositionY() + enemyMoveY;
+        Vec2 newPosition = Vec2(enemy->getPositionX() + enemyMoveX, enemy->getPositionY() + enemyMoveY);
         
         /* マップの敵へ反映 */
-        enemy->setPosition(enemyNewX,enemyNewY);
+        enemy->setPosition(newPosition);
+        /* マップ外へ出ないように丸める */
+        auto position = enemy->getPosition().getClampPoint(Vec2(0,0), this->getTiledMap()->getContentSize());
+        enemy->setPosition(position);
+
         iterator++;
         
     }
@@ -164,7 +167,11 @@ void Stage::update(float dt)
     if(random == 0 ){
         this ->addEnemy();
     }
+    /* 敵キャラの位置を更新 */
     moveEnemys();
+    
+
+    
     /* 敵とプレイヤーの当たり判定 */
     /* 修羅場エリアに入った時の処理 */
     /* 敵の削除 */

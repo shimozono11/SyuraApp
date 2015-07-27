@@ -23,6 +23,7 @@ bool Player::init()
     this -> setPosition(Vec2(200, 600));
     /* 剛体の設置 */
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
+//        auto body = PhysicsBody::createBox(this->getContentSize());
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
     // 全ての剛体と接触判定を行う
