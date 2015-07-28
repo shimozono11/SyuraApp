@@ -47,6 +47,8 @@ public:
     CC_SYNTHESIZE_RETAIN(Player *, _player, Player);
     /* 敵 */
     CC_SYNTHESIZE(cocos2d::Vector<Enemy*>,_enemys,Enemys);
+    /* 修羅場エリアに入っている敵を格納する */
+    CC_SYNTHESIZE(cocos2d::Vector<Enemy*>,_syuraarea, Syuraarea)
     CREATE_FUNC(Stage);
     /** ステージ番号からステージを生成します
      *  @param level ステージ番号
@@ -60,8 +62,8 @@ protected:
     bool init() override;
 private:
     
-    /** 指定のレイヤーの特定位置のタイルに剛体を設置します
-     *  指定座標にタイルがなかった場合はnullptrを返します
+    /** 指定のレイヤーの特定位置のタイルに剛体を設置する
+     *  指定座標にタイルがなかった場合はnullptrを返す
      *  @param layer 対象のレイヤー
      *  @param coordinate 対象タイルのあるマップ上の座標
      *  @return タイルのスプライト、またはnullptr
@@ -69,15 +71,13 @@ private:
     cocos2d::Sprite* addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
     /** フィールドに敵を設置
-     *
      *  @return 敵のスプライト（剛体）
      */
-    cocos2d::Sprite* addEnemy();
-    
-    /** フィールドの敵を移動
-     * 
-     */
+    void addEnemyOnStage();
+    void addEnemyOnSyuraba(Enemy *enemy);
     void moveEnemys();
+    bool removeEnemyOnStage(Enemy *enemy);
+    bool removeEnemyOnSyuraba();
 };
 
 

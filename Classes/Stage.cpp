@@ -74,9 +74,10 @@ bool Stage::init()
     return true;
 }
 
-/*
- *
- *
+/** tmxファイルからステージを読み込んで画像を配置
+ *@param layer TMXファイルから読み込んだレイヤー
+ *@param coordinate
+ *@return マップから読み込んだ画像
  */
 Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordinate){
     /*タイルのスプライトを取り出す*/
@@ -105,10 +106,7 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
             physicsBody->setCategoryBitmask(category);
             /* 剛体と接触判定をとるカテゴリを指定する */
             physicsBody->setContactTestBitmask(static_cast<int>(TileType::PLAYER));
-            
-          
         }
-        
         /* 剛体をSpriteに付ける */
         sprite->setPhysicsBody(physicsBody);
         return sprite;
@@ -121,7 +119,7 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
  *@return 配置した敵のSpriteクラスを返す
  *
  */
-Sprite* Stage::addEnemy(){
+void Stage::addEnemyOnStage(){
     auto enemy = Enemy::create();
     Vec2  nowPos = _player->getPosition();
     /* 要リファクタリングTODO */
@@ -179,9 +177,12 @@ Sprite* Stage::addEnemy(){
     /* _enemyベクターに敵を追加する */
     _enemys.pushBack(enemy);
     
-    return enemy;
+    return ;
 }
 
+/** フィールドの敵を移動
+ *
+ */
 void Stage::moveEnemys(){
     auto iterator = _enemys.begin();
     while (iterator != _enemys.end()) {
@@ -216,6 +217,46 @@ void Stage::moveEnemys(){
     
 }
 
+/** フィールドの敵を削除
+ *@param *enemy 削除する敵
+ *@return bool 削除できたかどうか
+ */
+bool Stage::removeEnemyOnStage(Enemy *enemy){
+    
+    /* _enemysにenemyが含まれているかを確認しておく*/
+    if(_enemys.contains(enemy)){
+        /* 親ノード(GameScene)から削除 */
+        enemy->removeFromParent();
+        /* 配列からも削除 */
+        _enemys.eraseObject(enemy);
+        return  true;
+    }
+    return false;
+}
+
+/** 修羅場エリアに入ってきた敵を格納
+ *@param *enemy 挿入する敵
+ */
+void Stage::addEnemyOnSyuraba(Enemy *enemy){
+    _syuraarea.pushBack(enemy);
+}
+
+/** 修羅場エリアに存在する敵を全て削除
+ *  同時にステージ上に存在する敵も削除する
+ *
+ */
+bool Stage::removeEnemyOnSyuraba(){
+    /* 修羅場エリアに存在する敵を削除する */
+    for (const auto& enemy : _syuraarea)
+    {
+        /* ステージ上から敵を削除 */
+        removeEnemyOnStage(enemy);
+        /* 修羅場エリアからもenemyを削除 */
+        _syuraarea.eraseObject(enemy);
+    }
+    return true;
+}
+
 
 void Stage::update(float dt)
 {
@@ -223,14 +264,8 @@ void Stage::update(float dt)
     int random = rand() % ADD_ENEMY_RATE;
     /* 20分の１の確率で敵を追加 */
     if(random == 0 ){
-        this ->addEnemy();
+        this ->addEnemyOnStage();
     }
     /* 敵キャラの位置を更新 */
     moveEnemys();
-    
-    
-    
-    /* 敵とプレイヤーの当たり判定 */
-    /* 修羅場エリアに入った時の処理 */
-    /* 敵の削除 */
 }
