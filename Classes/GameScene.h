@@ -35,7 +35,14 @@ public:
     void onTouchesBegan(const std::vector<Touch*>& touches, Event *unused_event);
     void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event);
     void onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event);
+    
+    /* 剛体の接触イベントリスナー */
+    bool onContactBegin(PhysicsContact& contact);
+    bool onContactPresolve(PhysicsContact& contact);
+    void onContactSeparate(PhysicsContact& contact);
+//    void onContactPostSolve(PhysicsContact& contact);
 
+    
     /* ステージの作成 */
     CC_SYNTHESIZE_RETAIN(Stage *, _stage, Stage);
     /* VirutalPadの生成 */
