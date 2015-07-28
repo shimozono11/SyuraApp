@@ -28,19 +28,12 @@ bool Enemy::init()
     body->setRotationEnable(false);
     // カテゴリをMOB_ENEMYにセットする
     body->setCategoryBitmask(static_cast<int>(Stage::TileType::MOB_ENEMY));
-    
-    /* 接触判定をセット */
-    body->setContactTestBitmask(static_cast<int>(Stage::TileType::PLAYER));
-    
-    
-    // 全て
-    body->setCollisionBitmask(INT_MAX);
 
-    /* すbて */
-    body->setCollisionBitmask(INT_MAX);
+    /* 修羅場以外と衝突する ~はビット反転 */
+    body->setCollisionBitmask(~static_cast<int>(Stage::TileType::SYURABA_EREA));
     // 全ての剛体の接触判定を行う
-
     body->setContactTestBitmask(INT_MAX);
+    
 
     this->setPhysicsBody(body);
     this->scheduleUpdate();
