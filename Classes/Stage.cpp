@@ -104,8 +104,8 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
             auto category = properties.at("category").asInt();
             /* 剛体にカテゴリーをセットする */
             physicsBody->setCategoryBitmask(category);
-            /* 剛体と接触判定をとるカテゴリを指定する */
-            physicsBody->setContactTestBitmask(static_cast<int>(TileType::PLAYER));
+            /* 剛体と接触判定をとるカテゴリを指定する  ここではプレイヤーと敵*/
+            physicsBody->setContactTestBitmask((int)Stage::TileType::PLAYER + (int)Stage::TileType::MOB_ENEMY);
         }
         /* 剛体をSpriteに付ける */
         sprite->setPhysicsBody(physicsBody);

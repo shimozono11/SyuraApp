@@ -40,7 +40,7 @@ public:
     bool onContactBegin(PhysicsContact& contact);
     bool onContactPresolve(PhysicsContact& contact);
     void onContactSeparate(PhysicsContact& contact);
-//    void onContactPostSolve(PhysicsContact& contact);
+//    void onContactPostSolve(PhysicsContact& contact);衝突後
 
     
     /* ステージの作成 */

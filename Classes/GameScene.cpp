@@ -145,6 +145,7 @@ void GameScene::onTouchesMoved(const std::vector<Touch *> &touches, cocos2d::Eve
     }
     return;
 }
+
 /**
  *タッチ終了
  *@param touches
@@ -186,20 +187,22 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         return true;
     }
     
-    //        /* 双方が敵同士の場合 */
-    //        if( bodyA->getCategoryBitmask() & static_cast<int>(Stage::)){
-    //            CCLOG("敵同士の接触");
-    //            return true;
-    //        }
+    /* 敵が衝突したとき、片方が敵でない場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        CCLOG("修羅場にぶつかりました");
+        /* bodyBが敵でない場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            CCLOG("敵「修羅場なう」");
+        }
+        
+    }else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        CCLOG("修羅場にぶつかりました");
+        /* bodyAが敵でない場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            CCLOG("敵「修羅場なう」");
+        }
+    }
     
-    
-    /* プレイヤーと敵がぶつかったときは敵を取り出す */
-    //        if( contact.getShapeA()-> getBody() == _stage->getPlayer()->getPhysicsBody() ){
-    //            auto otherShape = contact.getShapeB();
-    //        }else{
-    //            auto otherShape = contact.getShapeA();
-    //        }
-    //二つの剛体のうちプレイヤーではないほうを取り出す
     auto otherShape = contact.getShapeA()->getBody() == _stage->getPlayer()->getPhysicsBody() ? contact.getShapeB() : contact.getShapeA();
     auto body = otherShape->getBody();
     
