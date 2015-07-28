@@ -93,7 +93,6 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
         physicsBody->setDynamic(false);
         /* 剛体をつけるSpriteのアンカーポイントを中心にする */
         sprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-        
         /* タイルのIDを取り出す */
         auto gid = layer->getTileGIDAt(coordinate);
         /* タイルのプロパティをmapで取り出す */
@@ -241,9 +240,9 @@ void Stage::addEnemyOnSyuraba(Enemy *enemy){
     _syuraarea.pushBack(enemy);
 }
 
-/** 修羅場エリアに存在する敵を全て削除
+/** 修羅場発生時に実行すし、修羅場エリアに存在する敵を全て削除
  *  同時にステージ上に存在する敵も削除する
- *
+ *@return bool 削除できたかどうか
  */
 bool Stage::removeEnemyOnSyuraba(){
     /* 修羅場エリアに存在する敵を削除する */
@@ -256,7 +255,20 @@ bool Stage::removeEnemyOnSyuraba(){
     }
     return true;
 }
-
+/** 修羅場が発生せずに、敵が修羅場エリアを離れた時に実行
+ *  離れた敵を修羅場エリアの管理するベクターから削除
+ *@param enemy 修羅場から離れた敵
+ *@return bool 削除できたかどうか
+ */
+bool Stage::leaveEnemyOnSyuraba(Enemy *enemy){
+    /* _syurabaareaにenemyが含まれているかを確認しておく*/
+    if(_syuraarea.contains(enemy)){
+        /* 入れるからのみ削除 */
+        _enemys.eraseObject(enemy);
+        return  true;
+    }
+    return false;
+}
 
 void Stage::update(float dt)
 {

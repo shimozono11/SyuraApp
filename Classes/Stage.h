@@ -70,14 +70,18 @@ private:
      */
     cocos2d::Sprite* addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
-    /** フィールドに敵を設置
-     *  @return 敵のスプライト（剛体）
-     */
+    //フィールドに敵を追加
     void addEnemyOnStage();
+    //修羅場で管理するエリアに敵を追加
     void addEnemyOnSyuraba(Enemy *enemy);
+    //敵を動かす
     void moveEnemys();
+    //ステージ上から敵を削除
     bool removeEnemyOnStage(Enemy *enemy);
+    //修羅場発生時に実行する関数。修羅場の敵を全て削除
     bool removeEnemyOnSyuraba();
+    //修羅場が起きずに敵が離れた場合の関数
+    bool leaveEnemyOnSyuraba(Enemy *enemy);
 };
 
 
