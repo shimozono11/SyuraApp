@@ -23,7 +23,6 @@ bool Player::init()
     this -> setPosition(Vec2(600, 1100));
     /* 剛体の設置 */
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
-//        auto body = PhysicsBody::createBox(this->getContentSize());
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
     // カテゴリをPLAYERにセットする
@@ -32,11 +31,8 @@ bool Player::init()
     body->setCollisionBitmask(static_cast<int>(Stage::TileType::WALL));
     // 全ての剛体の接触判定を行う
     body->setContactTestBitmask(INT_MAX);
-
     
-    // 全ての剛体と接触判定を行う
     this->setPhysicsBody(body);
-
     this->scheduleUpdate();
     
     return true;
