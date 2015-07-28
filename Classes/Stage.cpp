@@ -34,13 +34,15 @@ bool Stage::init()
     /* マップファイルからノードを作成 */
     auto map = TMXTiledMap::create("img/map/stage1.tmx");
     this->addChild(map);
-    
     this->setTiledMap(map);
     
     /*　地形レイヤーを取得 */
     //    auto terrainLayer = map->getLayer("Tile");
     // オブジェクトレイヤーを取得する
     auto objectLayer = map->getLayer("Object");
+    
+    // 修羅場レイヤーを取得
+    auto syurabaLayer = map->getLayer("Syuraba");
     
     // マップのサイズ
     auto mapSize = map->getMapSize();
@@ -49,7 +51,7 @@ bool Stage::init()
             auto coordinate = Vec2(i, j);
             //            this->addPhysicsBody(terrainLayer, coordinate);
             this->addPhysicsBodyTMX(objectLayer, coordinate);
-            
+            this->addPhysicsBodyTMX(syurabaLayer, coordinate);
         }
     }
     
@@ -90,6 +92,23 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
         physicsBody->setDynamic(false);
         /* 剛体をつけるSpriteのアンカーポイントを中心にする */
         sprite->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+        
+        /* タイルのIDを取り出す */
+        auto gid = layer->getTileGIDAt(coordinate);
+        /* タイルのプロパティをmapで取り出す */
+        auto properties = _tiledMap->getPropertiesForGID(gid).asValueMap();
+        /* "category"というプロパティが存在しているかチェック */
+        if(properties.count("category") > 0){
+            /* プロパティのなっからcategoryの値をintとして取り出す */
+            auto category = properties.at("category").asInt();
+            /* 剛体にカテゴリーをセットする */
+            physicsBody->setCategoryBitmask(category);
+            /* 剛体と接触判定をとるカテゴリを指定する */
+            physicsBody->setContactTestBitmask(static_cast<int>(TileType::PLAYER));
+            
+          
+        }
+        
         /* 剛体をSpriteに付ける */
         sprite->setPhysicsBody(physicsBody);
         return sprite;

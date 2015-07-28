@@ -26,12 +26,12 @@ public:
         WALL = 1 << 0,
         /// プレイヤー
         PLAYER = 1 << 1,
-        /// 敵キャラ
-        ENEMY = 1 << 2,
-        /// コイン
-        COIN = 1 << 3,
-        /// 収集アイテム
-        ITEN = 1 << 4
+        /// MOBの敵キャラ
+        MOB_ENEMY = 1 << 2,
+        /// 修羅場を起こす敵キャラ
+        SYURA_ENEMY = 1 << 3,
+        /// 修羅場エリア
+        SYURABA_EREA = 1 << 4
     };
 
 //    void update(float dt) override;

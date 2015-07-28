@@ -26,6 +26,14 @@ bool Player::init()
 //        auto body = PhysicsBody::createBox(this->getContentSize());
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
+    // カテゴリをPLAYERにセットする
+    body->setCategoryBitmask(static_cast<int>(Stage::TileType::PLAYER));
+    // 壁とのみ衝突する
+    body->setCollisionBitmask(static_cast<int>(Stage::TileType::WALL));
+    // 全ての剛体の接触判定を行う
+    body->setContactTestBitmask(INT_MAX);
+
+    
     // 全ての剛体と接触判定を行う
     this->setPhysicsBody(body);
 

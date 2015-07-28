@@ -7,6 +7,7 @@
 //
 
 #include "Enemy.h"
+#include "Stage.h"
 
 USING_NS_CC;
 /// アニメーションが何フレームあるか
@@ -25,7 +26,22 @@ bool Enemy::init()
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
-    // 全ての剛体と接触判定を行う
+    // カテゴリをMOB_ENEMYにセットする
+    body->setCategoryBitmask(static_cast<int>(Stage::TileType::MOB_ENEMY));
+    
+    /* 接触判定をセット */
+    body->setContactTestBitmask(static_cast<int>(Stage::TileType::PLAYER));
+    
+    
+    // 全て
+    body->setCollisionBitmask(INT_MAX);
+
+    /* すbて */
+    body->setCollisionBitmask(INT_MAX);
+    // 全ての剛体の接触判定を行う
+
+    body->setContactTestBitmask(INT_MAX);
+
     this->setPhysicsBody(body);
     this->scheduleUpdate();
     
