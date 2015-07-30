@@ -172,7 +172,6 @@ void GameScene::onTouchesEnded(const std::vector<Touch *> &touches, cocos2d::Eve
  */
 bool GameScene::onContactBegin(PhysicsContact& contact){
     
-    
     /* 衝突した物体２つを取り出す */
     auto bodyA = contact.getShapeA()->getBody();
     auto bodyB = contact.getShapeB()->getBody();
@@ -183,26 +182,47 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
     
     /* 衝突した剛体が双方とも敵の場合 */
     if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
-        CCLOG("なにすんのよあんた！！！");
+        //        CCLOG("なにすんのよあんた！！！");
         return true;
     }
     
     /* 敵が衝突したとき、片方が敵でない場合 */
     if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
-        CCLOG("修羅場にぶつかりました");
-        /* bodyBが敵でない場合 */
+        
+        /* 修羅場に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+//            _stage->getEnemys().begin()
+            _stage->getSyuraarea().pushBack(bodyB->getNode());
+            bodyA->getNode()->removeFromParent();
             CCLOG("敵「修羅場なう」");
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::WALL)){
+//            CCLOG("敵「壁なう」");
+            return true;
         }
         
+        
     }else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
-        CCLOG("修羅場にぶつかりました");
-        /* bodyAが敵でない場合 */
+        /*修羅場に接触した場合*/
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            /*ここで修羅場にいる敵をどうやって格納するか考え中・・・*/
+//            this->removeChild(dynamic_cast<Node*>(bodyB));
+            _stage->getSyuraarea().pushBack(bodyB->getNode());
+            bodyB->getNode()->removeFromParent();
             CCLOG("敵「修羅場なう」");
+            return true;
         }
+        /* 壁に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::WALL)){
+//            CCLOG("敵「壁なう」");
+            return true;
+        }
+        
     }
     
+    /* 以下プレイヤーが衝突したときの処理 */
     auto otherShape = contact.getShapeA()->getBody() == _stage->getPlayer()->getPhysicsBody() ? contact.getShapeB() : contact.getShapeA();
     auto body = otherShape->getBody();
     
@@ -216,34 +236,24 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         CCLOG("プレイやー「壁なう」");
     } else if (category & static_cast<int>(Stage::TileType::SYURABA_EREA)) {
         CCLOG("プレイヤー「修羅場なう」");
-        // アイテム
-        //            layer->removeChild(body->getNode(), true);
-        //            this->onGetItem(body->getNode());
-        //            if (_itemCount == MAX_ITEM_COUNT) {
-        //                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(AudioUtils::getFileName("complete").c_str());
-        //            } else {
-        //                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(AudioUtils::getFileName("food").c_str());
-        //            }
     }
-    
-    
-    
+    return true;
+}
+
+/**
+ * 剛体の接触中
+ *@param contact 接触クラス？
+ *
+ */
+bool GameScene::onContactPresolve(PhysicsContact& contact){
     
     
     return true;
 }
 
 /**
- * 剛体の接触中
- *@param contact 接触のインスタンス？
- *
- */
-bool GameScene::onContactPresolve(PhysicsContact& contact){
-    return true;
-}
-/**
  * 剛体の接触後
- *@param contact 接触のインスタンス？
+ *@param contact 接触クラス？
  *
  */
 void GameScene::onContactSeparate(PhysicsContact& contact){
