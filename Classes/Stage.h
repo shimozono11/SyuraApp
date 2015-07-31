@@ -19,6 +19,7 @@
 class Stage :public cocos2d::Layer
 {
 public:
+
     
     /// タイルの種類
     enum class TileType {
@@ -34,12 +35,16 @@ public:
         SYURABA_EREA = 1 << 4
     };
 
-//    void update(float dt) override;
-//    
-//    CC_SYNTHESIZE_READONLY(int, _level, Level);
-    cocos2d::Size winSize;
-
     void update(float dt)override;
+    //修羅場で管理するエリアに敵を追加
+    void addEnemyOnSyuraba(Enemy *enemy);
+    //ステージ上から敵を削除
+    bool removeEnemyOnStage(Enemy *enemy);
+    //修羅場発生時に実行する関数。修羅場の敵を全て削除
+    bool removeEnemyOnSyuraba();
+    //修羅場が起きずに敵が離れた場合の関数
+    bool leaveEnemyOnSyuraba(Enemy *enemy);
+    
     
     /* タイルマップ */
     CC_SYNTHESIZE_RETAIN(cocos2d::TMXTiledMap *, _tiledMap, TiledMap);
@@ -48,7 +53,7 @@ public:
     /* 敵 */
     CC_SYNTHESIZE(cocos2d::Vector<Enemy*>,_enemys,Enemys);
     /* 修羅場エリアに入っている敵を格納する */
-    CC_SYNTHESIZE(cocos2d::Vector<Enemy*>,_syuraarea, Syuraarea)
+    CC_SYNTHESIZE(cocos2d::Vector<Node*>,_syuraarea, Syuraarea)
     CREATE_FUNC(Stage);
     /** ステージ番号からステージを生成します
      *  @param level ステージ番号
@@ -70,18 +75,13 @@ private:
      */
     cocos2d::Sprite* addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
+    cocos2d::Size winSize;
+    
     //フィールドに敵を追加
     void addEnemyOnStage();
-    //修羅場で管理するエリアに敵を追加
-    void addEnemyOnSyuraba(Enemy *enemy);
     //敵を動かす
     void moveEnemys();
-    //ステージ上から敵を削除
-    bool removeEnemyOnStage(Enemy *enemy);
-    //修羅場発生時に実行する関数。修羅場の敵を全て削除
-    bool removeEnemyOnSyuraba();
-    //修羅場が起きずに敵が離れた場合の関数
-    bool leaveEnemyOnSyuraba(Enemy *enemy);
+
 };
 
 

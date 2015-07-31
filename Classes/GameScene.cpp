@@ -191,9 +191,14 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         
         /* 修羅場に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
-//            _stage->getEnemys().begin()
-            _stage->getSyuraarea().pushBack(bodyB->getNode());
-            bodyA->getNode()->removeFromParent();
+
+            /* 修羅場エリアリストに挿入 */
+            auto newSyuraba = _stage->getSyuraarea();
+            newSyuraba.pushBack(bodyA->getNode());
+            _stage->setSyuraarea(newSyuraba);
+            
+            CCLOG("%zd", _stage->getSyuraarea().size());
+//            _stage->getSyuraarea().insert(_stage->getSyuraarea().size(), bodyB->getNode());
             CCLOG("敵「修羅場なう」");
             return true;
         }
@@ -207,10 +212,12 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
     }else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
         /*修羅場に接触した場合*/
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
-            /*ここで修羅場にいる敵をどうやって格納するか考え中・・・*/
-//            this->removeChild(dynamic_cast<Node*>(bodyB));
-            _stage->getSyuraarea().pushBack(bodyB->getNode());
-            bodyB->getNode()->removeFromParent();
+            /* 修羅場リストにオブジェクトを追加 */
+            /* 修羅場エリアリストに挿入 */
+            auto newSyuraba = _stage->getSyuraarea();
+            newSyuraba.pushBack(bodyB->getNode());
+            _stage->setSyuraarea(newSyuraba);
+            CCLOG("%zd", _stage->getSyuraarea().size());
             CCLOG("敵「修羅場なう」");
             return true;
         }
@@ -252,11 +259,55 @@ bool GameScene::onContactPresolve(PhysicsContact& contact){
 }
 
 /**
- * 剛体の接触後
+ * 剛体の接触後 ：修羅場に存在する敵の管理を行う
  *@param contact 接触クラス？
  *
  */
 void GameScene::onContactSeparate(PhysicsContact& contact){
+    /* 修羅場エリアに入っている敵だったら、修羅場エリアのベクターから削除 TODO*/
+    
+    /* 接触し終わった物体２つを取り出す */
+    auto bodyA = contact.getShapeA()->getBody();
+    auto bodyB = contact.getShapeB()->getBody();
+    
+    /* 接触し終わった物体２つのカテゴリを取り出す */
+    auto categoryA = bodyA -> getCategoryBitmask();
+    auto categoryB = bodyB -> getCategoryBitmask();
+    
+    /* 接触し終わった剛体が双方とも敵の場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        return ;
+    }
+    
+    /* 剛体が離れた時、片方が敵でない場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        
+        /* 修羅場から接触し終わった時 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+
+            /* 修羅場エリアリストの中から削除 */
+            _stage->getSyuraarea().eraseObject(bodyB->getNode());
+
+            return ;
+        }
+        /* 壁に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::WALL)){
+            //            CCLOG("敵「壁なう」");
+            return ;
+        }
+        
+        
+    }else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        /*修羅場から接触し終わった時*/
+        if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            /* 修羅場エリアリストの中から削除 */
+            _stage->getSyuraarea().eraseObject(bodyB->getNode());
+            return ;
+        }
+    }
+
+    
+    
     return;
 }
 
@@ -298,9 +349,32 @@ void GameScene::update(float dt){
         _stage->getPlayer()->setPosition(position);
         //    CCLOG("%d\n",_virPad->getSpeed());
     }
+
     
-    /* 敵とプレイヤーの当たり判定 */
+  
     /* 修羅場エリアに入った時の処理 */
+    /* 修羅場に２つ以上敵が入ったら 　TODO*/
+//
+//    CCLOG("現在の修羅場エリアにいる人：　%zd", _stage->getSyuraarea().size());
+    if( _stage->getSyuraarea().size() >= 2){
+        CCLOG("修羅場発生！！！");
+        auto newSyuraba = _stage->getSyuraarea();
+//        /* ステージから全て削除 TODO ベクターをループで回す*/
+//        for(auto itr = 0 ; itr != newSyuraba.size() ; itr++){
+//            auto a = dynamic_cast<Enemy*>( newSyuraba.front());
+//            a->removeFromParent();
+//            newSyuraba.eraseObject(a);
+//        }
+        auto itr = newSyuraba.begin();
+        while (itr != newSyuraba.end())
+        {
+            (*itr)->removeFromParent();
+            itr = newSyuraba.erase(itr);
+        }
+        /* ベクターの中からも全てのオブジェクトを削除 */
+        newSyuraba.clear();
+        _stage->setSyuraarea(newSyuraba);
+    }
     /* 敵の削除 */
     
 }

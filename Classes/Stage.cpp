@@ -246,8 +246,9 @@ void Stage::addEnemyOnSyuraba(Enemy *enemy){
  */
 bool Stage::removeEnemyOnSyuraba(){
     /* 修羅場エリアに存在する敵を削除する */
-    for (const auto& enemy : _syuraarea)
+    for (const auto& Node : _syuraarea)
     {
+        Enemy *enemy = dynamic_cast<Enemy*>(Node);
         /* ステージ上から敵を削除 */
         removeEnemyOnStage(enemy);
         /* 修羅場エリアからもenemyを削除 */
