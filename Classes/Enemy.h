@@ -10,6 +10,7 @@
 #define __SyuraProject__Enemy__
 
 #include <stdio.h>
+#include "cocos2d.h"
 
 class Enemy :public cocos2d::Sprite
 {

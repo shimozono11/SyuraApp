@@ -8,7 +8,7 @@
 #ifndef CocosProjectTest1_VirtualPad_h
 #define CocosProjectTest1_VirtualPad_h
 
-
+#include <stdio.h>
 #include "cocos2d.h"
 using namespace cocos2d;
 
