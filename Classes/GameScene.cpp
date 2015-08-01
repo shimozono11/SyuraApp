@@ -10,14 +10,20 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 
-USING_NS_CC;
 
+USING_NS_CC;
 using namespace cocostudio::timeline;
+
+/* 制限時間 */
+const float TIME_LIMIT_SECOND = 40;
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
-:_stage(nullptr)
-,_virPad(nullptr)
+: _second(TIME_LIMIT_SECOND)
+, _state(GameState::READY)
+, _stage(nullptr)
+, _virPad(nullptr)
+, _secondLabel(NULL)
 
 {
     
@@ -27,6 +33,7 @@ GameScene::~GameScene()
 {
     CC_SAFE_RELEASE_NULL(_stage);
     CC_SAFE_RELEASE_NULL(_virPad);
+    CC_SAFE_RELEASE_NULL(_secondLabel);
 }
 
 
@@ -55,6 +62,7 @@ Scene* GameScene::createScene()
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {
+
     //////////////////////////////
     // 1. super init first
     if ( !Layer::init() )
@@ -84,8 +92,6 @@ bool GameScene::init()
     listener->onTouchesEnded = CC_CALLBACK_2(GameScene::onTouchesEnded, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
     
-    /* update関数（毎フレーム呼び出す関数）の設置 */
-    this->scheduleUpdate();
     
     /* 物体が接触したことを検知するEventListener */
     auto contactListener = EventListenerPhysicsContact::create();
@@ -95,16 +101,42 @@ bool GameScene::init()
     contactListener->onContactSeperate = CC_CALLBACK_1(GameScene::onContactSeparate, this);
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
     
-    /* 物体が衝突したことを検知するEventListener */
+    /* タイマーラベルの追加 */
+    int second = static_cast<int>(_second);
+    auto secondLabel = Label::createWithSystemFont(StringUtils::toString(second), "MarkerFelt", 16);
+    this->setSecondLabel(secondLabel);
     
+    secondLabel->enableShadow(Color4B::BLACK,Size(0.5,0.5) , 3);
+    secondLabel->enableOutline(Color4B::BLACK,1.5);
+    secondLabel->setPosition(Vec2(winSize.width /2.0 , winSize.height -40));
+    this->addChild(secondLabel);
+    
+    /* タイマーヘッダーの追加 */
+    auto secondLabelHeader = Label::createWithSystemFont("TIME","MarkerFelt", 16);
+    secondLabelHeader->enableShadow(Color4B::BLACK,Size(0.5,0.5) , 3);
+    secondLabelHeader->enableOutline(Color4B::BLACK,1.5);
+    secondLabelHeader->setPosition(Vec2(winSize.width /2.0 , winSize.height -20));
+    this->addChild(secondLabelHeader);
     
     /*
      auto rootNode = CSLoader::createNode("GameScene.csb");
      addChild(rootNode);
      */
-    
+    /* update関数（毎フレーム呼び出す関数）の設置 */
+    this->scheduleUpdate();
+    time=0;
+    isPauseFlag = false;
     
     return true;
+}
+
+void GameScene::onEnterTransitionDidFinish()
+{
+    // シーン遷移が完了したとき
+    Layer::onEnterTransitionDidFinish();
+    
+    // 「READY」演出を行う
+    this->addReadyLabel();
 }
 
 /**
@@ -234,7 +266,7 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
     auto body = otherShape->getBody();
     
     auto category = body->getCategoryBitmask();
-    auto layer = dynamic_cast<TMXLayer *>(body->getNode()->getParent());
+//    auto layer = dynamic_cast<TMXLayer *>(body->getNode()->getParent());
     
     if (category & static_cast<int>(Stage::TileType::MOB_ENEMY)) {
         // ゲームオーバー
@@ -284,7 +316,6 @@ void GameScene::onContactSeparate(PhysicsContact& contact){
         
         /* 修羅場から接触し終わった時 */
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
-
             /* 修羅場エリアリストの中から削除 */
             syuraba.eraseObject(bodyA->getNode());
             _stage->setSyuraarea(syuraba);
@@ -326,9 +357,57 @@ void GameScene::onGameover(){
 void GameScene::onClear(){
     
 }
+/** ゲーム開始時の処理
+ *
+ *
+ */
+void GameScene::addReadyLabel()
+{
+    //時間を止める！
+    swichPauseFlag();
+    auto winSize = Director::getInstance()->getWinSize();
+    auto center = Vec2(winSize.width / 2.0, winSize.height / 2.0);
+    
+    // Readyの文字を定義する
+    auto ready = Sprite::create("ready.png");
+    ready->setScale(0); // 最初に大きさを0にしておく
+    ready->setPosition(center);
+    this->addChild(ready);
+    
+    // STARTの文字を定義する
+    auto start = Sprite::create("start.png");
+    start->runAction(Sequence::create(CCSpawn::create(EaseIn::create(ScaleTo::create(0.5, 5.0), 0.5),
+                                                      FadeOut::create(1.0),
+                                                      NULL), // 1.0秒かけて拡大とフェードアウトを同時に行う
+                                      RemoveSelf::create(), // 自分を削除する
+                                      NULL));
+    start->setPosition(center);
+    
+    // READYにアニメーションを追加する
+    ready->runAction(Sequence::create(ScaleTo::create(0.25, 1), // 0.25秒かけて等倍に拡大される
+                                      DelayTime::create(2.0), // 1.0秒待つ
+                                      CallFunc::create([this, start] { // ラムダの中でthisとstart変数を使っているのでキャプチャに加える
+        this->addChild(start); // 「スタート」のラベルを追加する（この時点でスタートのアニメーションが始まる）
+        _state = GameState::PLAYING; // ゲーム状態をPLAYINGに切り替える
+        this->swichPauseFlag(); //スタートラベルが出た瞬間から操作可能に
+    }),
+                                      RemoveSelf::create(), // 自分を削除する
+                                      NULL));
+    
+    /* 時は・・・動き出す！ */
+//    swichPauseFlag();
+}
+
+
 
 void GameScene::update(float dt){
-    /* バーチャルパッドに触れている間 */
+    
+    
+    time += dt;
+    if(time > 15){
+        swichPauseFlag();
+    }
+    /* バーチャルパッドの操作 */
     if( _virPad->isTouch()){
         
         /*　バーチャルパッドの移動量でプレイヤーを操作 */
@@ -349,13 +428,8 @@ void GameScene::update(float dt){
         _stage->getPlayer()->setPosition(position);
         //    CCLOG("%d\n",_virPad->getSpeed());
     }
-
-    
   
     /* 修羅場エリアに入った時の処理 */
-    /* 修羅場に２つ以上敵が入ったら 　TODO*/
-//
-//    CCLOG("現在の修羅場エリアにいる人：　%zd", _stage->getSyuraarea().size());
     if( _stage->getSyuraarea().size() >= 2){
         CCLOG("修羅場発生！！！");
         auto syuraba = _stage->getSyuraarea();
@@ -375,6 +449,34 @@ void GameScene::update(float dt){
         syuraba.clear();
         _stage->setSyuraarea(syuraba);
     }
-    /* 敵の削除 */
     
+    /* 残り時間を減らす */
+    _second -= dt;
+    /* 表示の更新 */
+    int second = static_cast<int>(_second);
+    _secondLabel->setString(StringUtils::toString(second));
+}
+/** ゲームのポーズスイッチを切り替える 
+ * 剛体やステージ場の敵、パッド操作等を諸々止める処理をまとめただけ
+ *
+ */
+void GameScene::swichPauseFlag()
+{
+    /* フラグを反転させる */
+    isPauseFlag = !isPauseFlag;
+    
+    if(isPauseFlag){
+        /* GameSceneのupdateを切る */
+        this->unscheduleUpdate();
+        /* Stage場のupdateを切る */
+        _stage->unscheduleUpdate();
+        /* プレイヤーの物理演算を切る */
+        _stage->getPlayer()->getPhysicsBody()->setEnable(false);
+
+    }else{
+        /* 止まっていた処理を動かす */
+        this->scheduleUpdate();
+        _stage->scheduleUpdate();
+        _stage->getPlayer()->getPhysicsBody()->setEnable(true);
+    }
 }
