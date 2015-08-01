@@ -15,7 +15,7 @@ const int FRAME_COUNT = 4;
 
 bool Enemy::init()
 {
-    if (!Sprite::initWithFile("img/character/mobu_icon.png")) {
+    if (!Sprite::initWithFile("character/mobu_stop.png")) {
         return false;
     }
     

@@ -16,7 +16,7 @@ const int FRAME_COUNT = 4;
 
 bool Player::init()
 {
-    if (!Sprite::initWithFile("img/character/futsuo_icon.png")) {
+    if (!Sprite::initWithFile("character/futsuo_stop.png")) {
         return false;
     }
     /* プレイヤーの初期位置を設定 */

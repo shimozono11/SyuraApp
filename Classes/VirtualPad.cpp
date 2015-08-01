@@ -45,12 +45,12 @@ bool VirtualPad::init(){
     Size size = Director::getInstance()->getVisibleSize();
     
     //画像の生成（Pad下地）
-    padBack = Sprite::create("game/padBack.png");
+    padBack = Sprite::create("virtualpad/virtualpad_bg.png");
     padBack->setAnchorPoint(Point(0.5f,0.5f));
     padBack->setPosition(Point(size.width*VIRTUAL_PAD_POSITION_RATE_X, size.height*VIRTUAL_PAD_POSITION_RATE_Y));
     
     /* 画像の生成（Pad操作部分） */
-    padFront = Sprite::create("game/padFront.png");
+    padFront = Sprite::create("virtualpad/virtualpad_pad.png");
     padFront->setAnchorPoint(Point(0.5f,0.5f));
     padFront->setPosition(Point(size.width*VIRTUAL_PAD_POSITION_RATE_X, size.height*VIRTUAL_PAD_POSITION_RATE_Y));
     
