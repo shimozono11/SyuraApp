@@ -1,18 +1,18 @@
 //
-//  LoseModal.cpp
+//  ClearModal.cpp
 //  SyuraProject
 //
-//  Created by 林　真史 on 2015/08/01.
+//  Created by 林　真史 on 2015/08/02.
 //
 //
 
-#include "LoseModal.h"
+#include "ClearModal.h"
 #include "cocostudio/CocoStudio.h"
 //#include "ui/CocosGUI.h"
 
 using namespace cocos2d;
 
-bool LoseModal::init()
+bool ClearModal::init()
 {
     if ( !CCLayer::init() )
     {
@@ -45,6 +45,7 @@ bool LoseModal::init()
             //好きな処理
         }
     });
+    
     // モーダルのフレーム
     //    auto frame = Sprite::create("img/app_icon.png");
     //    frame->setPosition(Vec2(winSize.width/2, winSize.height/2));
@@ -55,15 +56,15 @@ bool LoseModal::init()
     //    // Menu1
     //    auto button01 = MenuItemImage::create("menu-image1.png",  // 通常状態の画像
     //                                          "menu-image1-hover.png",  // 押下状態の画像
-    //                                          CC_CALLBACK_1(LoseModal::pushMenu01, this));
+    //                                          CC_CALLBACK_1(ClearModal::pushMenu01, this));
     //    // Menu2
     //    auto button02 = MenuItemImage::create("menu-image2.png",  // 通常状態の画像
     //                                          "menu-image2-hover.png",  // 押下状態の画像
-    //                                          CC_CALLBACK_1(LoseModal::pushMenu01, this));
+    //                                          CC_CALLBACK_1(ClearModal::pushMenu01, this));
     //    // キャンセル
     //    auto closeItem00 = MenuItemImage::create("menu-image9.png",  // 通常状態の画像
     //                                             "menu-image9-hover.png",  // 押下状態の画像
-    //                                             CC_CALLBACK_1(LoseModal::menuCloseCallback, this));
+    //                                             CC_CALLBACK_1(ClearModal::menuCloseCallback, this));
     //
     //    // ボタンの設置
     //    button01->setPosition(Point(winSize.width / 2,winSize.height /1.5));
@@ -86,15 +87,15 @@ bool LoseModal::init()
     return true;
 }
 
-// menuCloseCallback LoseModalオブジェクトの削除 sender
-void LoseModal::menuCloseCallback(Ref* pSender)
+// menuCloseCallback ClearModalオブジェクトの削除 sender
+void ClearModal::menuCloseCallback(Ref* pSender)
 {
-    // LoseModalオブジェクトの削除
+    // ClearModalオブジェクトの削除
     this->removeFromParentAndCleanup(true);
 }
 
 // pushStart01ボタン
-void LoseModal::pushMenu01(Ref *pSender)
+void ClearModal::pushMenu01(Ref *pSender)
 {
     CCLOG("pushMenuボタン01");
     

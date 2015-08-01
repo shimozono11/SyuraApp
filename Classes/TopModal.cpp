@@ -7,7 +7,6 @@
 //
 
 #include "TopModal.h"
-#include "cocostudio/CocoStudio.h"
 //#include "ui/CocosGUI.h"
 
 using namespace cocos2d;
@@ -22,8 +21,31 @@ bool TopModal::init()
     Size winSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto rootNode = CSLoader::createNode("modal_csd_layer/TopLayer.csb");
-    this -> addChild(rootNode);
+    auto Node = CSLoader::createNode("modal_csd_layer/TopLayer.csb");
+    Node -> setName("NODE");
+    this -> addChild(Node);
+
+    /* 女の子リストボタンを押した時の処理 */
+    auto* girlListBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("girllist_button"));
+    girlListBotton->addTouchEventListener([this](Ref* pSender, ui::Widget::TouchEventType type){
+        
+        //touch
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            //好きな処理
+            CCLOG("女の子リストボタンが押されました");
+        }
+    });
+    
+    /* コミックリストボタンを押した時の処理 */
+    auto* comicListBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("comiclist_button"));
+    comicListBotton->addTouchEventListener([this](Ref* pSender, ui::Widget::TouchEventType type){
+        
+        //touch
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            //好きな処理
+            CCLOG("漫画見るリストが押されました");
+        }
+    });
 
     // モーダルのフレーム
 //    auto frame = Sprite::create("img/app_icon.png");
@@ -66,7 +88,7 @@ bool TopModal::init()
     return true;
 }
 
-// menuCloseCallback TopModalオブジェクトの削除
+// menuCloseCallback TopModalオブジェクトの削除 sender
 void TopModal::menuCloseCallback(Ref* pSender)
 {
     // TopModalオブジェクトの削除
