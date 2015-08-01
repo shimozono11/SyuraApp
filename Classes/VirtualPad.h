@@ -66,6 +66,7 @@ public:
     int get4Way();
     int get8Way();
     int getSpeed();
+    Sprite* getPadBack();
     
 };
 

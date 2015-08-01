@@ -293,3 +293,10 @@ int VirtualPad::getSpeed(){
     return now_r;
 }
 
+/** PadBackのスプライトを取得
+ *
+ */
+Sprite* VirtualPad::getPadBack(){
+    return padBack;
+}
+
