@@ -12,12 +12,28 @@
 #include <stdio.h>
 #include "VirtualPad.h"
 #include "Stage.h"
+#include "cocos2d.h"
 
 class GameScene : public cocos2d::Layer
 {
 private:
     GameScene();
     virtual ~GameScene();
+//    
+//    /** モーダル画面のタグ
+//     * TOP :トップ画面
+//     * PAUSE:ポーズ画面
+//     * LOSE:負け画面
+//     * CLEAR:クリア画面
+//     */
+//    enum class ModalTag
+//    {
+//        TOP,
+//        PAUSE,
+//        LOSE,
+//        CLEAR,
+//    };
+    
     /** ゲームの状態を表す
      * READY :開始演出
      * PLAYING :ゲーム中
@@ -25,6 +41,8 @@ private:
      * SYURABA :修羅場中
      * ENDING :終了演出
      * RESULT :結果
+     * LOSE :負け
+     * CLEAR :クリア
      */
     enum class GameState
     {
@@ -33,11 +51,17 @@ private:
         PAUSE,
         SYURABA,
         ENDING,
-        RESULT
+        LOSE,
+        CLEAR,
     };
-    
-    void onGameover();
+    void onReady();
+    void onPlaying();
+    void onPause();
+    void onSyuraba();
+    void onEnding();
+    void onLose();
     void onClear();
+    
     void addReadyLabel();
     void swichPauseFlag();
 
@@ -51,8 +75,6 @@ public:
     virtual bool init();
     void update(float dt)override;
     void onEnterTransitionDidFinish() override;
-    /* VirtualPad実装 */
-    VirtualPad* virPad;
     
     Size winSize;
     
