@@ -8,6 +8,7 @@
 
 #include "ClearModal.h"
 #include "cocostudio/CocoStudio.h"
+#include "GameScene.h"
 //#include "ui/CocosGUI.h"
 
 using namespace cocos2d;
@@ -22,7 +23,7 @@ bool ClearModal::init()
     Size winSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto Node = CSLoader::createNode("modal_csd_layer/LoseLayer.csb");
+    auto Node = CSLoader::createNode("modal_csd_layer/ClearLayer.csb");
     Node -> setName("NODE");
     this -> addChild(Node);
     
@@ -32,6 +33,7 @@ bool ClearModal::init()
         
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
+             CCLOG("女の子リストボタンが押されました");
             //好きな処理
         }
     });
@@ -42,9 +44,34 @@ bool ClearModal::init()
         
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
+             CCLOG("コミックリストボタンが押されました");
             //好きな処理
         }
     });
+    
+    /* コミックリストボタンを押した時の処理 */
+    auto* retryBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("retry_button"));
+    retryBotton->addTouchEventListener([this](Ref* pSender, ui::Widget::TouchEventType type){
+        
+        //touch
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            CCLOG("リトライボタンが押されました");
+            // 遷移先の画面のインスタンス
+            Scene *pScene = GameScene::createScene();
+            // 0.5秒かけてフェードアウトしながら次の画面に遷移します
+            //    引数１:フィードの時間
+            //    引数２：移動先のシーン
+            //    引数３：フィードの色（オプション）
+            TransitionFade* transition = TransitionFade::create(0.5f, pScene);
+            
+            // 遷移実行  遷移時のアニメーション
+            // 直前のsceneはもう使わないから捨ててしまう方法。基本はこれになります。
+            Director::getInstance()->replaceScene(transition);
+
+            //好きな処理
+        }
+    });
+
     
     // モーダルのフレーム
     //    auto frame = Sprite::create("img/app_icon.png");
@@ -92,23 +119,4 @@ void ClearModal::menuCloseCallback(Ref* pSender)
 {
     // ClearModalオブジェクトの削除
     this->removeFromParentAndCleanup(true);
-}
-
-// pushStart01ボタン
-void ClearModal::pushMenu01(Ref *pSender)
-{
-    CCLOG("pushMenuボタン01");
-    
-    // 遷移先の画面のインスタンス
-    //    Scene *pScene = ModalSecondScene::createScene();
-    
-    // 0.5秒かけてフェードアウトしながら次の画面に遷移します
-    //    引数１:フィードの時間
-    //    引数２：移動先のシーン
-    //    引数３：フィードの色（オプション）
-    //    TransitionFade* transition = TransitionFade::create(0.5f, pScene);
-    
-    // 遷移実行  遷移時のアニメーション
-    // 直前のsceneはもう使わないから捨ててしまう方法。基本はこれになります。
-    //    Director::getInstance()->replaceScene(transition);
 }

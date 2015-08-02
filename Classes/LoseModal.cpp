@@ -8,6 +8,7 @@
 
 #include "LoseModal.h"
 #include "cocostudio/CocoStudio.h"
+#include "GameScene.h"
 //#include "ui/CocosGUI.h"
 
 using namespace cocos2d;
@@ -27,24 +28,49 @@ bool LoseModal::init()
     this -> addChild(Node);
     
     /* 女の子リストボタンを押した時の処理 */
-    auto* girlListBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("girllist_button"));
+    auto* girlListBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("lose_girllist_button"));
     girlListBotton->addTouchEventListener([this](Ref* pSender, ui::Widget::TouchEventType type){
         
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
+             CCLOG("女の子リストボタンが押されました");
             //好きな処理
         }
     });
     
     /* コミックリストボタンを押した時の処理 */
-    auto* comicListBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("comiclist_button"));
+    auto* comicListBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("lose_comiclist_button"));
     comicListBotton->addTouchEventListener([this](Ref* pSender, ui::Widget::TouchEventType type){
         
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
+             CCLOG("コミックリストボタンが押されました");
             //好きな処理
         }
     });
+    /* リトライボタンを押した時の処理 */
+    auto* retryBotton = dynamic_cast<cocos2d::ui::Button*>(this->getChildByName("NODE")->getChildByName("lose_retry_button"));
+    retryBotton->addTouchEventListener([this](Ref* pSender, ui::Widget::TouchEventType type){
+        
+        //touch
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            CCLOG("リトライボタンが押されました");
+            
+            // 遷移先の画面のインスタンス
+                Scene *pScene = GameScene::createScene();
+            // 0.5秒かけてフェードアウトしながら次の画面に遷移します
+            //    引数１:フィードの時間
+            //    引数２：移動先のシーン
+            //    引数３：フィードの色（オプション）
+                TransitionFade* transition = TransitionFade::create(0.5f, pScene);
+            
+            // 遷移実行  遷移時のアニメーション
+            // 直前のsceneはもう使わないから捨てる、基本はこれになります。
+                Director::getInstance()->replaceScene(transition);
+            //好きな処理
+        }
+    });
+
     // モーダルのフレーム
     //    auto frame = Sprite::create("img/app_icon.png");
     //    frame->setPosition(Vec2(winSize.width/2, winSize.height/2));
@@ -91,23 +117,4 @@ void LoseModal::menuCloseCallback(Ref* pSender)
 {
     // LoseModalオブジェクトの削除
     this->removeFromParentAndCleanup(true);
-}
-
-// pushStart01ボタン
-void LoseModal::pushMenu01(Ref *pSender)
-{
-    CCLOG("pushMenuボタン01");
-    
-    // 遷移先の画面のインスタンス
-    //    Scene *pScene = ModalSecondScene::createScene();
-    
-    // 0.5秒かけてフェードアウトしながら次の画面に遷移します
-    //    引数１:フィードの時間
-    //    引数２：移動先のシーン
-    //    引数３：フィードの色（オプション）
-    //    TransitionFade* transition = TransitionFade::create(0.5f, pScene);
-    
-    // 遷移実行  遷移時のアニメーション
-    // 直前のsceneはもう使わないから捨ててしまう方法。基本はこれになります。
-    //    Director::getInstance()->replaceScene(transition);
 }
