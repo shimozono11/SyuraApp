@@ -290,7 +290,7 @@ int VirtualPad::getSpeed(){
     /* ここに来ることはないはず */
 //    CCLOG("Errorlog in VirtualPad");
 //    return -1;
-    return now_r;
+    return now_r*3;
 }
 
 /**
