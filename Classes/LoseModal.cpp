@@ -68,6 +68,7 @@ bool LoseModal::init()
             // 直前のsceneはもう使わないから捨てる、基本はこれになります。
                 Director::getInstance()->replaceScene(transition);
             //好きな処理
+            this->menuCloseCallback(pSender);
         }
     });
 

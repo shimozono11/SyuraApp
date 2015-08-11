@@ -1,20 +1,98 @@
 <Solution>
-  <PropertyGroup Name="SyuraProject" Version="2.3.0.1" Type="CocosStudio" />
+  <PropertyGroup Name="SyuraProject" Version="2.3.1.2" Type="CocosStudio" />
   <SolutionFolder>
     <Group ctype="ResourceGroup">
       <RootFolder Name=".">
-        <Project Name="MainScene.csd" Type="Scene" />
-        <Folder Name="game">
-          <Image Name="analogstick_bg.png" />
-          <Image Name="analogstick_stick.png" />
-          <Image Name="bg_house.png" />
-          <Image Name="bg_house_garden.png" />
+        <Folder Name="character">
+          <Image Name="futsuo_stop.png" />
+          <Image Name="haruka_stop.png" />
+          <Image Name="kokona_stop.png" />
+          <Image Name="miyu_stop.png" />
+          <Image Name="mobu_stop.png" />
+          <Image Name="nene_stop.png" />
+          <Image Name="risa_stop.png" />
+        </Folder>
+        <Folder Name="comic">
+          <Image Name="kokona_win_risa.png" />
+        </Folder>
+        <Folder Name="comiclist">
+          <Image Name="backpaper_bottom.png" />
+          <Image Name="backpaper_top.png" />
+          <Image Name="comiclist_close_button.png" />
+          <Image Name="comiclist_close_button_clicked.png" />
+          <Image Name="comic_icon_risa_win_kokona.png" />
+          <Image Name="comic_icon_secret.png" />
+        </Folder>
+        <Folder Name="cut">
+          <Image Name="cut_bg.png" />
+        </Folder>
+        <Folder Name="girllist">
+          <Image Name="backcard.png" />
+          <Image Name="backpaper_bottom.png" />
+          <Image Name="charadetail_close.png" />
+          <Image Name="charadetail_close_clicked.png" />
+          <Image Name="detail_futsuo.png" />
+          <Image Name="detail_haruka.png" />
+          <Image Name="detail_kokona.png" />
+          <Image Name="detail_miyu.png" />
+          <Image Name="detail_mobuko.png" />
+          <Image Name="detail_nene.png" />
+          <Image Name="detail_risa.png" />
+          <Image Name="left_button.png" />
+          <Image Name="left_button_clicked.png" />
+          <Image Name="right_button.png" />
+          <Image Name="right_button_clicked.png" />
+        </Folder>
+        <Folder Name="pose">
+          <Image Name="start.png" />
+          <Image Name="start_clicked.png" />
+          <Image Name="stop.png" />
+          <Image Name="stop_clicked.png" />
+        </Folder>
+        <Folder Name="result-clear">
+          <Image Name="charadetail.png" />
+          <Image Name="charadetail_icon_clicked.png" />
+          <Image Name="clear_logo.png" />
+          <Image Name="comiclist_icon.png" />
+          <Image Name="comiclist_icon_clicked.png" />
+          <Image Name="gets_bg.png" />
+          <Image Name="retry.png" />
+          <Image Name="retry_clicked.png" />
+        </Folder>
+        <Folder Name="result-lose">
+          <Image Name="lose_charadetail_icon.png" />
+          <Image Name="lose_charadetail_icon_clicked.png" />
+          <Image Name="lose_comiclist_icon.png" />
+          <Image Name="lose_comiclist_icon_clicked.png" />
+          <Image Name="lose_logo.png" />
+          <Image Name="lose_retry.png" />
+          <Image Name="lose_retry_cleacked.png" />
+        </Folder>
+        <Folder Name="stage">
+          <Image Name="bg_bg.png" />
+          <Image Name="bg_building.png" />
           <Image Name="bg_road.png" />
-          <Image Name="futsuo_icon.png" />
-          <Image Name="haruka_icon.png" />
           <Image Name="shurabaarea.png" />
         </Folder>
-        <Project Name="GameScene.csd" Type="Layer" />
+        <Folder Name="time">
+          <Image Name="time.png" />
+        </Folder>
+        <Folder Name="top">
+          <Image Name="charadetail_button.png" />
+          <Image Name="charadetail_button_clicked.png" />
+          <Image Name="comiclist_button.png" />
+          <Image Name="comiclist_button_clicked.png" />
+          <Image Name="title_logo.png" />
+        </Folder>
+        <Folder Name="virtualpad">
+          <Image Name="virtualpad_bg.png" />
+          <Image Name="virtualpad_pad.png" />
+        </Folder>
+        <Folder Name="modal_csd_layer">
+          <Project Name="ClearLayer.csd" Type="Layer" />
+          <Project Name="LoseLayer.csd" Type="Layer" />
+          <Project Name="TopLayer.csd" Type="Layer" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

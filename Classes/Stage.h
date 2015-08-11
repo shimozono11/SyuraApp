@@ -41,10 +41,11 @@ public:
     //ステージ上から敵を削除
     bool removeEnemyOnStage(Enemy *enemy);
     //修羅場発生時に実行する関数。修羅場の敵を全て削除
-    bool removeEnemyOnSyuraba();
+    bool removeEnemyOnSyuraba(cocos2d::Vector<Node*> syuraarea);
     //修羅場が起きずに敵が離れた場合の関数
     bool leaveEnemyOnSyuraba(Enemy *enemy);
     
+   
     
     /* タイルマップ */
     CC_SYNTHESIZE_RETAIN(cocos2d::TMXTiledMap *, _tiledMap, TiledMap);
@@ -76,12 +77,12 @@ private:
     cocos2d::Sprite* addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
     cocos2d::Size winSize;
-    
     //フィールドに敵を追加
     void addEnemyOnStage();
     //敵を動かす
     void moveEnemys();
 
+   
 };
 
 

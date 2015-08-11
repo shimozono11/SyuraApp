@@ -13,6 +13,17 @@ USING_NS_CC;
 /// アニメーションが何フレームあるか
 const int FRAME_COUNT = 4;
 
+Enemy::Enemy()
+:_speed(NULL)
+{
+    
+}
+
+Enemy::~Enemy(){
+    
+}
+
+
 bool Enemy::init()
 {
     if (!Sprite::initWithFile("character/mobu_stop.png")) {

@@ -1,4 +1,4 @@
-<UserData>
+<UserData Version="2.3.1.2">
   <Properties>
     <Item Key="PackageParamsKey">
       <Value ctype="PackageParams">
@@ -11,8 +11,12 @@
         <iOS_Target Value="SyuraProject iOS" />
         <iOS_BundleID Value="" />
         <Platform Value="None" />
+        <RunPlatform Value="Mac" />
         <FrameworkVersion Value="cocos2d-x-3.6" />
         <IsDebugKeystore Value="True" />
+        <KeystorePassword Value="" />
+        <KeystoreAliasName Value="" />
+        <KeystoreAliasPassword Value="" />
         <EnableSourceMap Value="False" />
         <EnableHTML5Advanced Value="False" />
       </Value>
@@ -21,16 +25,17 @@
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="XCode" />
         <IsLastPublish Value="True" />
-        <LastRunType Value="Unknown" />
+        <LastRunType Value="Mac" />
       </Value>
     </Item>
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="MainScene.csd" />
-          <FilePathData Path="GameScene.csd" />
+          <FilePathData Path="modal_csd_layer/LoseLayer.csd" />
+          <FilePathData Path="modal_csd_layer/TopLayer.csd" />
+          <FilePathData Path="modal_csd_layer/ClearLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="GameScene.csd" />
+        <ActiveDocument Path="modal_csd_layer/LoseLayer.csd" />
       </Value>
     </Item>
   </Properties>

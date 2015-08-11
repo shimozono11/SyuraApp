@@ -20,7 +20,8 @@ Stage::Stage()
 }
 Stage::~Stage()
 {
-    CC_SAFE_RELEASE_NULL(_tiledMap);
+    CCLOG("player :%d",_player->getReferenceCount());
+//    CC_SAFE_RELEASE_NULL(_tiledMap);
     CC_SAFE_RELEASE_NULL(_player);
 }
 
@@ -225,37 +226,40 @@ bool Stage::removeEnemyOnStage(Enemy *enemy){
     /* _enemysにenemyが含まれているかを確認しておく*/
     if(_enemys.contains(enemy)){
         /* 親ノード(GameScene)から削除 */
-        enemy->removeFromParent();
+        CCLOG("Remove Now enemy%d",enemy->getReferenceCount());
         /* 配列からも削除 */
         _enemys.eraseObject(enemy);
+        CCLOG("Remove Now enemy%d",enemy->getReferenceCount());
+        //        enemy->removeFromParent();
+        enemy->removeFromParent();
+        CCLOG("Remove Now enemy%d",enemy->getReferenceCount());
+
         return  true;
     }
     return false;
 }
 
-/** 修羅場エリアに入ってきた敵を格納
- *@param *enemy 挿入する敵
- */
-void Stage::addEnemyOnSyuraba(Enemy *enemy){
-    _syuraarea.pushBack(enemy);
-}
 
 /** 修羅場発生時に実行すし、修羅場エリアに存在する敵を全て削除
  *  同時にステージ上に存在する敵も削除する
  *@return bool 削除できたかどうか
  */
-bool Stage::removeEnemyOnSyuraba(){
+bool Stage::removeEnemyOnSyuraba(cocos2d::Vector<Node*> syuraarea){
     /* 修羅場エリアに存在する敵を削除する */
-    for (const auto& Node : _syuraarea)
+    for (const auto& Node : syuraarea)
     {
         Enemy *enemy = dynamic_cast<Enemy*>(Node);
-        /* ステージ上から敵を削除 */
-        removeEnemyOnStage(enemy);
         /* 修羅場エリアからもenemyを削除 */
-        _syuraarea.eraseObject(enemy);
+        syuraarea.eraseObject(enemy);
+        /* ステージ上から敵を削除 */
+        if( this->removeEnemyOnStage(enemy) == false){
+            return false;
+        }
+        
     }
     return true;
 }
+
 /** 修羅場が発生せずに、敵が修羅場エリアを離れた時に実行
  *  離れた敵を修羅場エリアの管理するベクターから削除
  *@param enemy 修羅場から離れた敵
@@ -277,8 +281,8 @@ void Stage::update(float dt)
     int random = rand() % ADD_ENEMY_RATE;
     /* 20分の１の確率で敵を追加 */
     if(random == 0 ){
-        this ->addEnemyOnStage();
+        this->addEnemyOnStage();
     }
     /* 敵キャラの位置を更新 */
-    moveEnemys();
+    this->moveEnemys();
 }

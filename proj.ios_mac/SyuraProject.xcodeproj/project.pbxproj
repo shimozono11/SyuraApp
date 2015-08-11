@@ -52,18 +52,20 @@
 		791EA9321B5B161100068774 /* Stage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA92F1B5B161100068774 /* Stage.cpp */; };
 		791EA9351B5B162B00068774 /* VirtualPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9331B5B162B00068774 /* VirtualPad.cpp */; };
 		791EA9361B5B162B00068774 /* VirtualPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9331B5B162B00068774 /* VirtualPad.cpp */; };
-		791EA93D1B5B166400068774 /* PlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA93B1B5B166400068774 /* PlayScene.cpp */; };
-		791EA93E1B5B166400068774 /* PlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA93B1B5B166400068774 /* PlayScene.cpp */; };
-		791EA9411B5B17E400068774 /* BeginScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA93F1B5B17E400068774 /* BeginScene.cpp */; };
-		791EA9421B5B17E400068774 /* BeginScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA93F1B5B17E400068774 /* BeginScene.cpp */; };
-		791EA9451B5B183F00068774 /* PauseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9431B5B183F00068774 /* PauseScene.cpp */; };
-		791EA9461B5B183F00068774 /* PauseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9431B5B183F00068774 /* PauseScene.cpp */; };
 		791EA9491B5B1C3400068774 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9471B5B1C3400068774 /* Player.cpp */; };
 		791EA94A1B5B1C3400068774 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9471B5B1C3400068774 /* Player.cpp */; };
 		791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		79A8D4561B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79A8D4571B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
+		79D69A171B6CE70C0057A7CE /* TopModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A151B6CE70C0057A7CE /* TopModal.cpp */; };
+		79D69A181B6CE70C0057A7CE /* TopModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A151B6CE70C0057A7CE /* TopModal.cpp */; };
+		79D69A1F1B6CE7610057A7CE /* PauseModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */; };
+		79D69A201B6CE7610057A7CE /* PauseModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */; };
+		79D69A231B6CF2E20057A7CE /* LoseModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A211B6CF2E20057A7CE /* LoseModal.cpp */; };
+		79D69A241B6CF2E20057A7CE /* LoseModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A211B6CF2E20057A7CE /* LoseModal.cpp */; };
+		79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A291B6D39900057A7CE /* ClearModal.cpp */; };
+		79D69A2C1B6D39900057A7CE /* ClearModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A291B6D39900057A7CE /* ClearModal.cpp */; };
 		79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */; };
 		79F458831B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
@@ -127,17 +129,19 @@
 		791EA9301B5B161100068774 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
 		791EA9331B5B162B00068774 /* VirtualPad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualPad.cpp; sourceTree = "<group>"; };
 		791EA9341B5B162B00068774 /* VirtualPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualPad.h; sourceTree = "<group>"; };
-		791EA93B1B5B166400068774 /* PlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayScene.cpp; sourceTree = "<group>"; };
-		791EA93C1B5B166400068774 /* PlayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayScene.h; sourceTree = "<group>"; };
-		791EA93F1B5B17E400068774 /* BeginScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BeginScene.cpp; path = ../proj.ios_mac/BeginScene.cpp; sourceTree = "<group>"; };
-		791EA9401B5B17E400068774 /* BeginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeginScene.h; path = ../proj.ios_mac/BeginScene.h; sourceTree = "<group>"; };
-		791EA9431B5B183F00068774 /* PauseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PauseScene.cpp; sourceTree = "<group>"; };
-		791EA9441B5B183F00068774 /* PauseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseScene.h; sourceTree = "<group>"; };
 		791EA9471B5B1C3400068774 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		791EA9481B5B1C3400068774 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		791EA94B1B5B1C4A00068774 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		791EA94C1B5B1C4A00068774 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		79A8D4551B5D0191009AD531 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		79D69A151B6CE70C0057A7CE /* TopModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TopModal.cpp; sourceTree = "<group>"; };
+		79D69A161B6CE70C0057A7CE /* TopModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopModal.h; sourceTree = "<group>"; };
+		79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PauseModal.cpp; sourceTree = "<group>"; };
+		79D69A1E1B6CE7610057A7CE /* PauseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseModal.h; sourceTree = "<group>"; };
+		79D69A211B6CF2E20057A7CE /* LoseModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoseModal.cpp; sourceTree = "<group>"; };
+		79D69A221B6CF2E20057A7CE /* LoseModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoseModal.h; sourceTree = "<group>"; };
+		79D69A291B6D39900057A7CE /* ClearModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClearModal.cpp; sourceTree = "<group>"; };
+		79D69A2A1B6D39900057A7CE /* ClearModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearModal.h; sourceTree = "<group>"; };
 		79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomFollow.cpp; sourceTree = "<group>"; };
 		79F458811B5ECF1E00F2CC00 /* CustomFollow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFollow.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -230,6 +234,7 @@
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
@@ -277,16 +282,18 @@
 				791EA9301B5B161100068774 /* Stage.h */,
 				791EA9331B5B162B00068774 /* VirtualPad.cpp */,
 				791EA9341B5B162B00068774 /* VirtualPad.h */,
+				79D69A151B6CE70C0057A7CE /* TopModal.cpp */,
+				79D69A161B6CE70C0057A7CE /* TopModal.h */,
+				79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */,
+				79D69A1E1B6CE7610057A7CE /* PauseModal.h */,
+				79D69A211B6CF2E20057A7CE /* LoseModal.cpp */,
+				79D69A221B6CF2E20057A7CE /* LoseModal.h */,
+				79D69A291B6D39900057A7CE /* ClearModal.cpp */,
+				79D69A2A1B6D39900057A7CE /* ClearModal.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
 				791EA94B1B5B1C4A00068774 /* Enemy.cpp */,
 				791EA94C1B5B1C4A00068774 /* Enemy.h */,
-				791EA93B1B5B166400068774 /* PlayScene.cpp */,
-				791EA93C1B5B166400068774 /* PlayScene.h */,
-				791EA93F1B5B17E400068774 /* BeginScene.cpp */,
-				791EA9401B5B17E400068774 /* BeginScene.h */,
-				791EA9431B5B183F00068774 /* PauseScene.cpp */,
-				791EA9441B5B183F00068774 /* PauseScene.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -401,7 +408,7 @@
 				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = LLFR4YE877;
 					};
 				};
 			};
@@ -469,13 +476,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				791EA9451B5B183F00068774 /* PauseScene.cpp in Sources */,
-				791EA9411B5B17E400068774 /* BeginScene.cpp in Sources */,
+				79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */,
-				791EA93D1B5B166400068774 /* PlayScene.cpp in Sources */,
+				79D69A231B6CF2E20057A7CE /* LoseModal.cpp in Sources */,
+				79D69A171B6CE70C0057A7CE /* TopModal.cpp in Sources */,
 				791EA9351B5B162B00068774 /* VirtualPad.cpp in Sources */,
 				791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */,
+				79D69A1F1B6CE7610057A7CE /* PauseModal.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				791EA9491B5B1C3400068774 /* Player.cpp in Sources */,
 				791EA92D1B5B158900068774 /* GameScene.cpp in Sources */,
@@ -490,15 +498,16 @@
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				79F458831B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */,
-				791EA93E1B5B166400068774 /* PlayScene.cpp in Sources */,
-				791EA9421B5B17E400068774 /* BeginScene.cpp in Sources */,
 				791EA9361B5B162B00068774 /* VirtualPad.cpp in Sources */,
+				79D69A2C1B6D39900057A7CE /* ClearModal.cpp in Sources */,
+				79D69A181B6CE70C0057A7CE /* TopModal.cpp in Sources */,
+				79D69A201B6CE7610057A7CE /* PauseModal.cpp in Sources */,
 				791EA94A1B5B1C3400068774 /* Player.cpp in Sources */,
-				791EA9461B5B183F00068774 /* PauseScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				791EA9321B5B161100068774 /* Stage.cpp in Sources */,
 				791EA92E1B5B158900068774 /* GameScene.cpp in Sources */,
 				791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */,
+				79D69A241B6CF2E20057A7CE /* LoseModal.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +519,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -534,6 +544,7 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -546,6 +557,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -568,6 +580,7 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(_COCOS_HEADER_IOS_BEGIN) $(_COCOS_HEADER_IOS_END)";
@@ -663,10 +676,11 @@
 					"/Applications/Cocos/frameworks/cocos2d-x-3.6/external",
 					"/Applications/Cocos/frameworks/cocos2d-x-3.6/external/chipmunk/include/chipmunk",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -692,6 +706,7 @@
 					"/Applications/Cocos/frameworks/cocos2d-x-3.6/external",
 					"/Applications/Cocos/frameworks/cocos2d-x-3.6/external/chipmunk/include/chipmunk",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";

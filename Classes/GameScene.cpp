@@ -382,12 +382,22 @@ void GameScene::onReady(){
  */
 void GameScene::onLose(){
     CCLOG("GameOver!!!");
-    // レイヤーを追加
-    auto layer = LoseModal::create();
-    layer->setName("LoseModal");
-    this->addChild(layer);
-    /* 動きを止める処理 */
-    this->swichPauseFlag();
+    Scene *pScene = GameScene::createScene();
+    // 0.5秒かけてフェードアウトしながら次の画面に遷移します
+    //    引数１:フィードの時間
+    //    引数２：移動先のシーン
+    //    引数３：フィードの色（オプション）
+    TransitionFade* transition = TransitionFade::create(0.5f, pScene);
+    
+    // 遷移実行  遷移時のアニメーション
+    // 直前のsceneはもう使わないから捨てる、基本はこれになります。
+    Director::getInstance()->replaceScene(transition);
+//    // レイヤーを追加
+//    auto layer = LoseModal::create();
+//    layer->setName("LoseModal");
+//    this->addChild(layer);
+//    /* 動きを止める処理 */
+//    this->swichPauseFlag();
 
 }
 /** ゲームクリア処理
@@ -427,37 +437,6 @@ void GameScene::addReadyLabel()
 {
     //時間を止める！
     swichPauseFlag();
-    //    auto winSize = Director::getInstance()->getWinSize();
-    //    auto center = Vec2(winSize.width / 2.0, winSize.height / 2.0);
-    //
-    //    // Readyの文字を定義する
-    //    auto ready = Sprite::create("ready.png");
-    //    ready->setScale(0); // 最初に大きさを0にしておく
-    //    ready->setPosition(center);
-    //    this->addChild(ready);
-    //
-    //    // STARTの文字を定義する
-    //    auto start = Sprite::create("start.png");
-    //    start->runAction(Sequence::create(CCSpawn::create(EaseIn::create(ScaleTo::create(0.5, 5.0), 0.5),
-    //                                                      FadeOut::create(1.0),
-    //                                                      NULL), // 1.0秒かけて拡大とフェードアウトを同時に行う
-    //                                      RemoveSelf::create(), // 自分を削除する
-    //                                      NULL));
-    //    start->setPosition(center);
-    //
-    //    // READYにアニメーションを追加する
-    //    ready->runAction(Sequence::create(ScaleTo::create(0.25, 1), // 0.25秒かけて等倍に拡大される
-    //                                      DelayTime::create(2.0), // 1.0秒待つ
-    //                                      CallFunc::create([this, start] { // ラムダの中でthisとstart変数を使っているのでキャプチャに加える
-    //        this->addChild(start); // 「スタート」のラベルを追加する（この時点でスタートのアニメーションが始まる）
-    //        _state = GameState::PLAYING; // ゲーム状態をPLAYINGに切り替える
-    //        this->swichPauseFlag(); //スタートラベルが出た瞬間から操作可能に
-    //    }),
-    //                                      RemoveSelf::create(), // 自分を削除する
-    //                                      NULL));
-    
-    /* 時は・・・動き出す！ */
-    //    swichPauseFlag();
 }
 
 

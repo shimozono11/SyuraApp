@@ -69,6 +69,7 @@ bool ClearModal::init()
             Director::getInstance()->replaceScene(transition);
 
             //好きな処理
+            this->menuCloseCallback(pSender);
         }
     });
 

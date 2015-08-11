@@ -77,13 +77,13 @@ bool TopModal::init()
 //    this->addChild(menu, 1);
     
     // モーダル処理
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches(true);
-    listener->onTouchBegan = [](Touch *touch,Event*event)->bool{
-        return true;
-    };
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+//    auto listener = EventListenerTouchOneByOne::create();
+//    listener->setSwallowTouches(true);
+//    listener->onTouchBegan = [](Touch *touch,Event*event)->bool{
+//        return true;
+//    };
+//    auto dispatcher = Director::getInstance()->getEventDispatcher();
+//    dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     return true;
 }
@@ -95,21 +95,3 @@ void TopModal::menuCloseCallback(Ref* pSender)
     this->removeFromParentAndCleanup(true);
 }
 
-// pushStart01ボタン
-void TopModal::pushMenu01(Ref *pSender)
-{
-    CCLOG("pushMenuボタン01");
-    
-    // 遷移先の画面のインスタンス
-//    Scene *pScene = ModalSecondScene::createScene();
-    
-    // 0.5秒かけてフェードアウトしながら次の画面に遷移します
-    //    引数１:フィードの時間
-    //    引数２：移動先のシーン
-    //    引数３：フィードの色（オプション）
-//    TransitionFade* transition = TransitionFade::create(0.5f, pScene);
-    
-    // 遷移実行  遷移時のアニメーション
-    // 直前のsceneはもう使わないから捨ててしまう方法。基本はこれになります。
-//    Director::getInstance()->replaceScene(transition);
-}

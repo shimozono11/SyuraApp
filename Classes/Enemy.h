@@ -15,7 +15,8 @@
 class Enemy :public cocos2d::Sprite
 {
 private:
-    
+    Enemy();
+    virtual ~Enemy();
 public:
     
     bool init() override;
