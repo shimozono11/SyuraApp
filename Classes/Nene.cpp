@@ -21,6 +21,12 @@ Nene::~Nene(){
 
 bool Nene::init()
 {
+    if (!Sprite::initWithFile("character/nene_stop.png")) {
+        return false;
+    }
+    /* 修羅キャラの剛体を設置 */
+    this->SyuraEnemy::setSyuraBody();
+
     return true;
 }
 

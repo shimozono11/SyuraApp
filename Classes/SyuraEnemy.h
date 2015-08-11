@@ -23,7 +23,7 @@ public:
     void update(float dt) override;
     CREATE_FUNC(SyuraEnemy);
     
-    bool setPhysicsbody();
+    bool setSyuraBody();
 };
 
 

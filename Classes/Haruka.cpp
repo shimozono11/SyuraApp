@@ -21,6 +21,11 @@ Haruka::~Haruka(){
 
 bool Haruka::init()
 {
+    if (!Sprite::initWithFile("character/haruka_stop.png")) {
+        return false;
+    }
+    /* 修羅キャラの剛体を設置 */
+    this->SyuraEnemy::setSyuraBody();
     return true;
 }
 

@@ -28,12 +28,12 @@ void SyuraEnemy::update(float dt)
     
 }
 
-bool SyuraEnemy::setPhysicsbody(){
+bool SyuraEnemy::setSyuraBody(){
     /* 剛体の設置 */
     auto body = cocos2d::PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
-    // カテゴリをMOB_ENEMYにセットする
+    // カテゴリをSYURA_ENEMYにセットする
     body->setCategoryBitmask(static_cast<int>(Stage::TileType::SYURA_ENEMY));
     
     /* 修羅場以外と衝突する ~はビット反転 */
