@@ -14,7 +14,7 @@
 
 class Enemy :public cocos2d::Sprite
 {
-private:
+protected:
     Enemy();
     virtual ~Enemy();
 public:

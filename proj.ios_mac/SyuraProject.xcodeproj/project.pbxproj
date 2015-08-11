@@ -63,6 +63,8 @@
 		79CE4BD31B797A0B00CD67E7 /* Risa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BD11B797A0B00CD67E7 /* Risa.cpp */; };
 		79CE4BD61B797A3C00CD67E7 /* Miyu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BD41B797A3C00CD67E7 /* Miyu.cpp */; };
 		79CE4BD91B797A5200CD67E7 /* Kokona.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BD71B797A5200CD67E7 /* Kokona.cpp */; };
+		79CE4BDC1B797ADD00CD67E7 /* Mobu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BDA1B797ADD00CD67E7 /* Mobu.cpp */; };
+		79CE4BDF1B79813600CD67E7 /* SyuraEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BDD1B79813600CD67E7 /* SyuraEnemy.cpp */; };
 		79D69A171B6CE70C0057A7CE /* TopModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A151B6CE70C0057A7CE /* TopModal.cpp */; };
 		79D69A181B6CE70C0057A7CE /* TopModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A151B6CE70C0057A7CE /* TopModal.cpp */; };
 		79D69A1F1B6CE7610057A7CE /* PauseModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */; };
@@ -149,6 +151,10 @@
 		79CE4BD51B797A3C00CD67E7 /* Miyu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Miyu.h; sourceTree = "<group>"; };
 		79CE4BD71B797A5200CD67E7 /* Kokona.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Kokona.cpp; sourceTree = "<group>"; };
 		79CE4BD81B797A5200CD67E7 /* Kokona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kokona.h; sourceTree = "<group>"; };
+		79CE4BDA1B797ADD00CD67E7 /* Mobu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mobu.cpp; sourceTree = "<group>"; };
+		79CE4BDB1B797ADD00CD67E7 /* Mobu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mobu.h; sourceTree = "<group>"; };
+		79CE4BDD1B79813600CD67E7 /* SyuraEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SyuraEnemy.cpp; sourceTree = "<group>"; };
+		79CE4BDE1B79813600CD67E7 /* SyuraEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyuraEnemy.h; sourceTree = "<group>"; };
 		79D69A151B6CE70C0057A7CE /* TopModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TopModal.cpp; sourceTree = "<group>"; };
 		79D69A161B6CE70C0057A7CE /* TopModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopModal.h; sourceTree = "<group>"; };
 		79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PauseModal.cpp; sourceTree = "<group>"; };
@@ -309,6 +315,10 @@
 				791EA9481B5B1C3400068774 /* Player.h */,
 				791EA94B1B5B1C4A00068774 /* Enemy.cpp */,
 				791EA94C1B5B1C4A00068774 /* Enemy.h */,
+				79CE4BDA1B797ADD00CD67E7 /* Mobu.cpp */,
+				79CE4BDB1B797ADD00CD67E7 /* Mobu.h */,
+				79CE4BDD1B79813600CD67E7 /* SyuraEnemy.cpp */,
+				79CE4BDE1B79813600CD67E7 /* SyuraEnemy.h */,
 				79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */,
 				79CE4BCC1B7979B600CD67E7 /* Haruka.h */,
 				79CE4BCE1B7979C500CD67E7 /* Nene.cpp */,
@@ -501,9 +511,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				79CE4BD31B797A0B00CD67E7 /* Risa.cpp in Sources */,
+				79CE4BDF1B79813600CD67E7 /* SyuraEnemy.cpp in Sources */,
 				79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */,
+				79CE4BDC1B797ADD00CD67E7 /* Mobu.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */,
 				79D69A231B6CF2E20057A7CE /* LoseModal.cpp in Sources */,
