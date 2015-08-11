@@ -7,22 +7,38 @@
 //
 
 #include "SyuraEnemy.h"
-SyuraEnemyu::SyuraEnemyu()
+#include "Stage.h"
+SyuraEnemy::SyuraEnemy()
 {
     
 }
 
-SyuraEnemyu::~SyuraEnemyu(){
+SyuraEnemy::~SyuraEnemy(){
     
 }
 
 
-bool SyuraEnemyu::init()
+bool SyuraEnemy::init()
 {
     return true;
 }
 
-void SyuraEnemyu::update(float dt)
+void SyuraEnemy::update(float dt)
 {
     
+}
+
+bool SyuraEnemy::setPhysicsbody(){
+    /* 剛体の設置 */
+    auto body = cocos2d::PhysicsBody::createCircle(this->getContentSize().width / 2.0);
+    // 剛体の回転を無効にする
+    body->setRotationEnable(false);
+    // カテゴリをMOB_ENEMYにセットする
+    body->setCategoryBitmask(static_cast<int>(Stage::TileType::SYURA_ENEMY));
+    
+    /* 修羅場以外と衝突する ~はビット反転 */
+    body->setCollisionBitmask(~static_cast<int>(Stage::TileType::SYURABA_EREA));
+    // 全ての剛体の接触判定を行う
+    body->setContactTestBitmask(INT_MAX);
+    return true;
 }

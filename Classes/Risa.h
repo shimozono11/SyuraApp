@@ -10,5 +10,16 @@
 #define __SyuraProject__Risa__
 
 #include <stdio.h>
+#include "SyuraEnemy.h"
+class Risa :public SyuraEnemy{
+protected:
+    Risa();
+    virtual ~Risa();
+public:
+    
+    bool init() override;
+    void update(float dt) override;
+    CREATE_FUNC(Risa);
+};
 
 #endif /* defined(__SyuraProject__Risa__) */

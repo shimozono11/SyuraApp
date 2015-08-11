@@ -10,5 +10,17 @@
 #define __SyuraProject__Haruka__
 
 #include <stdio.h>
+#include "SyuraEnemy.h"
+class Haruka :public SyuraEnemy{
+protected:
+    Haruka();
+    virtual ~Haruka();
+public:
+    
+    bool init() override;
+    void update(float dt) override;
+    CREATE_FUNC(Haruka);
+};
+
 
 #endif /* defined(__SyuraProject__Haruka__) */

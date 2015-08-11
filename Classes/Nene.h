@@ -10,5 +10,16 @@
 #define __SyuraProject__Nene__
 
 #include <stdio.h>
+#include "SyuraEnemy.h"
+class Nene :public SyuraEnemy{
+protected:
+    Nene();
+    virtual ~Nene();
+public:
+    
+    bool init() override;
+    void update(float dt) override;
+    CREATE_FUNC(Nene);
+};
 
 #endif /* defined(__SyuraProject__Nene__) */

@@ -7,3 +7,24 @@
 //
 
 #include "Nene.h"
+#include "SyuraEnemy.h"
+#include "Stage.h"
+Nene::Nene()
+{
+    
+}
+
+Nene::~Nene(){
+    
+}
+
+
+bool Nene::init()
+{
+    return true;
+}
+
+void Nene::update(float dt)
+{
+    
+}

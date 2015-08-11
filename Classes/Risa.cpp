@@ -7,3 +7,24 @@
 //
 
 #include "Risa.h"
+#include "SyuraEnemy.h"
+#include "Stage.h"
+Risa::Risa()
+{
+    
+}
+
+Risa::~Risa(){
+    
+}
+
+
+bool Risa::init()
+{
+    return true;
+}
+
+void Risa::update(float dt)
+{
+    
+}

@@ -7,3 +7,24 @@
 //
 
 #include "Miyu.h"
+#include "SyuraEnemy.h"
+#include "Stage.h"
+Miyu::Miyu()
+{
+    
+}
+
+Miyu::~Miyu(){
+    
+}
+
+
+bool Miyu::init()
+{
+    return true;
+}
+
+void Miyu::update(float dt)
+{
+    
+}

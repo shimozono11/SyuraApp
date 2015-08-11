@@ -10,5 +10,17 @@
 #define __SyuraProject__Miyu__
 
 #include <stdio.h>
+#include "SyuraEnemy.h"
+class Miyu :public SyuraEnemy{
+protected:
+    Miyu();
+    virtual ~Miyu();
+public:
+    
+    bool init() override;
+    void update(float dt) override;
+    CREATE_FUNC(Miyu);
+};
+
 
 #endif /* defined(__SyuraProject__Miyu__) */

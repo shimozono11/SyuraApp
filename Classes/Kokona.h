@@ -10,5 +10,17 @@
 #define __SyuraProject__Kokona__
 
 #include <stdio.h>
+#include "SyuraEnemy.h"
+class Kokona :public SyuraEnemy{
+protected:
+    Kokona();
+    virtual ~Kokona();
+public:
+    
+    bool init() override;
+    void update(float dt) override;
+    CREATE_FUNC(Kokona);
+};
+
 
 #endif /* defined(__SyuraProject__Kokona__) */

@@ -13,15 +13,17 @@
 #include "cocos2d.h"
 #include "Enemy.h"
 
-class SyuraEnemyu :public Enemy{
+class SyuraEnemy :public Enemy{
 protected:
-    SyuraEnemyu();
-    virtual ~SyuraEnemyu();
+    SyuraEnemy();
+    virtual ~SyuraEnemy();
 public:
     
     bool init() override;
     void update(float dt) override;
-    CREATE_FUNC(SyuraEnemyu);
+    CREATE_FUNC(SyuraEnemy);
+    
+    bool setPhysicsbody();
 };
 
 

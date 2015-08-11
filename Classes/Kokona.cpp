@@ -7,3 +7,24 @@
 //
 
 #include "Kokona.h"
+#include "SyuraEnemy.h"
+#include "Stage.h"
+Kokona::Kokona()
+{
+    
+}
+
+Kokona::~Kokona(){
+    
+}
+
+
+bool Kokona::init()
+{
+    return true;
+}
+
+void Kokona::update(float dt)
+{
+    
+}
