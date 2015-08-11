@@ -58,6 +58,11 @@
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		79A8D4561B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79A8D4571B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
+		79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */; };
+		79CE4BD01B7979C500CD67E7 /* Nene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BCE1B7979C500CD67E7 /* Nene.cpp */; };
+		79CE4BD31B797A0B00CD67E7 /* Risa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BD11B797A0B00CD67E7 /* Risa.cpp */; };
+		79CE4BD61B797A3C00CD67E7 /* Miyu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BD41B797A3C00CD67E7 /* Miyu.cpp */; };
+		79CE4BD91B797A5200CD67E7 /* Kokona.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BD71B797A5200CD67E7 /* Kokona.cpp */; };
 		79D69A171B6CE70C0057A7CE /* TopModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A151B6CE70C0057A7CE /* TopModal.cpp */; };
 		79D69A181B6CE70C0057A7CE /* TopModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A151B6CE70C0057A7CE /* TopModal.cpp */; };
 		79D69A1F1B6CE7610057A7CE /* PauseModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */; };
@@ -134,6 +139,16 @@
 		791EA94B1B5B1C4A00068774 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		791EA94C1B5B1C4A00068774 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		79A8D4551B5D0191009AD531 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Haruka.cpp; sourceTree = "<group>"; };
+		79CE4BCC1B7979B600CD67E7 /* Haruka.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Haruka.h; sourceTree = "<group>"; };
+		79CE4BCE1B7979C500CD67E7 /* Nene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Nene.cpp; sourceTree = "<group>"; };
+		79CE4BCF1B7979C500CD67E7 /* Nene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nene.h; sourceTree = "<group>"; };
+		79CE4BD11B797A0B00CD67E7 /* Risa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Risa.cpp; sourceTree = "<group>"; };
+		79CE4BD21B797A0B00CD67E7 /* Risa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Risa.h; sourceTree = "<group>"; };
+		79CE4BD41B797A3C00CD67E7 /* Miyu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Miyu.cpp; sourceTree = "<group>"; };
+		79CE4BD51B797A3C00CD67E7 /* Miyu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Miyu.h; sourceTree = "<group>"; };
+		79CE4BD71B797A5200CD67E7 /* Kokona.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Kokona.cpp; sourceTree = "<group>"; };
+		79CE4BD81B797A5200CD67E7 /* Kokona.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kokona.h; sourceTree = "<group>"; };
 		79D69A151B6CE70C0057A7CE /* TopModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TopModal.cpp; sourceTree = "<group>"; };
 		79D69A161B6CE70C0057A7CE /* TopModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopModal.h; sourceTree = "<group>"; };
 		79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PauseModal.cpp; sourceTree = "<group>"; };
@@ -294,6 +309,16 @@
 				791EA9481B5B1C3400068774 /* Player.h */,
 				791EA94B1B5B1C4A00068774 /* Enemy.cpp */,
 				791EA94C1B5B1C4A00068774 /* Enemy.h */,
+				79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */,
+				79CE4BCC1B7979B600CD67E7 /* Haruka.h */,
+				79CE4BCE1B7979C500CD67E7 /* Nene.cpp */,
+				79CE4BCF1B7979C500CD67E7 /* Nene.h */,
+				79CE4BD11B797A0B00CD67E7 /* Risa.cpp */,
+				79CE4BD21B797A0B00CD67E7 /* Risa.h */,
+				79CE4BD41B797A3C00CD67E7 /* Miyu.cpp */,
+				79CE4BD51B797A3C00CD67E7 /* Miyu.h */,
+				79CE4BD71B797A5200CD67E7 /* Kokona.cpp */,
+				79CE4BD81B797A5200CD67E7 /* Kokona.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -475,6 +500,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79CE4BD31B797A0B00CD67E7 /* Risa.cpp in Sources */,
+				79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -482,13 +509,16 @@
 				79D69A231B6CF2E20057A7CE /* LoseModal.cpp in Sources */,
 				79D69A171B6CE70C0057A7CE /* TopModal.cpp in Sources */,
 				791EA9351B5B162B00068774 /* VirtualPad.cpp in Sources */,
+				79CE4BD61B797A3C00CD67E7 /* Miyu.cpp in Sources */,
 				791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */,
 				79D69A1F1B6CE7610057A7CE /* PauseModal.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				79CE4BD91B797A5200CD67E7 /* Kokona.cpp in Sources */,
 				791EA9491B5B1C3400068774 /* Player.cpp in Sources */,
 				791EA92D1B5B158900068774 /* GameScene.cpp in Sources */,
 				791EA9311B5B161100068774 /* Stage.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				79CE4BD01B7979C500CD67E7 /* Nene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

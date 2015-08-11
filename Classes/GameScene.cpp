@@ -382,22 +382,13 @@ void GameScene::onReady(){
  */
 void GameScene::onLose(){
     CCLOG("GameOver!!!");
-    Scene *pScene = GameScene::createScene();
-    // 0.5秒かけてフェードアウトしながら次の画面に遷移します
-    //    引数１:フィードの時間
-    //    引数２：移動先のシーン
-    //    引数３：フィードの色（オプション）
-    TransitionFade* transition = TransitionFade::create(0.5f, pScene);
     
-    // 遷移実行  遷移時のアニメーション
-    // 直前のsceneはもう使わないから捨てる、基本はこれになります。
-    Director::getInstance()->replaceScene(transition);
-//    // レイヤーを追加
-//    auto layer = LoseModal::create();
-//    layer->setName("LoseModal");
-//    this->addChild(layer);
-//    /* 動きを止める処理 */
-//    this->swichPauseFlag();
+    // レイヤーを追加
+    auto layer = LoseModal::create();
+    layer->setName("LoseModal");
+    this->addChild(layer);
+    /* 動きを止める処理 */
+    this->swichPauseFlag();
 
 }
 /** ゲームクリア処理
