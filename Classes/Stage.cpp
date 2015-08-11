@@ -34,7 +34,7 @@ bool Stage::init()
     }
     
     /* マップファイルからノードを作成 */
-    auto map = TMXTiledMap::create("map/stage1.tmx");
+    auto map = TMXTiledMap::create("stage/stage2.tmx");
     this->addChild(map);
     this->setTiledMap(map);
     
@@ -89,6 +89,7 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
         auto material = PhysicsMaterial();
         /* 引っかからないように摩擦をゼロに */
         material.friction = 0;
+        material.restitution = 0.1;
         /* 剛体を設置 */
         auto physicsBody = PhysicsBody::createBox(sprite->getContentSize(),material);
         /* 剛体を固定する */
@@ -171,7 +172,7 @@ void Stage::addEnemyOnStage(){
     //    /* 敵の初期位置 */
     //    enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
     /* 速度の設定 */
-    enemy->setSpeed((int)rand()%10);
+    enemy->setSpeed((int)rand()%12);
     
     /* ステージに敵を追加 */
     this -> addChild(enemy);
@@ -207,6 +208,8 @@ void Stage::moveEnemys(){
         
         /* マップの敵へ反映 */
         enemy->setPosition(newPosition);
+        /*物理エンジンで反映 おそらくめり込まないようにするには物理エンジンでする必要がある、しかし現状では完成を急ぐため座標で移動*/
+//        enemy->getPhysicsBody()->setVelocity(enemy->getSpeed()*delta/(delta.length()));
         /* マップ外へ出ないように丸める */
         auto position = enemy->getPosition().getClampPoint(Vec2(0,0), this->getTiledMap()->getContentSize());
         enemy->setPosition(position);

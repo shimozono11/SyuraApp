@@ -17,7 +17,7 @@ USING_NS_CC;
 using namespace cocostudio::timeline;
 
 /* 制限時間 */
-const float TIME_LIMIT_SECOND = 10;
+const float TIME_LIMIT_SECOND = 100;
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
@@ -428,6 +428,7 @@ void GameScene::addReadyLabel()
 {
     //時間を止める！
     swichPauseFlag();
+//    cocos2d::Director::getInstance()->pause();
 }
 
 
@@ -446,9 +447,9 @@ void GameScene::update(float dt){
         Vec2 newPosition = nowPosition + padMovement;
         /* プレイヤーの位置を更新 */
         //座標で更新
-        //        _stage->getPlayer()->setPosition(newPosition);
-        //物理エンジンでキャラの位置を移動
-        _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
+                _stage->getPlayer()->setPosition(newPosition);
+        //物理エンジンでキャラの位置を移動(本当は物理エンジンで実現するのが好ましいが現在は簡単のため座標で移動)
+//        _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
         
         /*プレイヤーが画面外に飛び出さないように設定*/
         auto position = _stage->getPlayer()->getPosition().getClampPoint(Vec2(0,0), _stage->getTiledMap()->getContentSize());

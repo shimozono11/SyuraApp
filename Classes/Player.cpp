@@ -37,6 +37,9 @@ bool Player::init()
     /* プレイヤーの初期位置を設定 */
     this -> setPosition(Vec2(600, 1100));
     /* 剛体の設置 */
+    auto material = PhysicsMaterial();
+    material.friction = 0;
+
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
