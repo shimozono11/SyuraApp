@@ -28,9 +28,9 @@ void SyuraEnemy::update(float dt)
     
 }
 
-bool SyuraEnemy::setSyuraBody(){
+bool SyuraEnemy::setSyuraBody(cocos2d::PhysicsBody * body){
     /* 剛体の設置 */
-    auto body = cocos2d::PhysicsBody::createCircle(this->getContentSize().width / 2.0);
+//    auto body = cocos2d::PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする
     body->setRotationEnable(false);
     // カテゴリをSYURA_ENEMYにセットする
@@ -40,5 +40,7 @@ bool SyuraEnemy::setSyuraBody(){
     body->setCollisionBitmask(~static_cast<int>(Stage::TileType::SYURABA_EREA));
     // 全ての剛体の接触判定を行う
     body->setContactTestBitmask(INT_MAX);
+    
+    this->setPhysicsBody(body);
     return true;
 }

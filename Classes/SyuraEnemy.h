@@ -22,8 +22,8 @@ public:
     bool init() override;
     void update(float dt) override;
     CREATE_FUNC(SyuraEnemy);
-    
-    bool setSyuraBody();
+    /* 修羅キャラに共通する剛体の設定 */
+    bool setSyuraBody(cocos2d::PhysicsBody * body);
 };
 
 

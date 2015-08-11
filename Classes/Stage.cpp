@@ -7,6 +7,7 @@
 //
 
 #include "Stage.h"
+#include "Haruka.h"
 USING_NS_CC;
 
 /*  */
@@ -120,7 +121,7 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
  *
  */
 void Stage::addEnemyOnStage(){
-    auto enemy = Enemy::create();
+    auto enemy = Haruka::create();
     Vec2  nowPos = _player->getPosition();
     /* 要リファクタリングTODO */
     /* 敵を配置する場所を指定 */
@@ -274,6 +275,16 @@ bool Stage::leaveEnemyOnSyuraba(Enemy *enemy){
     }
     return false;
 }
+
+/** 渡されたプレイヤーの位置情報をもとに敵の追加位置を決める
+ *
+ *@param player
+ *@return bool 削除できたかどうか
+ */
+Vec2 Stage::createEnemyPosition(Vec2 playerPos){
+    return nullptr;
+}
+
 
 void Stage::update(float dt)
 {

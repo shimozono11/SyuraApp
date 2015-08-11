@@ -25,7 +25,7 @@ bool Kokona::init()
         return false;
     }
     /* 修羅キャラの剛体を設置 */
-    this->SyuraEnemy::setSyuraBody();
+//    this->SyuraEnemy::setSyuraBody();
     return true;
 }
 

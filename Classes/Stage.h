@@ -15,7 +15,7 @@
 #include "Player.h"
 #include "CustomFollow.h"
 #include "Enemy.h"
-
+#include "MobEnemy.h"
 class Stage :public cocos2d::Layer
 {
 public:
@@ -81,8 +81,8 @@ private:
     void addEnemyOnStage();
     //敵を動かす
     void moveEnemys();
-
-   
+    //敵の追加する位置を作成
+    cocos2d::Vec2 createEnemyPosition(cocos2d::Vec2 playerPos);
 };
 
 
