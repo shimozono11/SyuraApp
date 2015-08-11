@@ -170,7 +170,7 @@ void Stage::addEnemyOnStage(){
     //    /* 敵の初期位置 */
     //    enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
     /* 速度の設定 */
-    enemy->setSpeed((int)rand()%6);
+    enemy->setSpeed((int)rand()%10);
     
     /* ステージに敵を追加 */
     this -> addChild(enemy);
