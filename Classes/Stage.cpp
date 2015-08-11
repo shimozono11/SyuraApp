@@ -11,7 +11,7 @@
 USING_NS_CC;
 
 /*  */
-int ADD_ENEMY_RATE = 20;
+int ADD_ENEMY_RATE = 60;
 
 Stage::Stage()
 :_tiledMap(nullptr)
@@ -121,7 +121,7 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
  *
  */
 void Stage::addEnemyOnStage(){
-    auto enemy = Haruka::create();
+    auto enemy = MobEnemy::create();
     Vec2  nowPos = _player->getPosition();
     /* 要リファクタリングTODO */
     /* 敵を配置する場所を指定 */

@@ -62,7 +62,7 @@ bool LoseModal::init()
             //    引数１:フィードの時間
             //    引数２：移動先のシーン
             //    引数３：フィードの色（オプション）
-                TransitionFade* transition = TransitionFade::create(0.5f, pScene);
+                TransitionFade* transition = TransitionFade::create(0.0f, pScene);
             
             // 遷移実行  遷移時のアニメーション
             // 直前のsceneはもう使わないから捨てる、基本はこれになります。

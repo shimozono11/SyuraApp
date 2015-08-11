@@ -12,13 +12,28 @@
 USING_NS_CC;
 
 /// アニメーションが何フレームあるか
-const int FRAME_COUNT = 4;
+const int FRAME_COUNT = 3;
 
 bool Player::init()
 {
-    if (!Sprite::initWithFile("character/futsuo_stop.png")) {
+    if (!Sprite::initWithFile("character/futsuo_000.png")) {
         return false;
     }
+    
+    /* アニメーションの作成 */
+    Vector<SpriteFrame *> frames;
+    /* アニメ用のフレームを読み込む */
+    char fileName[128] = {0};
+    for(int i = 0 ; i < FRAME_COUNT ; i++ ){
+        sprintf(fileName, "character/futsuo_00%d.png", i);
+        auto rect  = this->getTextureRect();
+        auto frame = SpriteFrame::create(fileName,rect);
+        frames.pushBack(frame);
+    }
+    auto animation = Animation::createWithSpriteFrames(frames, 0.15f);
+    this->runAction(RepeatForever::create(Animate::create(animation)));
+//    this->runAction(Animate::create(animation));
+    
     /* プレイヤーの初期位置を設定 */
     this -> setPosition(Vec2(600, 1100));
     /* 剛体の設置 */

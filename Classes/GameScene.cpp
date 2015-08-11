@@ -17,7 +17,7 @@ USING_NS_CC;
 using namespace cocostudio::timeline;
 
 /* 制限時間 */
-const float TIME_LIMIT_SECOND = 30;
+const float TIME_LIMIT_SECOND = 10;
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
@@ -33,7 +33,7 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
-    CC_SAFE_RELEASE_NULL(_stage);
+//    CC_SAFE_RELEASE_NULL(_stage);なぜかここがエラーになる
     CC_SAFE_RELEASE_NULL(_virPad);
     CC_SAFE_RELEASE_NULL(_secondLabel);
 }
