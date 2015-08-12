@@ -18,7 +18,7 @@ Stage::Stage()
 Stage::~Stage()
 {
     CCLOG("player :%d",_player->getReferenceCount());
-//    CC_SAFE_RELEASE_NULL(_tiledMap);
+    //    CC_SAFE_RELEASE_NULL(_tiledMap);
     CC_SAFE_RELEASE_NULL(_player);
 }
 
@@ -148,27 +148,27 @@ void Stage::addEnemyOnStage(){
             /* 敵の初期位置 */
             enemy->setPosition(addEnemyPos0);
             CCLOG("0地点");
-             break;
+            break;
         case 1:
             enemy->setPosition(addEnemyPos1);
             CCLOG("1地点");
-             break;
+            break;
         case 2:
             enemy->setPosition(addEnemyPos2);
             CCLOG("2地点");
-             break;
+            break;
         case 3:
             enemy->setPosition(addEnemyPos3);
             CCLOG("3地点");
-             break;
+            break;
         case 4:
             enemy->setPosition(addEnemyPos4);
             CCLOG("4地点");
-             break;
+            break;
         case 5:
             enemy->setPosition(addEnemyPos5);
             CCLOG("5地点");
-             break;
+            break;
         default:
             /* ここに来ることはないはず */
             CCLOG("デフォルト");
@@ -195,9 +195,9 @@ void Stage::addEnemyOnStage(){
  *
  */
 void Stage::moveEnemys(){
-    auto iterator = _enemys.begin();
-    while (iterator != _enemys.end()) {
-        Enemy* enemy = (Enemy*)(*iterator);
+    
+    for (const auto& enemy : _enemys)
+    {
         
         /* 現在の敵の座標を取得 */
         Vec2 Epos = enemy->getPosition();
@@ -218,14 +218,42 @@ void Stage::moveEnemys(){
         /* マップの敵へ反映 */
         enemy->setPosition(newPosition);
         /*物理エンジンで反映 おそらくめり込まないようにするには物理エンジンでする必要がある、しかし現状では完成を急ぐため座標で移動*/
-//        enemy->getPhysicsBody()->setVelocity(enemy->getSpeed()*delta/(delta.length()));
+        //        enemy->getPhysicsBody()->setVelocity(enemy->getSpeed()*delta/(delta.length()));
         /* マップ外へ出ないように丸める */
         auto position = enemy->getPosition().getClampPoint(Vec2(0,0), this->getTiledMap()->getContentSize());
         enemy->setPosition(position);
-        
-        iterator++;
-        
     }
+    //    auto iterator = _enemys.begin();
+    //    while (iterator != _enemys.end()) {
+    //        Enemy* enemy = (Enemy*)(*iterator);
+    //
+    //        /* 現在の敵の座標を取得 */
+    //        Vec2 Epos = enemy->getPosition();
+    //        /* 現在のプレイヤーの座標を取得する */
+    //        Vec2 Ppos = _player->getPosition();
+    //
+    //        /* プレイヤーとの座標の差をベクトルで取得 */
+    //        Vec2 delta = Ppos - Epos;
+    //        /* 角度を算出 */
+    //        auto angle = atan2f(delta.y, delta.x);
+    //        /* 動作量 */
+    //        float enemyMoveX =  cosf(angle)*enemy->getSpeed();
+    //        float enemyMoveY =  sinf(angle)*enemy->getSpeed();
+    //
+    //        /* 新しい座標へセット */
+    //        Vec2 newPosition = Vec2(enemy->getPositionX() + enemyMoveX, enemy->getPositionY() + enemyMoveY);
+    //
+    //        /* マップの敵へ反映 */
+    //        enemy->setPosition(newPosition);
+    //        /*物理エンジンで反映 おそらくめり込まないようにするには物理エンジンでする必要がある、しかし現状では完成を急ぐため座標で移動*/
+    ////        enemy->getPhysicsBody()->setVelocity(enemy->getSpeed()*delta/(delta.length()));
+    //        /* マップ外へ出ないように丸める */
+    //        auto position = enemy->getPosition().getClampPoint(Vec2(0,0), this->getTiledMap()->getContentSize());
+    //        enemy->setPosition(position);
+    //
+    //        iterator++;
+    //
+    //    }
     return;
     
 }
@@ -246,7 +274,7 @@ bool Stage::removeEnemyOnStage(Enemy *enemy){
         //        enemy->removeFromParent();
         enemy->removeFromParent();
         CCLOG("Remove Now enemy%d",enemy->getReferenceCount());
-
+        
         return  true;
     }
     return false;
@@ -312,11 +340,11 @@ bool Stage::addSyuraEnemyOnStage(){
     
     /* 適当に位置を設定　要 TODO */
     syuraenemy->setPosition(Vec2(500, 500));
-
+    
     /* ステージに追加しenemyベクターにも追加 */
     this->addChild(syuraenemy);
     _enemys.pushBack(syuraenemy);
-
+    
     /* 最後は元のベクターから削除 */
     _syuraenemys.eraseObject(syuraenemy);
     
