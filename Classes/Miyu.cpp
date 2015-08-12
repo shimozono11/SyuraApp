@@ -25,8 +25,10 @@ bool Miyu::init()
         return false;
     }
     /* 修羅キャラの剛体を設置 */
-//    this->SyuraEnemy::setSyuraBody();
-
+    auto body = cocos2d::PhysicsBody::createCircle(this->getContentSize().width / 2.0);
+    if(!this->setSyuraBody(body)){
+        return false;
+    }
     return true;
 }
 
