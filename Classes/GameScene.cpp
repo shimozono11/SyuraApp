@@ -138,6 +138,9 @@ bool GameScene::init()
     
     /* update関数（毎フレーム呼び出す関数）の設置 */
     this->scheduleUpdate();
+    // スケジュールの実行(秒単位)
+    this->schedule(schedule_selector(GameScene::gameLogic), 1.0f);
+    //
     time=0;
     isPauseFlag = false;
     
@@ -563,12 +566,12 @@ void GameScene::update(float dt){
         if( random == 0){
             _stage->addEnemyOnStage();
         }
-        /* 平均して10秒ごとに修羅キャラを追加 */
-        random = rand() % 600;
-        if( random  == 0){
-             _stage->addSyuraEnemyOnStage();
-        }
-        
+//        /* 平均して10秒ごとに修羅キャラを追加 */
+//        random = rand() % 600;
+//        if( random  == 0){
+//             _stage->addSyuraEnemyOnStage();
+//        }
+//        
         _stage->moveEnemys();
         /* 時間が0になったら */
         if(_second < 0 ){
@@ -578,6 +581,17 @@ void GameScene::update(float dt){
     }
     
 }
+/**１秒間に一回呼び出される関数
+ *
+ *
+ */
+void GameScene::gameLogic(float dt){
+    /* 6秒に一回実行 */
+    if(int(TIME_LIMIT_SECOND - _second) % 7 == 6){
+        _stage->addSyuraEnemyOnStage();
+    }
+}
+
 /** ゲームのポーズスイッチを切り替える
  * 剛体やステージ場の敵、パッド操作等を諸々止める処理をまとめただけ
  *

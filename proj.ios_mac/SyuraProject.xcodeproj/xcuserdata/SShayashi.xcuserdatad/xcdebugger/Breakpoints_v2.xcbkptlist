@@ -156,11 +156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "GameScene::onTouchesEnded(const std::vector&lt;Touch *&gt; &amp;touches, cocos2d::Event *unused_event)"
             landmarkType = "5">
          </BreakpointContent>
@@ -172,11 +172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.h"
-            timestampString = "460187994.355071"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78">
+            startingLineNumber = "79"
+            endingLineNumber = "79">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381">
+            startingLineNumber = "384"
+            endingLineNumber = "384">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391">
+            startingLineNumber = "394"
+            endingLineNumber = "394">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "GameScene::init()"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "GameScene::init()"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -326,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -611,11 +611,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "GameScene::update(float dt)"
             landmarkType = "5">
          </BreakpointContent>
@@ -627,11 +627,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461064550.85032"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
+            startingLineNumber = "607"
+            endingLineNumber = "607"
             landmarkName = "GameScene::swichPauseFlag()"
             landmarkType = "5">
          </BreakpointContent>
@@ -675,11 +675,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
             landmarkName = "GameScene::onLose()"
             landmarkType = "5">
          </BreakpointContent>
@@ -701,11 +701,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -717,11 +717,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461061897.281506"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "GameScene::onContactBegin(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
@@ -733,11 +733,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461064550.85032"
+            timestampString = "461065901.577651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "571"
-            endingLineNumber = "571"
+            startingLineNumber = "574"
+            endingLineNumber = "574"
             landmarkName = "GameScene::update(float dt)"
             landmarkType = "5">
          </BreakpointContent>
