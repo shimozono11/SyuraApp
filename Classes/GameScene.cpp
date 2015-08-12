@@ -15,9 +15,12 @@
 
 USING_NS_CC;
 using namespace cocostudio::timeline;
+/*  */
+int ADD_ENEMY_RATE = 60;
+int MAX_SYURAENEMY = 3;
 
 /* 制限時間 */
-const float TIME_LIMIT_SECOND = 100;
+const float TIME_LIMIT_SECOND = 30;
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
@@ -33,7 +36,7 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
-//    CC_SAFE_RELEASE_NULL(_stage);なぜかここがエラーになる
+    //    CC_SAFE_RELEASE_NULL(_stage);なぜかここがエラーになる
     CC_SAFE_RELEASE_NULL(_virPad);
     CC_SAFE_RELEASE_NULL(_secondLabel);
 }
@@ -236,13 +239,13 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
     auto categoryA = bodyA -> getCategoryBitmask();
     auto categoryB = bodyB -> getCategoryBitmask();
     
-    /* 衝突した剛体が双方とも敵の場合 */
+    /* 衝突した剛体が双方ともMob敵の場合 */
     if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
-        //        CCLOG("なにすんのよあんた！！！");
+        //        CCLOG("Mob敵とMob敵がぶつかりました");
         return true;
     }
     
-    /* 敵が衝突したとき、片方が敵でない場合 */
+    /* MOB敵が衝突したとき、片方が敵でない場合 */
     if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
         
         /* 修羅場に接触した場合 */
@@ -261,6 +264,11 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         /* 壁に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::WALL)){
             //            CCLOG("敵「壁なう」");
+            return true;
+        }
+        /* 神５に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+            //            CCLOG("敵「神5なう」");
             return true;
         }
         
@@ -282,8 +290,72 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
             //            CCLOG("敵「壁なう」");
             return true;
         }
+        /* 神５に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+            //            CCLOG("敵「神5なう」");
+            return true;
+        }
         
     }
+    
+    /* 衝突した剛体が双方とも修羅キャラの場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        //        CCLOG("修羅キャラと修羅キャラががぶつかりました");
+        return true;
+    }
+    
+    /* 修羅キャラが衝突したとき、片方が修羅キャラでない場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        
+        /* 修羅場に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            
+            /* 修羅場エリアリストに挿入 */
+            auto syuraba = _stage->getSyuraarea();
+            syuraba.pushBack(bodyA->getNode());
+            _stage->setSyuraarea(syuraba);
+            CCLOG("神５「修羅場なう」");
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::WALL)){
+                        CCLOG("神5「壁なう」");
+            return true;
+        }
+        /* Mob敵に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+                        CCLOG("神５「モブ敵とぶつかりました」");
+            return true;
+        }
+        
+        
+    }else if(categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        /*修羅場に接触した場合*/
+        if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            /* 修羅場リストにオブジェクトを追加 */
+            /* 修羅場エリアリストに挿入 */
+            auto syuraba = _stage->getSyuraarea();
+            syuraba.pushBack(bodyB->getNode());
+            _stage->setSyuraarea(syuraba);
+            //            CCLOG("%zd", _stage->getSyuraarea().size());
+            CCLOG("神5「修羅場なう」");
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::WALL)){
+                        CCLOG("神5「壁なう」");
+            return true;
+        }
+        /* 神５に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+                        CCLOG("敵「神5なう」");
+            return true;
+        }
+        
+    }
+    
+    
+    
     
     /* 以下プレイヤーが衝突したときの処理 */
     auto otherShape = contact.getShapeA()->getBody() == _stage->getPlayer()->getPhysicsBody() ? contact.getShapeB() : contact.getShapeA();
@@ -296,9 +368,9 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         // ゲームオーバー
         GameScene::onLose();
     } else if (category & (int)Stage::TileType::WALL) {
-        CCLOG("プレイやー「壁なう」");
+        //        CCLOG("プレイやー「壁なう」");
     } else if (category & static_cast<int>(Stage::TileType::SYURABA_EREA)) {
-        CCLOG("プレイヤー「修羅場なう」");
+        //        CCLOG("プレイヤー「修羅場なう」");
     }
     return true;
 }
@@ -389,7 +461,7 @@ void GameScene::onLose(){
     this->addChild(layer);
     /* 動きを止める処理 */
     this->swichPauseFlag();
-
+    
 }
 /** ゲームクリア処理
  *
@@ -403,7 +475,7 @@ void GameScene::onClear(){
     this->addChild(layer);
     /* 動きを止める処理 */
     this->swichPauseFlag();
-
+    
 }
 
 /**ゲーム中へ移行する時、１度だけ呼ぶ処理
@@ -414,7 +486,7 @@ void GameScene::onPlaying(){
     /* TopModal画面を消す */
     TopModal * topModal = this->getChildByName<TopModal *>("TOPMODAL");
     topModal->menuCloseCallback(this);
-//    TopModal::menuCloseCallback(cocos2d::Ref *pSender);
+    //    TopModal::menuCloseCallback(cocos2d::Ref *pSender);
     this->swichPauseFlag();
     CCLOG("GameOnPlaying");
     
@@ -428,7 +500,7 @@ void GameScene::addReadyLabel()
 {
     //時間を止める！
     swichPauseFlag();
-//    cocos2d::Director::getInstance()->pause();
+    //    cocos2d::Director::getInstance()->pause();
 }
 
 
@@ -448,9 +520,9 @@ void GameScene::update(float dt){
         Vec2 newPosition = nowPosition + padMovement;
         /* プレイヤーの位置を更新 */
         //座標で更新
-                _stage->getPlayer()->setPosition(newPosition);
+        _stage->getPlayer()->setPosition(newPosition);
         //物理エンジンでキャラの位置を移動(本当は物理エンジンで実現するのが好ましいが現在は簡単のため座標で移動)
-//        _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
+        //        _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
         
         /*プレイヤーが画面外に飛び出さないように設定*/
         auto position = _stage->getPlayer()->getPosition().getClampPoint(Vec2(0,0), _stage->getTiledMap()->getContentSize());
@@ -486,7 +558,18 @@ void GameScene::update(float dt){
         /* 表示の更新 */
         int second = static_cast<int>(_second);
         _secondLabel->setString(StringUtils::toString(second));
-    
+        
+        int random = rand() % ADD_ENEMY_RATE;
+        if( random == 0){
+            _stage->addEnemyOnStage();
+        }
+        /* 平均して10秒ごとに修羅キャラを追加 */
+        random = rand() % 600;
+        if( random  == 0){
+             _stage->addSyuraEnemyOnStage();
+        }
+        
+        _stage->moveEnemys();
         /* 時間が0になったら */
         if(_second < 0 ){
             _state = GameState::CLEAR;

@@ -7,12 +7,8 @@
 //
 
 #include "Stage.h"
-#include "Haruka.h"
 USING_NS_CC;
-
-/*  */
-int ADD_ENEMY_RATE = 60;
-
+int  MAX_ENEMY_SPEED = 6;
 Stage::Stage()
 :_tiledMap(nullptr)
 ,_player(nullptr)
@@ -71,6 +67,19 @@ bool Stage::init()
     //    CustomFollowType type = kCustomFollowNone;
     //    this ->runAction(CustomFollow::create(player,type));
     
+    /* 神5たちをベクターに格納していく */
+    auto haruka = Haruka::create();
+    auto nene = Nene::create();
+    auto risa = Risa::create();
+    auto kokona = Kokona::create();
+    auto miyu = Miyu::create();
+    
+    _syuraenemys.pushBack(haruka);
+    _syuraenemys.pushBack(nene);
+    _syuraenemys.pushBack(risa);
+    _syuraenemys.pushBack(kokona);
+    _syuraenemys.pushBack(miyu);
+    
     this->scheduleUpdate();
     
     return true;
@@ -107,7 +116,7 @@ Sprite* Stage::addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2 &coordi
             /* 剛体にカテゴリーをセットする */
             physicsBody->setCategoryBitmask(category);
             /* 剛体と接触判定をとるカテゴリを指定する  ここではプレイヤーと敵*/
-            physicsBody->setContactTestBitmask((int)Stage::TileType::PLAYER + (int)Stage::TileType::MOB_ENEMY);
+            physicsBody->setContactTestBitmask((int)Stage::TileType::PLAYER + (int)Stage::TileType::MOB_ENEMY+(int)Stage::TileType::SYURA_ENEMY);
         }
         /* 剛体をSpriteに付ける */
         sprite->setPhysicsBody(physicsBody);
@@ -172,7 +181,7 @@ void Stage::addEnemyOnStage(){
     //    /* 敵の初期位置 */
     //    enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
     /* 速度の設定 */
-    enemy->setSpeed((int)rand()%12);
+    enemy->setSpeed((int)rand()%MAX_ENEMY_SPEED);
     
     /* ステージに敵を追加 */
     this -> addChild(enemy);
@@ -279,7 +288,7 @@ bool Stage::leaveEnemyOnSyuraba(Enemy *enemy){
     return false;
 }
 
-/** 渡されたプレイヤーの位置情報をもとに敵の追加位置を決める
+/** 渡されたプレイヤーの位置情報をもとに敵の追加位置を決めるTODO
  *
  *@param player
  *@return bool 削除できたかどうか
@@ -288,15 +297,32 @@ Vec2 Stage::createEnemyPosition(Vec2 playerPos){
     return nullptr;
 }
 
+/** ベクターからランダムに選んだ神5をステージに追加
+ *
+ *@param player
+ *@return bool 削除できたかどうか
+ */
+bool Stage::addSyuraEnemyOnStage(){
+    
+    /* 修羅場エリアの中からランダム選択 */
+    auto syuraenemy =  _syuraenemys.getRandomObject();
+    if(syuraenemy == nullptr){
+        return false;
+    }
+    
+    /* 適当に位置を設定　要 TODO */
+    syuraenemy->setPosition(Vec2(500, 500));
+
+    /* ステージに追加しenemyベクターにも追加 */
+    this->addChild(syuraenemy);
+    _enemys.pushBack(syuraenemy);
+
+    /* 最後は元のベクターから削除 */
+    _syuraenemys.eraseObject(syuraenemy);
+    
+    return true;
+}
 
 void Stage::update(float dt)
 {
-    /* 敵の発生確率を設定 */
-    int random = rand() % ADD_ENEMY_RATE;
-    /* 20分の１の確率で敵を追加 */
-    if(random == 0 ){
-        this->addEnemyOnStage();
-    }
-    /* 敵キャラの位置を更新 */
-    this->moveEnemys();
 }

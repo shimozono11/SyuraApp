@@ -16,6 +16,13 @@
 #include "CustomFollow.h"
 #include "Enemy.h"
 #include "MobEnemy.h"
+#include "SyuraEnemy.h"
+#include "Haruka.h"
+#include "Nene.h"
+#include "Miyu.h"
+#include "Kokona.h"
+#include "Risa.h"
+
 class Stage :public cocos2d::Layer
 {
 public:
@@ -44,8 +51,13 @@ public:
     bool removeEnemyOnSyuraba(cocos2d::Vector<Node*> syuraarea);
     //修羅場が起きずに敵が離れた場合の関数
     bool leaveEnemyOnSyuraba(Enemy *enemy);
-    
-   
+    //ステージに神5のキャラを追加する処理
+    bool addSyuraEnemyOnStage();
+    //フィールドにモブ敵を追加
+    void addEnemyOnStage();
+    //敵を動かす
+    void moveEnemys();
+
     
     /* タイルマップ */
     CC_SYNTHESIZE_RETAIN(cocos2d::TMXTiledMap *, _tiledMap, TiledMap);
@@ -54,7 +66,9 @@ public:
     /* 敵 */
     CC_SYNTHESIZE(cocos2d::Vector<Enemy*>,_enemys,Enemys);
     /* 修羅場エリアに入っている敵を格納する */
-    CC_SYNTHESIZE(cocos2d::Vector<Node*>,_syuraarea, Syuraarea)
+    CC_SYNTHESIZE(cocos2d::Vector<Node*>,_syuraarea, Syuraarea);
+    /* 神5を格納する */
+    CC_SYNTHESIZE(cocos2d::Vector<SyuraEnemy*>, _syuraenemys, SyuraEnemys);
     CREATE_FUNC(Stage);
     /** ステージ番号からステージを生成します
      *  @param level ステージ番号
@@ -77,10 +91,6 @@ private:
     cocos2d::Sprite* addPhysicsBodyTMX(cocos2d::TMXLayer *layer, cocos2d::Vec2& coordinate);
     
     cocos2d::Size winSize;
-    //フィールドに敵を追加
-    void addEnemyOnStage();
-    //敵を動かす
-    void moveEnemys();
     //敵の追加する位置を作成
     cocos2d::Vec2 createEnemyPosition(cocos2d::Vec2 playerPos);
 };

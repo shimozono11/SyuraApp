@@ -268,20 +268,20 @@ int VirtualPad::get8Way(){
  */
 int VirtualPad::getSpeed(){
    /* 座標用 */
-    if(now_r >= 200){
-        return 16;
-    }
-    
     if(now_r >= 150){
-        return 12;
-    }
-    
-    if(now_r >= 100){
         return 8;
     }
     
-    if(now_r >= 50){
+    if(now_r >= 110){
+        return 6;
+    }
+    
+    if(now_r >= 70){
         return 4;
+    }
+    
+    if(now_r >= 30){
+        return 2;
     }
     
     if(now_r >= 0){
