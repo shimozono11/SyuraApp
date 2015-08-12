@@ -434,7 +434,8 @@ void GameScene::addReadyLabel()
 
 
 void GameScene::update(float dt){
-    
+    /* プレイヤーにスピードをセット */
+    _stage->getPlayer()->setSpeed(_virPad->getSpeed());
     /* バーチャルパッドの操作 */
     if( _virPad->isTouch()){
         

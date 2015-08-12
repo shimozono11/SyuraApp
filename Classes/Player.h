@@ -15,12 +15,22 @@
 
 class Player :public cocos2d::Sprite
 {
+protected:
+    Player();
+    virtual ~Player();
+private:
+    char fileName[128] = {0};
+    cocos2d::Rect rect;
+    cocos2d::SpriteFrame *frame;
+    
 public:
     bool init() override;
-    
     void update(float dt) override;
-    
+    void setAnimation();
 //    CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vec2, _acceleration, Acceleration);
+    CC_SYNTHESIZE(int , _oldSpeed, OldSpeed);
+    CC_SYNTHESIZE(int , _speed, Speed);
+    CC_SYNTHESIZE(cocos2d::Vector<cocos2d::SpriteFrame *> , _frames, Frames);
     CREATE_FUNC(Player);
 };
 

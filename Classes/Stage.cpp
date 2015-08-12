@@ -34,7 +34,7 @@ bool Stage::init()
     }
     
     /* マップファイルからノードを作成 */
-    auto map = TMXTiledMap::create("stage/stage2.tmx");
+    auto map = TMXTiledMap::create("map/stage1.tmx");
     this->addChild(map);
     this->setTiledMap(map);
     
