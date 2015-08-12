@@ -77,7 +77,7 @@ void Player::setAnimation(){
             this->setTexture("character/futsuo_000.png");
         }
         if(_speed > 0 ){
-            auto animation = Animation::createWithSpriteFrames(_frames, 0.3f);
+            auto animation = Animation::createWithSpriteFrames(_frames, 0.3f/getSpeed());
             animation->setRestoreOriginalFrame(true);
             this->runAction(RepeatForever::create(Animate::create(animation)));
         }
