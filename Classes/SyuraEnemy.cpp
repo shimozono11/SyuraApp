@@ -30,6 +30,7 @@ void SyuraEnemy::update(float dt)
 }
 
 bool SyuraEnemy::setSyuraBody(cocos2d::PhysicsBody * body){
+    this->setTag((int)Stage::TileType::SYURA_ENEMY);
     /* 剛体の設置 */
 //    auto body = cocos2d::PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする

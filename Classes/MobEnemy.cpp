@@ -29,9 +29,9 @@ bool MobEnemy::init()
     if (!Sprite::initWithFile("character/mobu_stop.png")) {
         return false;
     }
-    
+
+    this->setTag((int)Stage::TileType::MOB_ENEMY);
     /* アニメーションを入れるならココ */
-    
     /* 剛体の設置 */
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする

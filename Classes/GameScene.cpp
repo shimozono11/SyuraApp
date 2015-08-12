@@ -13,6 +13,8 @@
 #include "LoseModal.h"
 #include "ClearModal.h"
 
+
+
 USING_NS_CC;
 using namespace cocostudio::timeline;
 /*  */
@@ -322,12 +324,12 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         }
         /* 壁に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::WALL)){
-                        CCLOG("神5「壁なう」");
+            CCLOG("神5「壁なう」");
             return true;
         }
         /* Mob敵に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
-                        CCLOG("神５「モブ敵とぶつかりました」");
+            CCLOG("神５「モブ敵とぶつかりました」");
             return true;
         }
         
@@ -346,12 +348,12 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         }
         /* 壁に接触した場合 */
         if(categoryA & static_cast<int>(Stage::TileType::WALL)){
-                        CCLOG("神5「壁なう」");
+            CCLOG("神5「壁なう」");
             return true;
         }
         /* 神５に接触した場合 */
         if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
-                        CCLOG("敵「神5なう」");
+            CCLOG("敵「神5なう」");
             return true;
         }
         
@@ -566,12 +568,12 @@ void GameScene::update(float dt){
         if( random == 0){
             _stage->addEnemyOnStage();
         }
-//        /* 平均して10秒ごとに修羅キャラを追加 */
-//        random = rand() % 600;
-//        if( random  == 0){
-//             _stage->addSyuraEnemyOnStage();
-//        }
-//        
+        //        /* 平均して10秒ごとに修羅キャラを追加 */
+        //        random = rand() % 600;
+        //        if( random  == 0){
+        //             _stage->addSyuraEnemyOnStage();
+        //        }
+        //
         _stage->moveEnemys();
         /* 時間が0になったら */
         if(_second < 0 ){
@@ -604,15 +606,45 @@ void GameScene::swichPauseFlag()
     if(isPauseFlag){
         /* GameSceneのupdateを切る */
         this->unscheduleUpdate();
-        /* Stage場のupdateを切る */
-        _stage->unscheduleUpdate();
         /* プレイヤーの物理演算を切る */
         _stage->getPlayer()->getPhysicsBody()->setEnable(false);
         
+        /* 敵の物理演算を切る */
+        for (const auto& enemy : _stage->getEnemys())
+        {
+            auto enemyTag = enemy-> getTag();
+            
+            /* Mobキャラの場合 */
+            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
+                auto mobenemy = (MobEnemy*) enemy;
+                mobenemy->getPhysicsBody()->setEnable(false);
+            }
+            /* 修羅キャラの場合 */
+            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
+                auto syuraenemy = (SyuraEnemy*) enemy;
+                syuraenemy->getPhysicsBody()->setEnable(false);
+            }
+        }
     }else{
         /* 止まっていた処理を動かす */
         this->scheduleUpdate();
         _stage->scheduleUpdate();
         _stage->getPlayer()->getPhysicsBody()->setEnable(true);
+        
+        /* 敵の物理演算を入れる */
+        for (const auto& enemy : _stage->getEnemys())
+        {
+            auto enemyTag = enemy-> getTag();
+            /* Mobキャラの場合 */
+            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
+                auto mobenemy = (MobEnemy*) enemy;
+                mobenemy->getPhysicsBody()->setEnable(true);
+            }
+            /* 修羅キャラの場合 */
+            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
+                auto syuraenemy = (SyuraEnemy*) enemy;
+                syuraenemy->getPhysicsBody()->setEnable(true);
+            }
+        }
     }
 }
