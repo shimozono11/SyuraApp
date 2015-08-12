@@ -412,7 +412,7 @@ void GameScene::onContactSeparate(PhysicsContact& contact){
         return ;
     }
     auto syuraba = _stage->getSyuraarea();
-    /* 剛体が離れた時、片方が敵でない場合 */
+    /* 剛体が離れた時、片方がMOB敵でない場合 */
     if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
         
         /* 修羅場から接触し終わった時 */
@@ -428,7 +428,8 @@ void GameScene::onContactSeparate(PhysicsContact& contact){
             //            CCLOG("敵「壁なう」");
             return ;
         }
-    }else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+    }
+    else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
         /*修羅場から接触し終わった時*/
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
             /* 修羅場エリアリストの中から削除 */
@@ -438,8 +439,46 @@ void GameScene::onContactSeparate(PhysicsContact& contact){
         }
     }
     
+    /* 接触し終わった剛体が双方とも修羅キャラの場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        //        CCLOG("修羅キャラと修羅キャラ離れました");
+        return ;
+    }
+
+    /* 剛体が離れた時、片方が修羅キャラではない */
+    if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            
+            /* 修羅場エリアヴェクターから削除 */
+            syuraba.eraseObject(bodyA->getNode());
+            _stage->setSyuraarea(syuraba);
+            
+            return ;
+        }
+        if(categoryB & static_cast<int>(Stage::TileType::WALL)){
+            return ;
+        }
+        if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+            return ;
+        }
     
-    
+    }else if(categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+
+        if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            
+            /* 修羅場エリアヴェクターから削除 */
+            syuraba.eraseObject(bodyB->getNode());
+            _stage->setSyuraarea(syuraba);
+            
+            return ;
+        }
+        if(categoryA & static_cast<int>(Stage::TileType::WALL)){
+            return ;
+        }
+        if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+            return ;
+        }
+    }
     return;
 }
 
@@ -606,6 +645,9 @@ void GameScene::swichPauseFlag()
     if(isPauseFlag){
         /* GameSceneのupdateを切る */
         this->unscheduleUpdate();
+        /* パッド */
+        /* プレイヤーのスピードを0にする */
+        _stage->getPlayer()->setSpeed(0);
         /* プレイヤーの物理演算を切る */
         _stage->getPlayer()->getPhysicsBody()->setEnable(false);
         

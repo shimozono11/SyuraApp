@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Stage.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461109870.852468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "Stage::removeEnemyOnSyuraba(cocos2d::Vector&lt;Node*&gt; syuraarea)"
             landmarkType = "5">
          </BreakpointContent>
@@ -470,11 +470,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Stage.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461109870.852468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "Stage::removeEnemyOnStage(Enemy *enemy)"
             landmarkType = "5">
          </BreakpointContent>
@@ -486,11 +486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Stage.cpp"
-            timestampString = "461063736.507223"
+            timestampString = "461109870.852468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "Stage::removeEnemyOnSyuraba(cocos2d::Vector&lt;Node*&gt; syuraarea)"
             landmarkType = "5">
          </BreakpointContent>
@@ -611,11 +611,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461104311.264657"
+            timestampString = "461109162.231058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "523"
-            endingLineNumber = "523"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
             landmarkName = "GameScene::update(float dt)"
             landmarkType = "5">
          </BreakpointContent>
@@ -659,11 +659,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461104311.264657"
+            timestampString = "461109162.231058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "469"
-            endingLineNumber = "469"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
             landmarkName = "GameScene::onLose()"
             landmarkType = "5">
          </BreakpointContent>
@@ -717,11 +717,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461104311.264657"
+            timestampString = "461109162.231058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "576"
-            endingLineNumber = "576"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
             landmarkName = "GameScene::update(float dt)"
             landmarkType = "5">
          </BreakpointContent>
@@ -733,12 +733,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/GameScene.cpp"
-            timestampString = "461106662.619689"
+            timestampString = "461109633.654388"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "658"
-            endingLineNumber = "658"
+            startingLineNumber = "677"
+            endingLineNumber = "677"
             landmarkName = "GameScene::swichPauseFlag()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/GameScene.cpp"
+            timestampString = "461109117.765638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
+            landmarkName = "GameScene::onContactSeparate(PhysicsContact&amp; contact)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
