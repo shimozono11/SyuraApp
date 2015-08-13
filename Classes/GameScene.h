@@ -54,15 +54,23 @@ private:
         LOSE,
         CLEAR,
     };
+    //
     void onReady();
+    //ゲームがプレイ状態に成った時の処理
     void onPlaying();
+    //ゲームがポーズ状態になった時の処理
     void onPause();
+    //ゲームが修羅場演出をしている時の処理
     void onSyuraba();
+    //ゲームが終了するときの処理
     void onEnding();
+    //ゲームが終了したときの処理
     void onLose();
+    //ゲームをクリアしたときの処理
     void onClear();
-    
+    //readyラベルを追加する処理
     void addReadyLabel();
+    //ゲームの一時停止・開始を切り替える処理
     void swichPauseFlag();
 
 

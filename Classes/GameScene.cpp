@@ -522,6 +522,37 @@ void GameScene::onClear(){
     
 }
 
+/** 修羅場中の処理
+ *
+ */
+void GameScene::onSyuraba(){
+    /* ゲームを中断する */
+    this->swichPauseFlag();
+    /* 背景を暗くするレイヤーを作って貼る */
+    auto syuraLayer = Layer::create();
+    auto backPaper = Sprite::create("backpaper.png");
+    backPaper->setPosition(Vec2(0,winSize.height));
+    syuraLayer->addChild(backPaper);
+    this->addChild(syuraLayer);
+    
+    /* カットを入れるアニメーション */
+    auto cut = Sprite::create("comiclist/comic_icon_secret.png");
+    cut->setPosition(Vec2(winSize.width,winSize.height/2));
+    syuraLayer->addChild(cut);
+    auto move = MoveTo::create(1, Vec2(0, winSize.height/2));
+    
+    cut ->runAction(Sequence::create(move, NULL));
+    /* レイヤーを乗算にしてかぶせる処理TODO */
+    this->runAction(Sequence::create(DelayTime::create(1),CallFunc::create([=](){
+        /* 1秒後に処理を実行 */
+        syuraLayer->removeFromParent();
+        /* アニメーションが終わったらゲームを再度開始 */
+        this->swichPauseFlag();
+    }),nullptr));
+    /* レイヤーを消す */
+    
+}
+
 /**ゲーム中へ移行する時、１度だけ呼ぶ処理
  * タイトルからパッド触ったときと
  *　Pauseから戻ってきた時
@@ -579,13 +610,9 @@ void GameScene::update(float dt){
         /* 修羅場エリアに入った時の処理 */
         if( _stage->getSyuraarea().size() >= 2){
             CCLOG("修羅場発生！！！");
+            this->onSyuraba();
             auto syuraba = _stage->getSyuraarea();
-            //        /* ステージから全て削除 TODO ベクターをループで回す*/
-            //        for(auto itr = 0 ; itr != syuraba.size() ; itr++){
-            //            auto a = dynamic_cast<Enemy*>( syuraba.front());
-            //            a->removeFromParent();
-            //            syuraba.eraseObject(a);
-            //        }
+            /* ここが大丈夫か見るTODO */
             auto itr = syuraba.begin();
             while (itr != syuraba.end())
             {
@@ -607,12 +634,6 @@ void GameScene::update(float dt){
         if( random == 0){
             _stage->addEnemyOnStage();
         }
-        //        /* 平均して10秒ごとに修羅キャラを追加 */
-        //        random = rand() % 600;
-        //        if( random  == 0){
-        //             _stage->addSyuraEnemyOnStage();
-        //        }
-        //
         _stage->moveEnemys();
         /* 時間が0になったら */
         if(_second < 0 ){
@@ -648,25 +669,25 @@ void GameScene::swichPauseFlag()
         /* パッド */
         /* プレイヤーのスピードを0にする */
         _stage->getPlayer()->setSpeed(0);
-        /* プレイヤーの物理演算を切る */
-        _stage->getPlayer()->getPhysicsBody()->setEnable(false);
-        
-        /* 敵の物理演算を切る */
-        for (const auto& enemy : _stage->getEnemys())
-        {
-            auto enemyTag = enemy-> getTag();
-            
-            /* Mobキャラの場合 */
-            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
-                auto mobenemy = (MobEnemy*) enemy;
-                mobenemy->getPhysicsBody()->setEnable(false);
-            }
-            /* 修羅キャラの場合 */
-            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
-                auto syuraenemy = (SyuraEnemy*) enemy;
-                syuraenemy->getPhysicsBody()->setEnable(false);
-            }
-        }
+//        /* プレイヤーの物理演算を切る */
+//        _stage->getPlayer()->getPhysicsBody()->setEnable(false);
+//        
+//        /* 敵の物理演算を切る */
+//        for (const auto& enemy : _stage->getEnemys())
+//        {
+//            auto enemyTag = enemy-> getTag();
+//            
+//            /* Mobキャラの場合 */
+//            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
+//                auto mobenemy = (MobEnemy*) enemy;
+//                mobenemy->getPhysicsBody()->setEnable(false);
+//            }
+//            /* 修羅キャラの場合 */
+//            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
+//                auto syuraenemy = (SyuraEnemy*) enemy;
+//                syuraenemy->getPhysicsBody()->setEnable(false);
+//            }
+//        }
     }else{
         /* 止まっていた処理を動かす */
         this->scheduleUpdate();
@@ -674,19 +695,19 @@ void GameScene::swichPauseFlag()
         _stage->getPlayer()->getPhysicsBody()->setEnable(true);
         
         /* 敵の物理演算を入れる */
-        for (const auto& enemy : _stage->getEnemys())
-        {
-            auto enemyTag = enemy-> getTag();
-            /* Mobキャラの場合 */
-            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
-                auto mobenemy = (MobEnemy*) enemy;
-                mobenemy->getPhysicsBody()->setEnable(true);
-            }
-            /* 修羅キャラの場合 */
-            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
-                auto syuraenemy = (SyuraEnemy*) enemy;
-                syuraenemy->getPhysicsBody()->setEnable(true);
-            }
-        }
+//        for (const auto& enemy : _stage->getEnemys())
+//        {
+//            auto enemyTag = enemy-> getTag();
+//            /* Mobキャラの場合 */
+//            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
+//                auto mobenemy = (MobEnemy*) enemy;
+//                mobenemy->getPhysicsBody()->setEnable(true);
+//            }
+//            /* 修羅キャラの場合 */
+//            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
+//                auto syuraenemy = (SyuraEnemy*) enemy;
+//                syuraenemy->getPhysicsBody()->setEnable(true);
+//            }
+//        }
     }
 }
