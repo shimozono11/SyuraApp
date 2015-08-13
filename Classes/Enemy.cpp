@@ -10,8 +10,6 @@
 #include "Stage.h"
 
 USING_NS_CC;
-/// アニメーションが何フレームあるか
-const int FRAME_COUNT = 4;
 
 Enemy::Enemy()
 :_speed(NULL)

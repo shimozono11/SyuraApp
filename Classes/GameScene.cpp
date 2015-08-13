@@ -669,6 +669,10 @@ void GameScene::swichPauseFlag()
         /* パッド */
         /* プレイヤーのスピードを0にする */
         _stage->getPlayer()->setSpeed(0);
+        for (const auto& enemy : _stage->getEnemys())
+        {
+            enemy->pauseSchedulerAndActions();
+        }
 //        /* プレイヤーの物理演算を切る */
 //        _stage->getPlayer()->getPhysicsBody()->setEnable(false);
 //        
@@ -694,6 +698,11 @@ void GameScene::swichPauseFlag()
         _stage->scheduleUpdate();
         _stage->getPlayer()->getPhysicsBody()->setEnable(true);
         
+        for (const auto& enemy : _stage->getEnemys())
+        {
+            enemy->resumeSchedulerAndActions();
+        }
+
         /* 敵の物理演算を入れる */
 //        for (const auto& enemy : _stage->getEnemys())
 //        {

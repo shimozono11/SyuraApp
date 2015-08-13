@@ -8,9 +8,9 @@
 
 #include "Player.h"
 #include "Stage.h"
-#include "VirtualPad.h"
 
 USING_NS_CC;
+int FRAME_COUNT=3;
 
 Player::Player()
 :_speed(NULL)
@@ -23,8 +23,7 @@ Player::~Player(){
     
 }
 
-/// アニメーションが何フレームあるか
-const int FRAME_COUNT = 3;
+
 
 bool Player::init()
 {

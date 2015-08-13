@@ -19,6 +19,7 @@ public:
     
     bool init() override;
     void update(float dt) override;
+    void setAnimation();
     CREATE_FUNC(Haruka);
 };
 
