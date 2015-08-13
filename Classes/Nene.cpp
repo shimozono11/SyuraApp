@@ -21,7 +21,7 @@ Nene::~Nene(){
 
 bool Nene::init()
 {
-    if (!Sprite::initWithFile("character/nene_stop.png")) {
+    if (!Sprite::initWithFile("character/nene_000.png")) {
         return false;
     }
     /* 修羅キャラの剛体を設置 */

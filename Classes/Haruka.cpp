@@ -21,7 +21,7 @@ Haruka::~Haruka(){
 
 bool Haruka::init()
 {
-    if (!Sprite::initWithFile("character/haruka_stop.png")) {
+    if (!Sprite::initWithFile("character/haruka_000.png")) {
         return false;
     }
     /* 修羅キャラの剛体を設置 */

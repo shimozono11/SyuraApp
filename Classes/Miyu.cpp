@@ -21,7 +21,7 @@ Miyu::~Miyu(){
 
 bool Miyu::init()
 {
-    if (!Sprite::initWithFile("character/miyu_stop.png")) {
+    if (!Sprite::initWithFile("character/miyu_000.png")) {
         return false;
     }
     /* 修羅キャラの剛体を設置 */

@@ -21,7 +21,7 @@ Risa::~Risa(){
 
 bool Risa::init()
 {
-    if (!Sprite::initWithFile("character/risa_stop.png")) {
+    if (!Sprite::initWithFile("character/risa_000.png")) {
         return false;
     }
     /* 修羅キャラの剛体を設置 */

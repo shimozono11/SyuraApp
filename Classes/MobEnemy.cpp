@@ -26,7 +26,7 @@ MobEnemy::~MobEnemy(){
 
 bool MobEnemy::init()
 {
-    if (!Sprite::initWithFile("character/mobu_stop.png")) {
+    if (!Sprite::initWithFile("character/mobu_000.png")) {
         return false;
     }
 
