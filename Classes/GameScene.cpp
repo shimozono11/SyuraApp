@@ -255,15 +255,15 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         
         /* 修羅場に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
-            
-            /* 修羅場エリアリストに挿入 */
-            auto syuraba = _stage->getSyuraarea();
-            syuraba.pushBack(bodyA->getNode());
-            _stage->setSyuraarea(syuraba);
-            
-            //            CCLOG("%zd", _stage->getSyuraarea().size());
-            //            _stage->getSyuraarea().insert(_stage->getSyuraarea().size(), bodyB->getNode());
-            CCLOG("敵「修羅場なう」");
+//            
+//            /* 修羅場エリアリストに挿入 */
+//            auto syuraba = _stage->getSyuraarea();
+//            syuraba.pushBack(bodyA->getNode());
+//            _stage->setSyuraarea(syuraba);
+//            
+//            //            CCLOG("%zd", _stage->getSyuraarea().size());
+//            //            _stage->getSyuraarea().insert(_stage->getSyuraarea().size(), bodyB->getNode());
+//            CCLOG("敵「修羅場なう」");
             return true;
         }
         /* 壁に接触した場合 */
@@ -282,12 +282,12 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         /*修羅場に接触した場合*/
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
             /* 修羅場リストにオブジェクトを追加 */
-            /* 修羅場エリアリストに挿入 */
-            auto syuraba = _stage->getSyuraarea();
-            syuraba.pushBack(bodyB->getNode());
-            _stage->setSyuraarea(syuraba);
-            //            CCLOG("%zd", _stage->getSyuraarea().size());
-            CCLOG("敵「修羅場なう」");
+//            /* 修羅場エリアリストに挿入 */
+//            auto syuraba = _stage->getSyuraarea();
+//            syuraba.pushBack(bodyB->getNode());
+//            _stage->setSyuraarea(syuraba);
+//            //            CCLOG("%zd", _stage->getSyuraarea().size());
+//            CCLOG("敵「修羅場なう」");
             return true;
         }
         /* 壁に接触した場合 */
@@ -369,7 +369,7 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
     auto category = body->getCategoryBitmask();
     //    auto layer = dynamic_cast<TMXLayer *>(body->getNode()->getParent());
     
-    if (category & static_cast<int>(Stage::TileType::MOB_ENEMY)) {
+    if (category & static_cast<int>(Stage::TileType::MOB_ENEMY)+static_cast<int>(Stage::TileType::SYURA_ENEMY)) {
         // ゲームオーバー
         GameScene::onLose();
     } else if (category & (int)Stage::TileType::WALL) {
