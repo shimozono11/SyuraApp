@@ -303,32 +303,10 @@
 				791EA9301B5B161100068774 /* Stage.h */,
 				791EA9331B5B162B00068774 /* VirtualPad.cpp */,
 				791EA9341B5B162B00068774 /* VirtualPad.h */,
-				79D69A151B6CE70C0057A7CE /* TopModal.cpp */,
-				79D69A161B6CE70C0057A7CE /* TopModal.h */,
-				79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */,
-				79D69A1E1B6CE7610057A7CE /* PauseModal.h */,
-				79D69A211B6CF2E20057A7CE /* LoseModal.cpp */,
-				79D69A221B6CF2E20057A7CE /* LoseModal.h */,
-				79D69A291B6D39900057A7CE /* ClearModal.cpp */,
-				79D69A2A1B6D39900057A7CE /* ClearModal.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
-				791EA94B1B5B1C4A00068774 /* Enemy.cpp */,
-				791EA94C1B5B1C4A00068774 /* Enemy.h */,
-				79CE4BE01B799BC400CD67E7 /* MobEnemy.cpp */,
-				79CE4BE11B799BC400CD67E7 /* MobEnemy.h */,
-				79CE4BDD1B79813600CD67E7 /* SyuraEnemy.cpp */,
-				79CE4BDE1B79813600CD67E7 /* SyuraEnemy.h */,
-				79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */,
-				79CE4BCC1B7979B600CD67E7 /* Haruka.h */,
-				79CE4BCE1B7979C500CD67E7 /* Nene.cpp */,
-				79CE4BCF1B7979C500CD67E7 /* Nene.h */,
-				79CE4BD11B797A0B00CD67E7 /* Risa.cpp */,
-				79CE4BD21B797A0B00CD67E7 /* Risa.h */,
-				79CE4BD41B797A3C00CD67E7 /* Miyu.cpp */,
-				79CE4BD51B797A3C00CD67E7 /* Miyu.h */,
-				79CE4BD71B797A5200CD67E7 /* Kokona.cpp */,
-				79CE4BD81B797A5200CD67E7 /* Kokona.h */,
+				79E82BF41B7DCDCC000B843D /* ModalScene */,
+				79E82BF31B7DCD77000B843D /* EnemyClass */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -387,6 +365,44 @@
 				FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */,
 			);
 			name = "ios-libs";
+			sourceTree = "<group>";
+		};
+		79E82BF31B7DCD77000B843D /* EnemyClass */ = {
+			isa = PBXGroup;
+			children = (
+				791EA94B1B5B1C4A00068774 /* Enemy.cpp */,
+				791EA94C1B5B1C4A00068774 /* Enemy.h */,
+				79CE4BE01B799BC400CD67E7 /* MobEnemy.cpp */,
+				79CE4BE11B799BC400CD67E7 /* MobEnemy.h */,
+				79CE4BDD1B79813600CD67E7 /* SyuraEnemy.cpp */,
+				79CE4BDE1B79813600CD67E7 /* SyuraEnemy.h */,
+				79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */,
+				79CE4BCC1B7979B600CD67E7 /* Haruka.h */,
+				79CE4BCE1B7979C500CD67E7 /* Nene.cpp */,
+				79CE4BCF1B7979C500CD67E7 /* Nene.h */,
+				79CE4BD11B797A0B00CD67E7 /* Risa.cpp */,
+				79CE4BD21B797A0B00CD67E7 /* Risa.h */,
+				79CE4BD41B797A3C00CD67E7 /* Miyu.cpp */,
+				79CE4BD51B797A3C00CD67E7 /* Miyu.h */,
+				79CE4BD71B797A5200CD67E7 /* Kokona.cpp */,
+				79CE4BD81B797A5200CD67E7 /* Kokona.h */,
+			);
+			name = EnemyClass;
+			sourceTree = "<group>";
+		};
+		79E82BF41B7DCDCC000B843D /* ModalScene */ = {
+			isa = PBXGroup;
+			children = (
+				79D69A151B6CE70C0057A7CE /* TopModal.cpp */,
+				79D69A161B6CE70C0057A7CE /* TopModal.h */,
+				79D69A1D1B6CE7610057A7CE /* PauseModal.cpp */,
+				79D69A1E1B6CE7610057A7CE /* PauseModal.h */,
+				79D69A211B6CF2E20057A7CE /* LoseModal.cpp */,
+				79D69A221B6CF2E20057A7CE /* LoseModal.h */,
+				79D69A291B6D39900057A7CE /* ClearModal.cpp */,
+				79D69A2A1B6D39900057A7CE /* ClearModal.h */,
+			);
+			name = ModalScene;
 			sourceTree = "<group>";
 		};
 		91394B6CA6653CFBC51E5063 /* mac-libs */ = {
