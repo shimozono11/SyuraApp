@@ -7,9 +7,10 @@
 //
 
 #include "TopModal.h"
+
 //#include "ui/CocosGUI.h"
 
-using namespace cocos2d;
+USING_NS_CC;
 
 bool TopModal::init()
 {
@@ -33,6 +34,9 @@ bool TopModal::init()
         if (type == ui::Widget::TouchEventType::ENDED) {
             //好きな処理
             CCLOG("女の子リストボタンが押されました");
+            auto layer = CharaDetailModal::create();
+            layer->setName("CharaDetail");
+            this->addChild(layer);
         }
     });
     
@@ -46,45 +50,6 @@ bool TopModal::init()
             CCLOG("漫画見るリストが押されました");
         }
     });
-
-    // モーダルのフレーム
-//    auto frame = Sprite::create("img/app_icon.png");
-//    frame->setPosition(Vec2(winSize.width/2, winSize.height/2));
-//    this->addChild(frame);
-//    //透明度を変更(0~255)
-//    frame->setOpacity(220);
-//
-//    // Menu1
-//    auto button01 = MenuItemImage::create("menu-image1.png",  // 通常状態の画像
-//                                          "menu-image1-hover.png",  // 押下状態の画像
-//                                          CC_CALLBACK_1(TopModal::pushMenu01, this));
-//    // Menu2
-//    auto button02 = MenuItemImage::create("menu-image2.png",  // 通常状態の画像
-//                                          "menu-image2-hover.png",  // 押下状態の画像
-//                                          CC_CALLBACK_1(TopModal::pushMenu01, this));
-//    // キャンセル
-//    auto closeItem00 = MenuItemImage::create("menu-image9.png",  // 通常状態の画像
-//                                             "menu-image9-hover.png",  // 押下状態の画像
-//                                             CC_CALLBACK_1(TopModal::menuCloseCallback, this));
-//    
-//    // ボタンの設置
-//    button01->setPosition(Point(winSize.width / 2,winSize.height /1.5));
-//    button02->setPosition(Point(winSize.width / 2,winSize.height /2.0));
-//    closeItem00->setPosition(Point(winSize.width / 2,winSize.height /3.5));
-//    
-//    auto menu = Menu::create(button01, button02, closeItem00, NULL);
-//    menu->setPosition(Vec2::ZERO);
-//    this->addChild(menu, 1);
-    
-    // モーダル処理
-//    auto listener = EventListenerTouchOneByOne::create();
-//    listener->setSwallowTouches(true);
-//    listener->onTouchBegan = [](Touch *touch,Event*event)->bool{
-//        return true;
-//    };
-//    auto dispatcher = Director::getInstance()->getEventDispatcher();
-//    dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
     return true;
 }
 

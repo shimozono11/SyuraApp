@@ -10,7 +10,8 @@
 #define __SyuraProject__ComicListModal__
 
 #include <stdio.h>
-#include "cocosGUI.h"
+#include "cocos2d.h"
+
 class CharaDetailModal : public cocos2d::Layer
 {
     

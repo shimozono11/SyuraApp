@@ -2,7 +2,7 @@
 //  CharaDetailModal.h
 //  SyuraProject
 //
-//  Created by 林　真史 on 2015/08/14.
+//  Created by 林 真史 on 2015/08/14.
 //
 //
 
@@ -10,19 +10,16 @@
 #define __SyuraProject__CharaDetailModal__
 
 #include <stdio.h>
-#include "cocosGUI.h"
+#include "cocos2d.h"
+#include "CocosGUI.h"
+USING_NS_CC;
+
 class CharaDetailModal : public cocos2d::Layer
 {
     
 public:
-    
     virtual bool init();
-    
-    void menuCloseCallback(Ref* pSender);
-    
-    void pushMenu01(Ref *pSender);
-    
-    // create()を使えるようにしている。
+
     CREATE_FUNC(CharaDetailModal);
 };
 

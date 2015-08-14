@@ -7,7 +7,7 @@
 //
 
 #include "ComicListModal.h"
-#include "GameScene.h"
+
 //#include "ui/CocosGUI.h"
 
 using namespace cocos2d;

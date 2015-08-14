@@ -12,7 +12,9 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
-#include "cocosGUI.h"
+#include "ui/cocosGUI.h"
+
+#include "CharaDetailModal.h"
 
 class TopModal : public cocos2d::Layer
 {
