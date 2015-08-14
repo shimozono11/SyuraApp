@@ -7,6 +7,10 @@
 //
 
 #include "ComicListModal.h"
+//横方向に配置されるコミックアイコンの数
+const int HORIZONTAL_COUNT = 3;
+//縦方向に配置されるコミックアイコンの数
+const int VERTICAL_COUNT = 4 ;
 // on "init" you need to initialize your instance
 bool ComicListModal::init()
 {
@@ -16,7 +20,7 @@ bool ComicListModal::init()
     //画面サイズを取得
     auto winSize = Director::getInstance()->getWinSize();
     
-    //背景を暗くする画像の貼り付け
+    /* 背景を暗くするレイヤーの設置 */
     auto background = Sprite::create("backpaper.png");
     background->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     background->setPosition(winSize / 2);
@@ -27,11 +31,13 @@ bool ComicListModal::init()
     background->setBlendFunc(blend);
     this -> addChild(background);
     
-    //メニューの背景
+    /*メニューの背景を設置*/
     auto backpaper = Sprite::create("comiclist/comic_icon_bg.png");
     backpaper->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     backpaper->setPosition(winSize/2);
     this->addChild(backpaper);
+    
+    
     
     /*ボタンの設置*/
     //閉じるボタンの設定
@@ -52,6 +58,8 @@ bool ComicListModal::init()
         }
     });
     this->addChild(button,0);
+    
+    
     
     // モーダル処理
     auto listener = EventListenerTouchOneByOne::create();
