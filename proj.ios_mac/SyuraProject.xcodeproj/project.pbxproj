@@ -57,6 +57,7 @@
 		791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */; };
+		79A0B07F1B7EB0D600B5D928 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B07C1B7EB0D600B5D928 /* sqlite3.c */; };
 		79A8D4561B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79A8D4571B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */; };
@@ -144,6 +145,9 @@
 		791EA94C1B5B1C4A00068774 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComicListModal.cpp; sourceTree = "<group>"; };
 		79A0B07A1B7E686B00B5D928 /* ComicListModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicListModal.h; sourceTree = "<group>"; };
+		79A0B07C1B7EB0D600B5D928 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
+		79A0B07D1B7EB0D600B5D928 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		79A0B07E1B7EB0D600B5D928 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
 		79A8D4551B5D0191009AD531 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Haruka.cpp; sourceTree = "<group>"; };
 		79CE4BCC1B7979B600CD67E7 /* Haruka.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Haruka.h; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				791EA9341B5B162B00068774 /* VirtualPad.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
+				79A0B0801B7EB0E700B5D928 /* Sqlite */,
 				79E82BF41B7DCDCC000B843D /* ModalScene */,
 				79E82BF31B7DCD77000B843D /* EnemyClass */,
 			);
@@ -371,6 +376,16 @@
 				FE4A434CB0497EB05B450757 /* libcocos2d iOS.a */,
 			);
 			name = "ios-libs";
+			sourceTree = "<group>";
+		};
+		79A0B0801B7EB0E700B5D928 /* Sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				79A0B07C1B7EB0D600B5D928 /* sqlite3.c */,
+				79A0B07D1B7EB0D600B5D928 /* sqlite3.h */,
+				79A0B07E1B7EB0D600B5D928 /* sqlite3ext.h */,
+			);
+			name = Sqlite;
 			sourceTree = "<group>";
 		};
 		79E82BF31B7DCD77000B843D /* EnemyClass */ = {
@@ -543,6 +558,7 @@
 				79E82BFD1B7DCF2F000B843D /* CharaDetailModal.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */,
+				79A0B07F1B7EB0D600B5D928 /* sqlite3.c in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */,
 				79D69A231B6CF2E20057A7CE /* LoseModal.cpp in Sources */,

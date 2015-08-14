@@ -9,7 +9,7 @@
         <AndroidkeyStore Value="" />
         <AndroidVersion Value="android-19" />
         <iOS_Target Value="SyuraProject iOS" />
-        <iOS_BundleID Value="" />
+        <iOS_BundleID Value="iPhone Distribution: Masafumi Hayashi (LLFR4YE877)" />
         <Platform Value="None" />
         <RunPlatform Value="Mac" />
         <FrameworkVersion Value="cocos2d-x-3.6" />
@@ -26,6 +26,16 @@
         <LastPublishType Value="XCode" />
         <IsLastPublish Value="True" />
         <LastRunType Value="Mac" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="modal_csd_layer/LoseLayer.csd" />
+          <FilePathData Path="modal_csd_layer/TopLayer.csd" />
+          <FilePathData Path="modal_csd_layer/ClearLayer.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="modal_csd_layer/TopLayer.csd" />
       </Value>
     </Item>
   </Properties>
