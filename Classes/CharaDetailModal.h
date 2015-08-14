@@ -18,8 +18,18 @@ class CharaDetailModal : public cocos2d::Layer
 {
     
 public:
+    const std::vector<std::string> charaImages = {
+        "charadetail/detail_futsuo.png",
+        "charadetail/detail_mobuko.png",
+        "charadetail/detail_haruka.png",
+        "charadetail/detail_kokona.png",
+        "charadetail/detail_miyu.png",
+        "charadetail/detail_nene.png",
+        "charadetail/detail_risa.png",
+    };
+    void menuCloseCallback(Ref* pSender);
     virtual bool init();
-
+    
     CREATE_FUNC(CharaDetailModal);
 };
 

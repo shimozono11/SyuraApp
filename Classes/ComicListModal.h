@@ -21,8 +21,6 @@ public:
     
     void menuCloseCallback(Ref* pSender);
     
-    void pushMenu01(Ref *pSender);
-    
     // create()を使えるようにしている。
     CREATE_FUNC(CharaDetailModal);
 };
