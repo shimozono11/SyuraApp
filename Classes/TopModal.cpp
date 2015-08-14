@@ -48,6 +48,9 @@ bool TopModal::init()
         if (type == ui::Widget::TouchEventType::ENDED) {
             //好きな処理
             CCLOG("漫画見るリストが押されました");
+            auto layer = ComicListModal::create();
+            layer->setName("ComicList");
+            this->addChild(layer);
         }
     });
     return true;

@@ -56,6 +56,7 @@
 		791EA94A1B5B1C3400068774 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9471B5B1C3400068774 /* Player.cpp */; };
 		791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
+		79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */; };
 		79A8D4561B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79A8D4571B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */; };
@@ -141,6 +142,8 @@
 		791EA9481B5B1C3400068774 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		791EA94B1B5B1C4A00068774 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		791EA94C1B5B1C4A00068774 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComicListModal.cpp; sourceTree = "<group>"; };
+		79A0B07A1B7E686B00B5D928 /* ComicListModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicListModal.h; sourceTree = "<group>"; };
 		79A8D4551B5D0191009AD531 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Haruka.cpp; sourceTree = "<group>"; };
 		79CE4BCC1B7979B600CD67E7 /* Haruka.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Haruka.h; sourceTree = "<group>"; };
@@ -406,6 +409,8 @@
 				79D69A2A1B6D39900057A7CE /* ClearModal.h */,
 				79E82BFB1B7DCF2F000B843D /* CharaDetailModal.cpp */,
 				79E82BFC1B7DCF2F000B843D /* CharaDetailModal.h */,
+				79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */,
+				79A0B07A1B7E686B00B5D928 /* ComicListModal.h */,
 			);
 			name = ModalScene;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 				79CE4BD31B797A0B00CD67E7 /* Risa.cpp in Sources */,
 				79CE4BDF1B79813600CD67E7 /* SyuraEnemy.cpp in Sources */,
 				79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */,
+				79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */,
 				79E82BFD1B7DCF2F000B843D /* CharaDetailModal.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */,

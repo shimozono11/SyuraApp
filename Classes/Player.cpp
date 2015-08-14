@@ -87,7 +87,7 @@ void Player::setAnimation(){
 
 void Player::update(float dt)
 {
-    CCLOG("player Speed %d",this->getSpeed());
+//    CCLOG("player Speed %d",this->getSpeed());
     this->setAnimation();
 
 }

@@ -15,7 +15,7 @@
 #include "ui/cocosGUI.h"
 
 #include "CharaDetailModal.h"
-
+#include "ComicListModal.h"
 class TopModal : public cocos2d::Layer
 {
     
