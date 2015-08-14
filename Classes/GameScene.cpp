@@ -530,10 +530,22 @@ void GameScene::onSyuraba(){
     this->swichPauseFlag();
     /* 背景を暗くするレイヤーを作って貼る */
     auto syuraLayer = Layer::create();
-    auto backPaper = Sprite::create("backpaper.png");
-    backPaper->setPosition(Vec2(0,winSize.height));
-    syuraLayer->addChild(backPaper);
+//    auto backPaper = Sprite::create("backpaper.png");
+//    backPaper->setPosition(Vec2(0,winSize.height));
+//    syuraLayer->addChild(backPaper);
     this->addChild(syuraLayer);
+    //背景を暗くする画像の貼り付け
+    auto backpaper = Sprite::create("backpaper.png");
+    backpaper->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
+    backpaper->setPosition(winSize / 2);
+    //レイヤーの乗算処理
+    BlendFunc blend;
+    blend.src = GL_ZERO;
+    blend.dst = GL_SRC_COLOR;
+    backpaper->setBlendFunc(blend);
+    syuraLayer -> addChild(backpaper);
+
+    
     
     /* カットを入れるアニメーション */
     auto cut = Sprite::create("comiclist/comic_icon_secret.png");

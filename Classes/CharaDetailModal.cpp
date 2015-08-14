@@ -22,7 +22,6 @@ bool CharaDetailModal::init()
     auto backpaper = Sprite::create("backpaper.png");
     backpaper->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     backpaper->setPosition(winSize / 2);
-    
     //レイヤーの乗算処理
     BlendFunc blend;
     blend.src = GL_ZERO;
