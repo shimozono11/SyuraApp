@@ -74,6 +74,20 @@ bool CharaDetailModal::init()
         });
         layout->addChild(button,0);
         
+        
+        //矢印画像
+        if(i != CharaDetailModal::charaImages.size() - 1 ){
+            auto rightbutton = ui::ImageView::create("charadetail/right_button.png");
+            rightbutton->setPosition(Vec2(layout->getContentSize().width * 5/6,layout->getContentSize().height / 2));
+            layout->addChild(rightbutton,1);
+        }
+        
+        if(i != 0){
+            auto leftbutton = ui::ImageView::create("charadetail/left_button.png");
+            leftbutton->setPosition(Vec2(layout->getContentSize().width * 1/6,layout->getContentSize().height / 2));
+            layout->addChild(leftbutton,2);
+        }
+        
         pageView->insertPage(layout, i);
     }
     
