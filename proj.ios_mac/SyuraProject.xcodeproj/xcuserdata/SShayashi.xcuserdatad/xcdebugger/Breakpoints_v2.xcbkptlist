@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/LoseModal.cpp"
-            timestampString = "460294610.412258"
+            timestampString = "461285885.579772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "LoseModal::init()"
             landmarkType = "5">
          </BreakpointContent>

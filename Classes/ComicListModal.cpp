@@ -61,6 +61,7 @@ bool ComicListModal::init()
     
     
     
+    
     // モーダル処理
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);

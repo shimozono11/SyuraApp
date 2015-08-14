@@ -12,6 +12,10 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "cocosGUI.h"
+
+#include "CharaDetailModal.h"
+#include "ComicListModal.h"
+
 class LoseModal : public cocos2d::Layer
 {
     
