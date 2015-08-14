@@ -56,23 +56,23 @@ bool CharaDetailModal::init()
         
         /*ボタンの設置*/
         //閉じるボタンの設定
-        auto button = ui::Button::create();
+        auto closebutton = ui::Button::create();
         // タッチイベント True
-        button->setTouchEnabled(true);
+        closebutton->setTouchEnabled(true);
         // ボタンの中心位置　アーカーポンイント
-        button->setAnchorPoint( Vec2::ANCHOR_MIDDLE);
+        closebutton->setAnchorPoint( Vec2::ANCHOR_MIDDLE);
         // 通常状態の画像 押下状態の画像
-        button->loadTextures("charadetail/charadetail_close.png","charadetail/charadetail_close_clicked.png", "");
+        closebutton->loadTextures("charadetail/charadetail_close.png","charadetail/charadetail_close_clicked.png", "");
         // ボタンの配置
-        button->setPosition(winSize/2 + (charaimage->getContentSize() / 2 ));
+        closebutton->setPosition(winSize/2 + (charaimage->getContentSize() / 2 ));
         // ボタンのイベント
-        button->addTouchEventListener([this](Ref* pSender, cocos2d::ui::Widget::TouchEventType type){
+        closebutton->addTouchEventListener([this](Ref* pSender, cocos2d::ui::Widget::TouchEventType type){
             if (type == cocos2d::ui::Widget::TouchEventType::ENDED)         {
                 // 処理
                 this->removeFromParentAndCleanup(true);
             }
         });
-        layout->addChild(button,0);
+        layout->addChild(closebutton,0);
         
         
         //矢印画像
