@@ -39,7 +39,7 @@ bool CharaDetailModal::init()
     
     //pageviewの背景画像
     auto backcard = Sprite::create("charadetail/backcard.png");
-    backcard->setPosition(pageView->getContentSize() / 2);
+    backcard->setPosition(Vec2(pageView->getContentSize().width / 2 , pageView->getContentSize().height/2 - 50));
     this->addChild(backcard,0);
     
     //コンテンツ配置
