@@ -315,9 +315,9 @@
 				791EA9341B5B162B00068774 /* VirtualPad.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
-				79A0B0801B7EB0E700B5D928 /* Sqlite */,
 				79E82BF41B7DCDCC000B843D /* ModalScene */,
 				79E82BF31B7DCD77000B843D /* EnemyClass */,
+				79A0B0801B7EB0E700B5D928 /* Sqlite */,
 			);
 			name = Classes;
 			path = ../Classes;

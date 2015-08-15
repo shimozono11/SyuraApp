@@ -140,7 +140,7 @@ bool GameScene::init()
     
     /* update関数（毎フレーム呼び出す関数）の設置 */
     this->scheduleUpdate();
-    // スケジュールの実行(秒単位)
+    // １秒ごとに実行される関数の設置
     this->schedule(schedule_selector(GameScene::gameLogic), 1.0f);
     //
     time=0;
