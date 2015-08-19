@@ -119,7 +119,8 @@ bool GameScene::init()
     
     /* タイマーラベルの追加 */
     int second = static_cast<int>(_second);
-    auto secondLabel = Label::createWithSystemFont(StringUtils::toString(second), "MarkerFelt", 16);
+    auto secondLabel = Label::createWithCharMap("time/numbers.png", 43, 52, '0');
+//    auto secondLabel = Label::createWithSystemFont(StringUtils::toString(second), "MarkerFelt", 16);
     this->setSecondLabel(secondLabel);
     
     secondLabel->enableShadow(Color4B::BLACK,Size(0.5,0.5) , 3);
