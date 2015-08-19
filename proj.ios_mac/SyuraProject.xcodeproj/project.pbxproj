@@ -58,6 +58,7 @@
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */; };
 		79A0B07F1B7EB0D600B5D928 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B07C1B7EB0D600B5D928 /* sqlite3.c */; };
+		79A0B0841B7F7BCC00B5D928 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B0821B7F7BCC00B5D928 /* test.cpp */; };
 		79A8D4561B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79A8D4571B5D0191009AD531 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 79A8D4551B5D0191009AD531 /* res */; };
 		79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */; };
@@ -148,6 +149,8 @@
 		79A0B07C1B7EB0D600B5D928 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
 		79A0B07D1B7EB0D600B5D928 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 		79A0B07E1B7EB0D600B5D928 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
+		79A0B0821B7F7BCC00B5D928 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		79A0B0831B7F7BCC00B5D928 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
 		79A8D4551B5D0191009AD531 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		79CE4BCB1B7979B600CD67E7 /* Haruka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Haruka.cpp; sourceTree = "<group>"; };
 		79CE4BCC1B7979B600CD67E7 /* Haruka.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Haruka.h; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				791EA9301B5B161100068774 /* Stage.h */,
 				791EA9331B5B162B00068774 /* VirtualPad.cpp */,
 				791EA9341B5B162B00068774 /* VirtualPad.h */,
+				79A0B0821B7F7BCC00B5D928 /* test.cpp */,
+				79A0B0831B7F7BCC00B5D928 /* test.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
 				79E82BF41B7DCDCC000B843D /* ModalScene */,
@@ -574,6 +579,7 @@
 				791EA92D1B5B158900068774 /* GameScene.cpp in Sources */,
 				791EA9311B5B161100068774 /* Stage.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				79A0B0841B7F7BCC00B5D928 /* test.cpp in Sources */,
 				79CE4BD01B7979C500CD67E7 /* Nene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -680,6 +686,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -713,6 +720,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
