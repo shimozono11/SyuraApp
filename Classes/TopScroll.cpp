@@ -39,7 +39,7 @@ Scene* TopScroll::createScene()
     return scene;
 }
 
-bool TopScroll::init()
+bool TopScroll::init(char *filename)
 {
     if ( !Layer::init() )
     {
@@ -47,16 +47,20 @@ bool TopScroll::init()
     }
     
     // 画面サイズ取得
-    auto size = Director::getInstance()->getVisibleSize();
+    auto winSize = Director::getInstance()->getVisibleSize();
+    
+    
+
     
     // 画面サイズでスクロールビューを作る
-    auto *pScrollView = ScrollView::create(size);
+    auto *pScrollView = ScrollView::create(winSize);
+    pScrollView->setAnchorPoint(Vec2::ANCHOR_TOP_LEFT);
+    pScrollView->setPosition(0,0);
+//    // スクロールビュー自体の大きさを変更したい場合
+//     pScrollView->setViewSize(Size(500, 500));
     
-    // スクロールビュー自体の大きさを変更したい場合
-    // pScrollView->setViewSize(Size(500, 500));
-    
-    // バウンスを許可するか（以下は非許可）
-    // pScrollView->setBounceable(false);
+     //バウンスを許可するか（以下は非許可）
+//     pScrollView->setBounceable(false);
     
     // スクロール方向の指定
     // pScrollView->setDirection(ScrollView::Direction::VERTICAL);
@@ -75,10 +79,41 @@ bool TopScroll::init()
     pScrollView->setDelegate(this);
     
     //スクロールビューに入れるスプライトを用意
-    auto *pSprite = Sprite::create("comic/kokona_win_risa.png");
+    auto *pSprite = Sprite::create(filename);
     
     pScrollView->setContainer(pSprite);
     pScrollView->setContentSize(pSprite->getContentSize());
+    
+    /*ボタンの設置*/
+    //閉じるボタンの設定
+    auto closebutton = ui::Button::create();
+    // タッチイベント True
+    closebutton->setTouchEnabled(true);
+    // ボタンの中心位置　アーカーポンイント
+    closebutton->setAnchorPoint( Vec2::ANCHOR_TOP_RIGHT);
+    // 通常状態の画像 押下状態の画像
+    closebutton->loadTextures("charadetail/charadetail_close.png","charadetail/charadetail_close_clicked.png", "");
+    // ボタンの配置
+    closebutton->setPosition(winSize);
+    // ボタンのイベント
+    closebutton->addTouchEventListener([this](Ref* pSender, cocos2d::ui::Widget::TouchEventType type){
+        if (type == cocos2d::ui::Widget::TouchEventType::ENDED)         {
+            // 処理
+            this->removeFromParentAndCleanup(true);
+        }
+    });
+    this->addChild(closebutton);
+    
+    // モーダル処理
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
+    listener->onTouchBegan = [](Touch *touch,Event*event)->bool{
+        return true;
+    };
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    
+
     
     return true;
 }
@@ -93,4 +128,15 @@ void TopScroll::scrollViewDidScroll(ScrollView *view)
 void TopScroll::scrollViewDidZoom(ScrollView *view)
 {
     log("ズーム！");
+}
+
+TopScroll * TopScroll::createWithLayer(char *filename){
+    TopScroll *ret = new TopScroll();
+    if(ret->init(filename))
+    {
+        ret->autorelease();
+        return ret;
+    }
+    CC_SAFE_DELETE(ret);
+    return nullptr;
 }

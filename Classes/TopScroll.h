@@ -24,13 +24,11 @@ protected:
     // デストラクタ
     virtual ~TopScroll();
     // メソッド CREATE_FUNCとの連携
-    bool init() override;
+    bool init(char *filename);
     
 public:
     static cocos2d::Scene* createScene();
-    
-    CREATE_FUNC(TopScroll);
-    
+    static TopScroll* createWithLayer(char *filename);
     void scrollViewDidScroll(ScrollView *view);
     void scrollViewDidZoom(ScrollView *view);
 };

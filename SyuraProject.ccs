@@ -23,6 +23,7 @@
           <Image Name="nene_win_kokona.png" />
           <Image Name="risa_win_miyu.png" />
           <Image Name="risa_win_nene.png" />
+          <Project Name="haruka_win_kokona.csd" Type="Layer" />
         </Folder>
         <Folder Name="comiclist">
           <Image Name="backpaper_bottom.png" />
