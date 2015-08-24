@@ -87,6 +87,9 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No02が押されました");
+            auto layer = TopScroll::createWithLayer("comic/haruka_win_risa.png");
+            this->addChild(layer);
+
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -101,6 +104,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No03が押されました");
+            auto layer = TopScroll::createWithLayer("comic/kokona_win_miyu.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -115,6 +120,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No04が押されました");
+            auto layer = TopScroll::createWithLayer("comic/haruka_win_risa.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -129,6 +136,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No05が押されました");
+            auto layer = TopScroll::createWithLayer("comic/miyu_win_haruka.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -143,6 +152,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No06が押されました");
+            auto layer = TopScroll::createWithLayer("comic/miyu_win_nene.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -157,6 +168,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No07が押されました");
+            auto layer = TopScroll::createWithLayer("comic/nene_win_haruka.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -171,6 +184,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No08が押されました");
+            auto layer = TopScroll::createWithLayer("comic/nene_win_kokona.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -185,6 +200,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No09が押されました");
+            auto layer = TopScroll::createWithLayer("comic/risa_win_miyu.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");
@@ -199,6 +216,8 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No10が押されました");
+            auto layer = TopScroll::createWithLayer("comic/risa_win_nene.png");
+            this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();
             //            layer->setName("CharaDetail");

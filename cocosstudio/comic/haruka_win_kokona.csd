@@ -6,13 +6,13 @@
       <ObjectData Name="Layer" Tag="528" ctype="GameLayerObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="ScrollView_1" ActionTag="2529001" Tag="529" IconVisible="False" LeftMargin="-4.1058" RightMargin="4.1058" TopMargin="906.0461" BottomMargin="29.9539" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="640" Scale9Height="1981" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+          <AbstractNodeData Name="ScrollView_1" ActionTag="2529001" Tag="529" IconVisible="False" LeftMargin="85.0408" RightMargin="-85.0408" TopMargin="638.6086" BottomMargin="297.3914" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" Scale9Width="640" Scale9Height="1981" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
             <Size X="640.0000" Y="200.0000" />
             <AnchorPoint />
-            <Position X="-4.1058" Y="29.9539" />
+            <Position X="85.0408" Y="297.3914" />
             <Scale ScaleX="1.0021" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="-0.0064" Y="0.0264" />
+            <PrePosition X="0.1329" Y="0.2618" />
             <PreSize X="1.0000" Y="0.1761" />
             <FileData Type="Normal" Path="comic/haruka_win_kokona.png" Plist="" />
             <SingleColor A="255" R="255" G="150" B="100" />
