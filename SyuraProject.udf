@@ -28,15 +28,5 @@
         <LastRunType Value="Mac" />
       </Value>
     </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="modal_csd_layer/LoseLayer.csd" />
-          <FilePathData Path="modal_csd_layer/TopLayer.csd" />
-          <FilePathData Path="modal_csd_layer/ClearLayer.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="modal_csd_layer/TopLayer.csd" />
-      </Value>
-    </Item>
   </Properties>
 </UserData>

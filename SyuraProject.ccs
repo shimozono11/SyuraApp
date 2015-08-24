@@ -14,6 +14,15 @@
         </Folder>
         <Folder Name="comic">
           <Image Name="kokona_win_risa.png" />
+          <Image Name="haruka_win_kokona.png" />
+          <Image Name="haruka_win_risa.png" />
+          <Image Name="kokona_win_miyu.png" />
+          <Image Name="miyu_win_haruka.png" />
+          <Image Name="miyu_win_nene.png" />
+          <Image Name="nene_win_haruka.png" />
+          <Image Name="nene_win_kokona.png" />
+          <Image Name="risa_win_miyu.png" />
+          <Image Name="risa_win_nene.png" />
         </Folder>
         <Folder Name="comiclist">
           <Image Name="backpaper_bottom.png" />
@@ -22,6 +31,17 @@
           <Image Name="comiclist_close_button_clicked.png" />
           <Image Name="comic_icon_risa_win_kokona.png" />
           <Image Name="comic_icon_secret.png" />
+          <Image Name="comic_icon_bg.png" />
+          <Image Name="comic_icon_haruka_win_kokona.png" />
+          <Image Name="comic_icon_haruka_win_risa.png" />
+          <Image Name="comic_icon_kokona_win_risa.png" />
+          <Image Name="comic_icon_kokona_win_yuka.png" />
+          <Image Name="comic_icon_miyu_win_haruka.png" />
+          <Image Name="comic_icon_miyu_win_nene.png" />
+          <Image Name="comic_icon_nene_win_haruka.png" />
+          <Image Name="comic_icon_nene_win_kokona.png" />
+          <Image Name="comic_icon_risa_win_miyu.png" />
+          <Image Name="comic_icon_risa_win_nene.png" />
         </Folder>
         <Folder Name="cut">
           <Image Name="cut_bg.png" />
@@ -92,6 +112,7 @@
           <Project Name="ClearLayer.csd" Type="Layer" />
           <Project Name="LoseLayer.csd" Type="Layer" />
           <Project Name="TopLayer.csd" Type="Layer" />
+          <Project Name="ComicList.csd" Type="Layer" />
         </Folder>
       </RootFolder>
     </Group>

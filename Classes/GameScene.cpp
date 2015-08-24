@@ -566,11 +566,12 @@ void GameScene::onSyuraba(){
     syuraLayer->addChild(cut);
     auto move = MoveTo::create(1, Vec2(winSize.width/2, winSize.height/2));
     /* 中央で一時停止 */
-    auto stop = MoveTo::create(0.5, Vec2(winSize.width/2, winSize.height/2));
-    cut ->runAction(Sequence::create(move,stop, NULL));
+    auto stop = MoveTo::create(1, Vec2(winSize.width/2, winSize.height/2));
+    auto sequence = Sequence::create(move,stop, NULL);
+    cut ->runAction(sequence);
     /* レイヤーを乗算にしてかぶせる処理TODO */
-    this->runAction(Sequence::create(DelayTime::create(1),CallFunc::create([=](){
-        /* 1秒後に処理を実行 */
+    this->runAction(Sequence::create(DelayTime::create(2),CallFunc::create([=](){
+        /* 2秒後に処理を実行 */
         syuraLayer->removeFromParent();
         /* アニメーションが終わったらゲームを再度開始 */
         this->swichPauseFlag();
