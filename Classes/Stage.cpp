@@ -8,7 +8,7 @@
 
 #include "Stage.h"
 USING_NS_CC;
-int  MAX_ENEMY_SPEED = 6;
+int  MAX_ENEMY_SPEED = 5;
 Stage::Stage()
 :_tiledMap(nullptr)
 ,_player(nullptr)
@@ -181,7 +181,7 @@ void Stage::addEnemyOnStage(){
     //    /* 敵の初期位置 */
     //    enemy->setPosition(Vec2(enemyXPos,winSize.height - enemySize.height/2.0 - 40));
     /* 速度の設定 */
-    enemy->setSpeed((int)rand()%MAX_ENEMY_SPEED);
+    enemy->setSpeed((int)rand()%MAX_ENEMY_SPEED + 1);
     
     /* ステージに敵を追加 */
     this -> addChild(enemy);
