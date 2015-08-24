@@ -130,11 +130,11 @@ bool GameScene::init()
     
     secondLabel->enableShadow(Color4B::BLACK,Size(0.5,0.5) , 3);
     secondLabel->enableOutline(Color4B::BLACK,1.5);
-    secondLabel->setPosition(Vec2(winSize.width /2.0 , winSize.height -40));
+    secondLabel->setPosition(Vec2(winSize.width /2.0 , winSize.height -70));
     this->addChild(secondLabel);
     
     /* タイマーヘッダーの追加 */
-    auto secondLabelHeader = Label::createWithSystemFont("TIME","MarkerFelt", 16);
+    auto secondLabelHeader = Label::createWithSystemFont("TIME","MarkerFelt", 30);
     secondLabelHeader->enableShadow(Color4B::BLACK,Size(0.5,0.5) , 3);
     secondLabelHeader->enableOutline(Color4B::BLACK,1.5);
     secondLabelHeader->setPosition(Vec2(winSize.width /2.0 , winSize.height -20));
@@ -151,7 +151,7 @@ bool GameScene::init()
     //
     time=0;
     isPauseFlag = false;
-    
+
     return true;
 }
 
@@ -525,10 +525,25 @@ void GameScene::onClear(){
     this->addChild(layer);
     
     /* もし修羅場を起こしていたらここに処理を追加 */
+
+
+    
     /* 修羅場ボタンを追加して */
-    auto menu = Menu::createWithArray(_syuraIcon);
-    menu->alignItemsHorizontallyWithPadding(15);
-    menu->setPosition(Vec2(300,300));
+    if(_syuraIcon.size() > 1){
+        auto menu = Menu::create(_syuraIcon.at(0),_syuraIcon.at(1), NULL);
+        menu->alignItemsHorizontallyWithPadding(15);
+        menu->setPosition(Vec2(320,450));
+        this->addChild(menu);
+    }else if(_syuraIcon.size() > 0){
+        auto menu = Menu::create(_syuraIcon.at(0), NULL);
+        menu->alignItemsHorizontallyWithPadding(15);
+        menu->setPosition(Vec2(320,450));
+        this->addChild(menu);
+    }else{
+        
+    }
+    
+
     /* 押せば漫画を見れるようにする！ */
     /* 動きを止める処理 */
     this->swichPauseFlag();
@@ -560,6 +575,9 @@ void GameScene::onSyuraba(){
     
     /* ここでどのカットインをいれるか判定 */
     auto filename = this->getCutInFileName((SyuraEnemy*)_stage->getSyuraarea().at(0), (SyuraEnemy*)_stage->getSyuraarea().at(1));
+    /* カットインのファイル名から最後に表示させるアイコンを判別 */
+    _syuraIcon.pushBack(getIconButton(filename));
+    
     /* カットを入れるアニメーション */
     auto cut = Sprite::create(filename);
     cut->setPosition(Vec2(winSize.width,winSize.height/2));
@@ -651,19 +669,19 @@ void GameScene::update(float dt){
                     enemy->removeFromParent();
                     syuraba.eraseObject(enemy);
                 }
-              
+                
             }
-
             
-//            auto itr = syuraba.begin();
-//            while (itr != syuraba.end())
-//            {
-//                if((*itr) != (Node*)winEnemy){
-//                    (*itr)->removeFromParent();
-//                    itr = syuraba.erase(itr);
-//                    
-//                }
-//            }
+            
+            //            auto itr = syuraba.begin();
+            //            while (itr != syuraba.end())
+            //            {
+            //                if((*itr) != (Node*)winEnemy){
+            //                    (*itr)->removeFromParent();
+            //                    itr = syuraba.erase(itr);
+            //
+            //                }
+            //            }
             /* ベクターの中からも全てのオブジェクトを削除 */
             //            syuraba.clear();
             _stage->setSyuraarea(syuraba);
@@ -1082,6 +1100,122 @@ char *GameScene::getCutInFileName(SyuraEnemy *syuraEnemyA,SyuraEnemy *syuraEnemy
             CCLOG("ここに来ることは無いはず");
             return nullptr;
             break;
+    }
+    
+    return nullptr;
+}
+
+//カットのファイル名から漫画アイコンのボタンを返す
+MenuItemImage *GameScene::getIconButton(char *CutFileName){
+    //はるかVSここなの場合
+    if(strstr(CutFileName, "haruka_kokona.png")){
+        auto harukaWinKokona = MenuItemImage::create("comiclist/comic_icon_haruka_win_kokona.png","",
+                                                     [this](Ref* ref){
+                                                         auto layer = TopScroll::createWithLayer("comic/haruka_win_kokona.png");
+                                                         this->addChild(layer);
+                                                         
+                                                     });
+        return harukaWinKokona;
+    }
+    
+    //はるかVSみゆの場合
+    if(strstr(CutFileName, "haruka_miyu.png")){
+        auto miyuWinHaruka = MenuItemImage::create("comiclist/comic_icon_miyu_win_haruka.png","",
+                                                   [this](Ref* ref){
+                                                       auto layer = TopScroll::createWithLayer("comic/miyu_win_haruka.png");
+                                                       this->addChild(layer);
+
+                                                   });
+        return miyuWinHaruka;
+        
+    }
+    
+    //はるかVSりさの場合
+    if(strstr(CutFileName, "haruka_risa.png")){
+        auto harukaWinRisa = MenuItemImage::create("comiclist/comic_icon_haruka_win_risa.png","",
+                                                   [this](Ref* ref){
+                                                       auto layer = TopScroll::createWithLayer("comic/haruka_win_risa.png");
+                                                       this->addChild(layer);
+
+                                                       
+                                                   });
+        return harukaWinRisa;
+        
+    }
+    //ここなVSりさの場合
+    if(strstr(CutFileName, "kokona_risa.png")){
+        auto kokonaWinRisa = MenuItemImage::create("comiclist/comic_icon_kokona_win_risa.png","",
+                                                   [this](Ref* ref){
+                                                       auto layer = TopScroll::createWithLayer("comic/kokona_win_risa.png");
+                                                       this->addChild(layer);
+
+                                                   });
+        return kokonaWinRisa;
+        
+    }
+    //みゆVSはるかの場合
+    if(strstr(CutFileName, "miyu_haruka.png")){
+        auto miyuWinHaruka = MenuItemImage::create("comiclist/comic_icon_miyu_win_haruka.png","",
+                                                   [this](Ref* ref){
+                                                       auto layer = TopScroll::createWithLayer("comic/miyu_win_haruka.png");
+                                                       this->addChild(layer);
+
+                                                   });
+        return miyuWinHaruka;
+        
+        
+    }
+    //みゆVSねねの場合
+    if(strstr(CutFileName, "miyu_nene.png")){
+        auto miyuWinNene = MenuItemImage::create("comiclist/comic_icon_miyu_win_nene.png","",
+                                                 [this](Ref* ref){
+                                                     auto layer = TopScroll::createWithLayer("comic/miyu_win_nene.png");
+                                                     this->addChild(layer);
+
+                                                 });
+        return miyuWinNene;
+        
+    }
+    //ねねVSはるか
+    if(strstr(CutFileName, "nene_haruka.png")){
+        auto neneWinHaruka = MenuItemImage::create("comiclist/comic_icon_nene_win_haruka.png","",
+                                                   [this](Ref* ref){
+                                                       auto layer = TopScroll::createWithLayer("comic/nene_win_haruka.png");
+                                                       this->addChild(layer);
+
+                                                   });
+        return neneWinHaruka;
+        
+    }
+    //ねねVSここな
+    if(strstr(CutFileName, "nene_kokona.png")){
+        auto neneWinKokona = MenuItemImage::create("comiclist/comic_icon_nene_win_kokona.png","",
+                                                   [](Ref* ref){
+                                                       
+                                                   });
+        return neneWinKokona;
+        
+    }
+    //りさVSみゆ
+    if(strstr(CutFileName, "risa_miyu.png")){
+        auto risaWinMiyu = MenuItemImage::create("comiclist/comic_icon_risa_win_miyu.png","",
+                                                 [this](Ref* ref){
+                                                     auto layer = TopScroll::createWithLayer("comic/risa_win_miyu.png");
+                                                     this->addChild(layer);
+
+                                                 });
+        return risaWinMiyu;
+        
+    }
+    //りさVSねね
+    if(strstr(CutFileName, "risa_nene.png")){
+        auto risaWinNene = MenuItemImage::create("comiclist/comic_icon_risa_win_nene.png","",
+                                                 [this](Ref* ref){
+                                                     auto layer = TopScroll::createWithLayer("comic/risa_win_nene.png");
+                                                     this->addChild(layer);
+
+                                                 });
+        return risaWinNene;
     }
     
     return nullptr;

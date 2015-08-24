@@ -17,13 +17,13 @@
             <FileData Type="Normal" Path="result-clear/clear_logo.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="gets_bg_2" ActionTag="-1813522067" Tag="34" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="62.0000" RightMargin="62.0000" TopMargin="591.7800" BottomMargin="69.2200" ctype="SpriteObjectData">
+          <AbstractNodeData Name="gets_bg_2" ActionTag="-1813522067" Tag="34" IconVisible="False" PositionPercentXEnabled="True" PositionPercentYEnabled="True" LeftMargin="61.9999" RightMargin="62.0001" TopMargin="569.2992" BottomMargin="91.7008" ctype="SpriteObjectData">
             <Size X="516.0000" Y="475.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="320.0000" Y="306.7200" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <Position X="319.9999" Y="329.2008" />
+            <Scale ScaleX="1.0000" ScaleY="1.1538" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.2700" />
+            <PrePosition X="0.5000" Y="0.2898" />
             <PreSize X="0.8062" Y="0.4181" />
             <FileData Type="Normal" Path="result-clear/gets_bg.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />

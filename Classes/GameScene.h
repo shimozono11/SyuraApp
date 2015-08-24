@@ -13,6 +13,8 @@
 #include "VirtualPad.h"
 #include "Stage.h"
 #include "cocos2d.h"
+#include "TopScroll.h"
+
 
 class GameScene : public cocos2d::Layer
 {
@@ -116,13 +118,16 @@ public:
     SyuraEnemy* battleSyuraEnemy(SyuraEnemy* syuraEnemyA , SyuraEnemy* syuraEnemyB);
     //修羅キャラを二人渡して、それ専用のカットイン画像のファイル名を返す
     char *getCutInFileName(SyuraEnemy* syuraEnemyA , SyuraEnemy* syuraEnemyB);
+    //カットのファイル名から漫画アイコンのボタンを返す
+    MenuItemImage *getIconButton(char *CutFileName);
+    
     
     /* 制限時間用変数　*/
     CC_SYNTHESIZE(float, _second, Second);
     /* 現在のゲーム状態 */
     CC_SYNTHESIZE(GameState, _state, State);
     /* クリア画面での修羅場アイコンを格納する */
-    CC_SYNTHESIZE(cocos2d::Vector<MenuItem*>,_syuraIcon, SyuraIcon);
+    CC_SYNTHESIZE(cocos2d::Vector<MenuItemImage*>,_syuraIcon, SyuraIcon);
     /* ステージの作成 */
     CC_SYNTHESIZE_RETAIN(Stage *, _stage, Stage);
     /* VirutalPadの生成 */
