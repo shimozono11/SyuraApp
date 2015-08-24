@@ -558,10 +558,10 @@ void GameScene::onSyuraba(){
     backpaper->setBlendFunc(blend);
     syuraLayer -> addChild(backpaper);
     
-    /* ここでどちらの修羅キャラを消すか判定 */
-    
+    /* ここでどのカットインをいれるか判定 */
+    auto filename = this->getCutInFileName((SyuraEnemy*)_stage->getSyuraarea().at(0), (SyuraEnemy*)_stage->getSyuraarea().at(1));
     /* カットを入れるアニメーション */
-    auto cut = Sprite::create("comiclist/comic_icon_secret.png");
+    auto cut = Sprite::create(filename);
     cut->setPosition(Vec2(winSize.width,winSize.height/2));
     syuraLayer->addChild(cut);
     auto move = MoveTo::create(1, Vec2(winSize.width/2, winSize.height/2));
@@ -765,6 +765,7 @@ void GameScene::swichPauseFlag()
         //        }
     }
 }
+
 /** 渡した修羅キャラで買った方のみを返す関数
  *@param syuraEnemyA 修羅キャラの片方
  *@param syuraEnemyB 修羅キャラの片方
@@ -912,6 +913,167 @@ SyuraEnemy *GameScene::battleSyuraEnemy(SyuraEnemy *syuraEnemyA,SyuraEnemy *syur
             }
             if(enemyB == SyuraEnemys::Miyu){
                 return syuraEnemyA;
+            }
+            
+            break;
+            
+        default:
+            CCLOG("ここに来ることは無いはず");
+            return nullptr;
+            break;
+    }
+    
+    return nullptr;
+}
+
+
+/** 渡した修羅キャラで買った方のみを返す関数
+ *@param syuraEnemyA 修羅キャラの片方
+ *@param syuraEnemyB 修羅キャラの片方
+ *@return それらに適したカットインのファイル名
+ */
+char *GameScene::getCutInFileName(SyuraEnemy *syuraEnemyA,SyuraEnemy *syuraEnemyB){
+    
+    CCLOG("%s",typeid(*syuraEnemyA).name());
+    CCLOG("%s",typeid(*syuraEnemyB).name());
+    
+    GameScene::SyuraEnemys enemyA,enemyB;
+    
+    /* クラスを見て共用隊の値を入れていく*/
+    if(strstr(typeid(*syuraEnemyA).name(), "Haruka") != NULL){
+        enemyA = SyuraEnemys::Haruka;
+        //        Haruka* syuraEnemyA = dynamic_cast<Haruka*>(syuraEnemyA);
+        
+    }else if(strstr(typeid(*syuraEnemyA).name(), "Nene") != NULL){
+        enemyA = SyuraEnemys::Nene;
+        //        Nene* syuraEnemyA = dynamic_cast<Nene*>(syuraEnemyA);
+        
+    }else if (strstr(typeid(*syuraEnemyA).name(), "Risa") != NULL){
+        enemyA = SyuraEnemys::Risa;
+        //        Risa* syuraEnemyA = dynamic_cast<Risa*>(syuraEnemyA);
+        
+    }else if (strstr(typeid(*syuraEnemyA).name(), "Miyu") != NULL){
+        enemyA = SyuraEnemys::Miyu;
+        //        Miyu* syuraEnemyA = dynamic_cast<Miyu*>(syuraEnemyA);
+        
+    }else if (strstr(typeid(*syuraEnemyA).name(), "Kokona") != NULL){
+        enemyA = SyuraEnemys::Kokona;
+        //        Kokona* syuraEnemyA = dynamic_cast<Kokona*>(syuraEnemyA);
+        
+    }else{
+        CCLOG("ここにくることはないはず");
+        return nullptr;
+    }
+    
+    
+    if(strstr(typeid(*syuraEnemyB).name(), "Haruka") != NULL){
+        enemyB = SyuraEnemys::Haruka;
+        //        Haruka* syuraEnemyB = dynamic_cast<Haruka*>(syuraEnemyB);
+        
+    }else if(strstr(typeid(*syuraEnemyB).name(), "Nene") != NULL){
+        enemyB = SyuraEnemys::Nene;
+        //        Nene* syuraEnemyB = dynamic_cast<Nene*>(syuraEnemyB);
+        
+    }else if (strstr(typeid(*syuraEnemyB).name(), "Risa") != NULL){
+        enemyB = SyuraEnemys::Risa;
+        //        Risa* syuraEnemyB = dynamic_cast<Risa*>(syuraEnemyB);
+        
+    }else if (strstr(typeid(*syuraEnemyB).name(), "Miyu") != NULL){
+        enemyB = SyuraEnemys::Miyu;
+        //        Miyu* syuraEnemyB = dynamic_cast<Miyu*>(syuraEnemyB);
+        
+    }else if (strstr(typeid(*syuraEnemyB).name(), "Kokona") != NULL){
+        enemyB = SyuraEnemys::Kokona;
+        //        Kokona* syuraEnemyB = dynamic_cast<Kokona*>(syuraEnemyB);
+        
+    }else{
+        CCLOG("ここにくることはないはず");
+        return nullptr;
+    }
+    
+    
+    /* 変数に入った値からどちらが勝つか判定する */
+    switch (enemyA) {
+            /* はるかは　りさ　ここな　に勝利 */
+        case SyuraEnemys::Haruka :
+            
+            if(enemyB == SyuraEnemys::Nene){
+                return "cut/nene_haruka.png";
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return "cut/haruka_risa.png";
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return "cut/miyu_haruka.png";
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return "cut/haruka_kokona.png";
+            }
+            
+            break;
+            /* ねねは、ここな　はるか　に勝利 */
+        case SyuraEnemys::Nene   :
+            
+            if(enemyB == SyuraEnemys::Haruka){
+                return "cut/nene_haruka.png";
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return "cut/risa_nene.png";
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return "cut/miyu_nene.png";
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return "cut/nene_kokona.png";
+            }
+            
+            break;
+            /* りさは、みゆ　ねね　に勝利 */
+        case SyuraEnemys::Risa   :
+            if(enemyB == SyuraEnemys::Haruka){
+                return "cut/haruka_risa.png";
+            }
+            if(enemyB == SyuraEnemys::Nene){
+                return "cut/risa_nene.png";
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return "cut/risa_miyu.png";
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return "cut/kokona_risa.png";
+            }
+            
+            break;
+            /* みゆは、　はるか　ねね　に勝利 */
+        case SyuraEnemys::Miyu   :
+            if(enemyB == SyuraEnemys::Haruka){
+                return "cut/miyu_haruka.png";
+            }
+            if(enemyB == SyuraEnemys::Nene){
+                return "cut/miyu_nene.png";
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return "cut/risa_miyu.png";
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return  "cut/miyu_nene.png";
+            }
+            
+            break;
+            /* ここなは、　りさ　みゆに勝利 */
+        case SyuraEnemys::Kokona :
+            
+            if(enemyB == SyuraEnemys::Haruka){
+                return "cut/haruka_kokona.png";
+            }
+            if(enemyB == SyuraEnemys::Nene){
+                return "cut/nene_kokona.png";
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return "cut/kokona_risa.png";
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return "cut/nene_kokona.png";
             }
             
             break;

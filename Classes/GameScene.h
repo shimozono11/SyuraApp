@@ -114,7 +114,8 @@ public:
     //    void onContactPostSolve(PhysicsContact& contact);衝突後
     //修羅キャラを二人渡して、勝った方を返す
     SyuraEnemy* battleSyuraEnemy(SyuraEnemy* syuraEnemyA , SyuraEnemy* syuraEnemyB);
-    
+    //修羅キャラを二人渡して、それ専用のカットイン画像のファイル名を返す
+    char *getCutInFileName(SyuraEnemy* syuraEnemyA , SyuraEnemy* syuraEnemyB);
     
     /* 制限時間用変数　*/
     CC_SYNTHESIZE(float, _second, Second);
