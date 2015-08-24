@@ -564,9 +564,10 @@ void GameScene::onSyuraba(){
     auto cut = Sprite::create("comiclist/comic_icon_secret.png");
     cut->setPosition(Vec2(winSize.width,winSize.height/2));
     syuraLayer->addChild(cut);
-    auto move = MoveTo::create(1, Vec2(0, winSize.height/2));
-    
-    cut ->runAction(Sequence::create(move, NULL));
+    auto move = MoveTo::create(1, Vec2(winSize.width/2, winSize.height/2));
+    /* 中央で一時停止 */
+    auto stop = MoveTo::create(0.5, Vec2(winSize.width/2, winSize.height/2));
+    cut ->runAction(Sequence::create(move,stop, NULL));
     /* レイヤーを乗算にしてかぶせる処理TODO */
     this->runAction(Sequence::create(DelayTime::create(1),CallFunc::create([=](){
         /* 1秒後に処理を実行 */

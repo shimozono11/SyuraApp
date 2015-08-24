@@ -58,9 +58,9 @@ bool ComicListModal::init()
         }
     });
     this->addChild(button,0);
-    
-    auto topScroll = TopScroll::create();
-    this ->addChild(topScroll);
+    /* 漫画見る画面 */
+//    auto topScroll = TopScroll::create();
+//    this ->addChild(topScroll);
     
     
     
