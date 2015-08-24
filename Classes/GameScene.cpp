@@ -12,6 +12,11 @@
 #include "TopModal.h"
 #include "LoseModal.h"
 #include "ClearModal.h"
+#include "Haruka.h"
+#include "Nene.h"
+#include "Kokona.h"
+#include "Risa.h"
+#include "Miyu.h"
 
 
 
@@ -120,7 +125,7 @@ bool GameScene::init()
     /* タイマーラベルの追加 */
     int second = static_cast<int>(_second);
     auto secondLabel = Label::createWithCharMap("time/numbers.png", 43, 52, '0');
-//    auto secondLabel = Label::createWithSystemFont(StringUtils::toString(second), "MarkerFelt", 16);
+    //    auto secondLabel = Label::createWithSystemFont(StringUtils::toString(second), "MarkerFelt", 16);
     this->setSecondLabel(secondLabel);
     
     secondLabel->enableShadow(Color4B::BLACK,Size(0.5,0.5) , 3);
@@ -256,15 +261,15 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         
         /* 修羅場に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
-//            
-//            /* 修羅場エリアリストに挿入 */
-//            auto syuraba = _stage->getSyuraarea();
-//            syuraba.pushBack(bodyA->getNode());
-//            _stage->setSyuraarea(syuraba);
-//            
-//            //            CCLOG("%zd", _stage->getSyuraarea().size());
-//            //            _stage->getSyuraarea().insert(_stage->getSyuraarea().size(), bodyB->getNode());
-//            CCLOG("敵「修羅場なう」");
+            //
+            //            /* 修羅場エリアリストに挿入 */
+            //            auto syuraba = _stage->getSyuraarea();
+            //            syuraba.pushBack(bodyA->getNode());
+            //            _stage->setSyuraarea(syuraba);
+            //
+            //            //            CCLOG("%zd", _stage->getSyuraarea().size());
+            //            //            _stage->getSyuraarea().insert(_stage->getSyuraarea().size(), bodyB->getNode());
+            //            CCLOG("敵「修羅場なう」");
             return true;
         }
         /* 壁に接触した場合 */
@@ -283,12 +288,12 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         /*修羅場に接触した場合*/
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
             /* 修羅場リストにオブジェクトを追加 */
-//            /* 修羅場エリアリストに挿入 */
-//            auto syuraba = _stage->getSyuraarea();
-//            syuraba.pushBack(bodyB->getNode());
-//            _stage->setSyuraarea(syuraba);
-//            //            CCLOG("%zd", _stage->getSyuraarea().size());
-//            CCLOG("敵「修羅場なう」");
+            //            /* 修羅場エリアリストに挿入 */
+            //            auto syuraba = _stage->getSyuraarea();
+            //            syuraba.pushBack(bodyB->getNode());
+            //            _stage->setSyuraarea(syuraba);
+            //            //            CCLOG("%zd", _stage->getSyuraarea().size());
+            //            CCLOG("敵「修羅場なう」");
             return true;
         }
         /* 壁に接触した場合 */
@@ -445,7 +450,7 @@ void GameScene::onContactSeparate(PhysicsContact& contact){
         //        CCLOG("修羅キャラと修羅キャラ離れました");
         return ;
     }
-
+    
     /* 剛体が離れた時、片方が修羅キャラではない */
     if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
@@ -462,9 +467,9 @@ void GameScene::onContactSeparate(PhysicsContact& contact){
         if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
             return ;
         }
-    
+        
     }else if(categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
-
+        
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
             
             /* 修羅場エリアヴェクターから削除 */
@@ -518,6 +523,13 @@ void GameScene::onClear(){
     auto layer = ClearModal::create();
     layer->setName("ClearModal");
     this->addChild(layer);
+    
+    /* もし修羅場を起こしていたらここに処理を追加 */
+    /* 修羅場ボタンを追加して */
+    auto menu = Menu::createWithArray(_syuraIcon);
+    menu->alignItemsHorizontallyWithPadding(15);
+    menu->setPosition(Vec2(300,300));
+    /* 押せば漫画を見れるようにする！ */
     /* 動きを止める処理 */
     this->swichPauseFlag();
     
@@ -531,9 +543,9 @@ void GameScene::onSyuraba(){
     this->swichPauseFlag();
     /* 背景を暗くするレイヤーを作って貼る */
     auto syuraLayer = Layer::create();
-//    auto backPaper = Sprite::create("backpaper.png");
-//    backPaper->setPosition(Vec2(0,winSize.height));
-//    syuraLayer->addChild(backPaper);
+    //    auto backPaper = Sprite::create("backpaper.png");
+    //    backPaper->setPosition(Vec2(0,winSize.height));
+    //    syuraLayer->addChild(backPaper);
     this->addChild(syuraLayer);
     //背景を暗くする画像の貼り付け
     auto backpaper = Sprite::create("backpaper.png");
@@ -545,8 +557,8 @@ void GameScene::onSyuraba(){
     blend.dst = GL_SRC_COLOR;
     backpaper->setBlendFunc(blend);
     syuraLayer -> addChild(backpaper);
-
     
+    /* ここでどちらの修羅キャラを消すか判定 */
     
     /* カットを入れるアニメーション */
     auto cut = Sprite::create("comiclist/comic_icon_secret.png");
@@ -625,15 +637,33 @@ void GameScene::update(float dt){
             CCLOG("修羅場発生！！！");
             this->onSyuraba();
             auto syuraba = _stage->getSyuraarea();
+            
+            auto winEnemy = battleSyuraEnemy((SyuraEnemy*)syuraba.at(0), (SyuraEnemy*)syuraba.at(1));
+            
             /* ここが大丈夫か見るTODO */
-            auto itr = syuraba.begin();
-            while (itr != syuraba.end())
+            
+            
+            for (const auto& enemy : syuraba)
             {
-                (*itr)->removeFromParent();
-                itr = syuraba.erase(itr);
+                if(enemy != (Node*)winEnemy ){
+                    enemy->removeFromParent();
+                    syuraba.eraseObject(enemy);
+                }
+              
             }
+
+            
+//            auto itr = syuraba.begin();
+//            while (itr != syuraba.end())
+//            {
+//                if((*itr) != (Node*)winEnemy){
+//                    (*itr)->removeFromParent();
+//                    itr = syuraba.erase(itr);
+//                    
+//                }
+//            }
             /* ベクターの中からも全てのオブジェクトを削除 */
-            syuraba.clear();
+            //            syuraba.clear();
             _stage->setSyuraarea(syuraba);
         }
         
@@ -686,25 +716,25 @@ void GameScene::swichPauseFlag()
         {
             enemy->pauseSchedulerAndActions();
         }
-//        /* プレイヤーの物理演算を切る */
-//        _stage->getPlayer()->getPhysicsBody()->setEnable(false);
-//        
-//        /* 敵の物理演算を切る */
-//        for (const auto& enemy : _stage->getEnemys())
-//        {
-//            auto enemyTag = enemy-> getTag();
-//            
-//            /* Mobキャラの場合 */
-//            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
-//                auto mobenemy = (MobEnemy*) enemy;
-//                mobenemy->getPhysicsBody()->setEnable(false);
-//            }
-//            /* 修羅キャラの場合 */
-//            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
-//                auto syuraenemy = (SyuraEnemy*) enemy;
-//                syuraenemy->getPhysicsBody()->setEnable(false);
-//            }
-//        }
+        //        /* プレイヤーの物理演算を切る */
+        //        _stage->getPlayer()->getPhysicsBody()->setEnable(false);
+        //
+        //        /* 敵の物理演算を切る */
+        //        for (const auto& enemy : _stage->getEnemys())
+        //        {
+        //            auto enemyTag = enemy-> getTag();
+        //
+        //            /* Mobキャラの場合 */
+        //            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
+        //                auto mobenemy = (MobEnemy*) enemy;
+        //                mobenemy->getPhysicsBody()->setEnable(false);
+        //            }
+        //            /* 修羅キャラの場合 */
+        //            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
+        //                auto syuraenemy = (SyuraEnemy*) enemy;
+        //                syuraenemy->getPhysicsBody()->setEnable(false);
+        //            }
+        //        }
     }else{
         /* 止まっていた処理を動かす */
         this->scheduleUpdate();
@@ -715,21 +745,180 @@ void GameScene::swichPauseFlag()
         {
             enemy->resumeSchedulerAndActions();
         }
-
+        
         /* 敵の物理演算を入れる */
-//        for (const auto& enemy : _stage->getEnemys())
-//        {
-//            auto enemyTag = enemy-> getTag();
-//            /* Mobキャラの場合 */
-//            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
-//                auto mobenemy = (MobEnemy*) enemy;
-//                mobenemy->getPhysicsBody()->setEnable(true);
-//            }
-//            /* 修羅キャラの場合 */
-//            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
-//                auto syuraenemy = (SyuraEnemy*) enemy;
-//                syuraenemy->getPhysicsBody()->setEnable(true);
-//            }
-//        }
+        //        for (const auto& enemy : _stage->getEnemys())
+        //        {
+        //            auto enemyTag = enemy-> getTag();
+        //            /* Mobキャラの場合 */
+        //            if(enemyTag == (int)Stage::TileType::MOB_ENEMY){
+        //                auto mobenemy = (MobEnemy*) enemy;
+        //                mobenemy->getPhysicsBody()->setEnable(true);
+        //            }
+        //            /* 修羅キャラの場合 */
+        //            if(enemyTag == (int)Stage::TileType::SYURA_ENEMY){
+        //                auto syuraenemy = (SyuraEnemy*) enemy;
+        //                syuraenemy->getPhysicsBody()->setEnable(true);
+        //            }
+        //        }
     }
+}
+/** 渡した修羅キャラで買った方のみを返す関数
+ *@param syuraEnemyA 修羅キャラの片方
+ *@param syuraEnemyB 修羅キャラの片方
+ *@return 勝った方の修羅キャラ
+ */
+SyuraEnemy *GameScene::battleSyuraEnemy(SyuraEnemy *syuraEnemyA,SyuraEnemy *syuraEnemyB){
+    
+    CCLOG("%s",typeid(*syuraEnemyA).name());
+    CCLOG("%s",typeid(*syuraEnemyB).name());
+    
+    GameScene::SyuraEnemys enemyA,enemyB;
+    
+    /* クラスを見て共用隊の値を入れていく*/
+    if(strstr(typeid(*syuraEnemyA).name(), "Haruka") != NULL){
+        enemyA = SyuraEnemys::Haruka;
+        //        Haruka* syuraEnemyA = dynamic_cast<Haruka*>(syuraEnemyA);
+        
+    }else if(strstr(typeid(*syuraEnemyA).name(), "Nene") != NULL){
+        enemyA = SyuraEnemys::Nene;
+        //        Nene* syuraEnemyA = dynamic_cast<Nene*>(syuraEnemyA);
+        
+    }else if (strstr(typeid(*syuraEnemyA).name(), "Risa") != NULL){
+        enemyA = SyuraEnemys::Risa;
+        //        Risa* syuraEnemyA = dynamic_cast<Risa*>(syuraEnemyA);
+        
+    }else if (strstr(typeid(*syuraEnemyA).name(), "Miyu") != NULL){
+        enemyA = SyuraEnemys::Miyu;
+        //        Miyu* syuraEnemyA = dynamic_cast<Miyu*>(syuraEnemyA);
+        
+    }else if (strstr(typeid(*syuraEnemyA).name(), "Kokona") != NULL){
+        enemyA = SyuraEnemys::Kokona;
+        //        Kokona* syuraEnemyA = dynamic_cast<Kokona*>(syuraEnemyA);
+        
+    }else{
+        CCLOG("ここにくることはないはず");
+        return nullptr;
+    }
+    
+    
+    if(strstr(typeid(*syuraEnemyB).name(), "Haruka") != NULL){
+        enemyB = SyuraEnemys::Haruka;
+        //        Haruka* syuraEnemyB = dynamic_cast<Haruka*>(syuraEnemyB);
+        
+    }else if(strstr(typeid(*syuraEnemyB).name(), "Nene") != NULL){
+        enemyB = SyuraEnemys::Nene;
+        //        Nene* syuraEnemyB = dynamic_cast<Nene*>(syuraEnemyB);
+        
+    }else if (strstr(typeid(*syuraEnemyB).name(), "Risa") != NULL){
+        enemyB = SyuraEnemys::Risa;
+        //        Risa* syuraEnemyB = dynamic_cast<Risa*>(syuraEnemyB);
+        
+    }else if (strstr(typeid(*syuraEnemyB).name(), "Miyu") != NULL){
+        enemyB = SyuraEnemys::Miyu;
+        //        Miyu* syuraEnemyB = dynamic_cast<Miyu*>(syuraEnemyB);
+        
+    }else if (strstr(typeid(*syuraEnemyB).name(), "Kokona") != NULL){
+        enemyB = SyuraEnemys::Kokona;
+        //        Kokona* syuraEnemyB = dynamic_cast<Kokona*>(syuraEnemyB);
+        
+    }else{
+        CCLOG("ここにくることはないはず");
+        return nullptr;
+    }
+    
+    
+    /* 変数に入った値からどちらが勝つか判定する */
+    switch (enemyA) {
+            /* はるかは　りさ　ここな　に勝利 */
+        case SyuraEnemys::Haruka :
+            
+            if(enemyB == SyuraEnemys::Nene){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return syuraEnemyA;
+            }
+            
+            break;
+            /* ねねは、ここな　はるか　に勝利 */
+        case SyuraEnemys::Nene   :
+            
+            if(enemyB == SyuraEnemys::Haruka){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return syuraEnemyA;
+            }
+            
+            break;
+            /* りさは、みゆ　ねね　に勝利 */
+        case SyuraEnemys::Risa   :
+            if(enemyB == SyuraEnemys::Haruka){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Nene){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return syuraEnemyB;
+            }
+            
+            break;
+            /* みゆは、　はるか　ねね　に勝利 */
+        case SyuraEnemys::Miyu   :
+            if(enemyB == SyuraEnemys::Haruka){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Nene){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Kokona){
+                return  syuraEnemyB;
+            }
+            
+            break;
+            /* ここなは、　りさ　みゆに勝利 */
+        case SyuraEnemys::Kokona :
+            
+            if(enemyB == SyuraEnemys::Haruka){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Nene){
+                return syuraEnemyB;
+            }
+            if(enemyB == SyuraEnemys::Risa){
+                return syuraEnemyA;
+            }
+            if(enemyB == SyuraEnemys::Miyu){
+                return syuraEnemyA;
+            }
+            
+            break;
+            
+        default:
+            CCLOG("ここに来ることは無いはず");
+            return nullptr;
+            break;
+    }
+    
+    return nullptr;
 }

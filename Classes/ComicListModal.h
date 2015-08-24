@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "CocosGUI.h"
+#include "TopScroll.h"
 USING_NS_CC;
 
 class ComicListModal : public cocos2d::Layer

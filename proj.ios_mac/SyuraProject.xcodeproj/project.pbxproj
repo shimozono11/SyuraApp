@@ -77,6 +77,8 @@
 		79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A291B6D39900057A7CE /* ClearModal.cpp */; };
 		79D69A2C1B6D39900057A7CE /* ClearModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79D69A291B6D39900057A7CE /* ClearModal.cpp */; };
 		79E82BFD1B7DCF2F000B843D /* CharaDetailModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79E82BFB1B7DCF2F000B843D /* CharaDetailModal.cpp */; };
+		79F0E2EB1B8A7F400056E55F /* kokona_win_risa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F0E2E91B8A7F400056E55F /* kokona_win_risa.cpp */; };
+		79F0E2EE1B8A80180056E55F /* TopScroll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F0E2EC1B8A80180056E55F /* TopScroll.cpp */; };
 		79F458821B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */; };
 		79F458831B5ECF1E00F2CC00 /* CustomFollow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
@@ -176,6 +178,10 @@
 		79D69A2A1B6D39900057A7CE /* ClearModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearModal.h; sourceTree = "<group>"; };
 		79E82BFB1B7DCF2F000B843D /* CharaDetailModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharaDetailModal.cpp; sourceTree = "<group>"; };
 		79E82BFC1B7DCF2F000B843D /* CharaDetailModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharaDetailModal.h; sourceTree = "<group>"; };
+		79F0E2E91B8A7F400056E55F /* kokona_win_risa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kokona_win_risa.cpp; sourceTree = "<group>"; };
+		79F0E2EA1B8A7F400056E55F /* kokona_win_risa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kokona_win_risa.h; sourceTree = "<group>"; };
+		79F0E2EC1B8A80180056E55F /* TopScroll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TopScroll.cpp; sourceTree = "<group>"; };
+		79F0E2ED1B8A80180056E55F /* TopScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopScroll.h; sourceTree = "<group>"; };
 		79F458801B5ECF1E00F2CC00 /* CustomFollow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomFollow.cpp; sourceTree = "<group>"; };
 		79F458811B5ECF1E00F2CC00 /* CustomFollow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFollow.h; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -320,6 +326,7 @@
 				79A0B0831B7F7BCC00B5D928 /* test.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
+				79F0E2E81B8A7EFA0056E55F /* Comics */,
 				79E82BF41B7DCDCC000B843D /* ModalScene */,
 				79E82BF31B7DCD77000B843D /* EnemyClass */,
 				79A0B0801B7EB0E700B5D928 /* Sqlite */,
@@ -433,6 +440,17 @@
 				79A0B07A1B7E686B00B5D928 /* ComicListModal.h */,
 			);
 			name = ModalScene;
+			sourceTree = "<group>";
+		};
+		79F0E2E81B8A7EFA0056E55F /* Comics */ = {
+			isa = PBXGroup;
+			children = (
+				79F0E2E91B8A7F400056E55F /* kokona_win_risa.cpp */,
+				79F0E2EA1B8A7F400056E55F /* kokona_win_risa.h */,
+				79F0E2EC1B8A80180056E55F /* TopScroll.cpp */,
+				79F0E2ED1B8A80180056E55F /* TopScroll.h */,
+			);
+			name = Comics;
 			sourceTree = "<group>";
 		};
 		91394B6CA6653CFBC51E5063 /* mac-libs */ = {
@@ -556,10 +574,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F0E2EB1B8A7F400056E55F /* kokona_win_risa.cpp in Sources */,
 				79CE4BD31B797A0B00CD67E7 /* Risa.cpp in Sources */,
 				79CE4BDF1B79813600CD67E7 /* SyuraEnemy.cpp in Sources */,
 				79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */,
 				79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */,
+				79F0E2EE1B8A80180056E55F /* TopScroll.cpp in Sources */,
 				79E82BFD1B7DCF2F000B843D /* CharaDetailModal.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				79D69A2B1B6D39900057A7CE /* ClearModal.cpp in Sources */,

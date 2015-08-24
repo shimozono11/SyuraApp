@@ -54,6 +54,21 @@ private:
         LOSE,
         CLEAR,
     };
+    
+    /** キャラを表す
+     *
+     *
+     *
+     */
+    enum class SyuraEnemys
+    {
+        Haruka,
+        Nene,
+        Risa,
+        Miyu,
+        Kokona,
+    };
+    
     //
     void onReady();
     //ゲームがプレイ状態に成った時の処理
@@ -72,7 +87,7 @@ private:
     void addReadyLabel();
     //ゲームの一時停止・開始を切り替える処理
     void swichPauseFlag();
-
+    
 
     float time;
     bool isPauseFlag;
@@ -97,12 +112,16 @@ public:
     bool onContactPresolve(PhysicsContact& contact);
     void onContactSeparate(PhysicsContact& contact);
     //    void onContactPostSolve(PhysicsContact& contact);衝突後
+    //修羅キャラを二人渡して、勝った方を返す
+    SyuraEnemy* battleSyuraEnemy(SyuraEnemy* syuraEnemyA , SyuraEnemy* syuraEnemyB);
     
     
     /* 制限時間用変数　*/
     CC_SYNTHESIZE(float, _second, Second);
     /* 現在のゲーム状態 */
     CC_SYNTHESIZE(GameState, _state, State);
+    /* クリア画面での修羅場アイコンを格納する */
+    CC_SYNTHESIZE(cocos2d::Vector<MenuItem*>,_syuraIcon, SyuraIcon);
     /* ステージの作成 */
     CC_SYNTHESIZE_RETAIN(Stage *, _stage, Stage);
     /* VirutalPadの生成 */

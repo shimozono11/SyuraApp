@@ -32,7 +32,7 @@ bool ComicListModal::init()
     this -> addChild(background);
     
     /*メニューの背景を設置*/
-    auto backpaper = Sprite::create("comiclist/comic_icon_bg.png");
+    auto backpaper = Sprite::create("comiclist/backpaper_top.png");
     backpaper->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     backpaper->setPosition(winSize/2);
     this->addChild(backpaper);
@@ -58,6 +58,9 @@ bool ComicListModal::init()
         }
     });
     this->addChild(button,0);
+    
+    auto topScroll = TopScroll::create();
+    this ->addChild(topScroll);
     
     
     
