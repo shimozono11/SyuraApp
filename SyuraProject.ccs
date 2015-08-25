@@ -36,7 +36,7 @@
           <Image Name="comic_icon_haruka_win_kokona.png" />
           <Image Name="comic_icon_haruka_win_risa.png" />
           <Image Name="comic_icon_kokona_win_risa.png" />
-          <Image Name="comic_icon_kokona_win_yuka.png" />
+          <Image Name="comic_icon_kokona_win_miyu.png" />
           <Image Name="comic_icon_miyu_win_haruka.png" />
           <Image Name="comic_icon_miyu_win_nene.png" />
           <Image Name="comic_icon_nene_win_haruka.png" />
@@ -115,6 +115,7 @@
           <Project Name="TopLayer.csd" Type="Layer" />
           <Project Name="ComicList.csd" Type="Layer" />
         </Folder>
+        <Image Name="comic_icon_kokona_win_miyu.png" />
       </RootFolder>
     </Group>
   </SolutionFolder>

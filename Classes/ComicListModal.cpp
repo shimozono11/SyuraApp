@@ -120,7 +120,7 @@ bool ComicListModal::init()
         //touch
         if (type == ui::Widget::TouchEventType::ENDED) {
             CCLOG("No04が押されました");
-            auto layer = TopScroll::createWithLayer("comic/haruka_win_risa.png");
+            auto layer = TopScroll::createWithLayer("comic/kokona_win_risa.png");
             this->addChild(layer);
             //好きな処理
             //            auto layer = CharaDetailModal::create();

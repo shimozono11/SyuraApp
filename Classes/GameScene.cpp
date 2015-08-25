@@ -1074,7 +1074,7 @@ char *GameScene::getCutInFileName(SyuraEnemy *syuraEnemyA,SyuraEnemy *syuraEnemy
                 return "cut/risa_miyu.png";
             }
             if(enemyB == SyuraEnemys::Kokona){
-                return  "cut/miyu_nene.png";
+                return  "cut/miyu_kokona.png";
             }
             
             break;
@@ -1091,7 +1091,7 @@ char *GameScene::getCutInFileName(SyuraEnemy *syuraEnemyA,SyuraEnemy *syuraEnemy
                 return "cut/kokona_risa.png";
             }
             if(enemyB == SyuraEnemys::Miyu){
-                return "cut/nene_kokona.png";
+                return "cut/kokona_miyu.png";
             }
             
             break;
@@ -1118,9 +1118,9 @@ MenuItemImage *GameScene::getIconButton(char *CutFileName){
         return harukaWinKokona;
     }
     
-    //はるかVSみゆの場合
-    if(strstr(CutFileName, "haruka_miyu.png")){
-        auto miyuWinHaruka = MenuItemImage::create("comiclist/comic_icon_miyu_win_haruka.png","",
+    //ここなVSみゆの場合
+    if(strstr(CutFileName, "kokona_miyu.png")){
+        auto miyuWinHaruka = MenuItemImage::create("comiclist/comic_icon_kokona_win_miyu.png","",
                                                    [this](Ref* ref){
                                                        auto layer = TopScroll::createWithLayer("comic/miyu_win_haruka.png");
                                                        this->addChild(layer);
@@ -1190,8 +1190,10 @@ MenuItemImage *GameScene::getIconButton(char *CutFileName){
     //ねねVSここな
     if(strstr(CutFileName, "nene_kokona.png")){
         auto neneWinKokona = MenuItemImage::create("comiclist/comic_icon_nene_win_kokona.png","",
-                                                   [](Ref* ref){
-                                                       
+                                                   [this](Ref* ref){
+                                                       auto layer = TopScroll::createWithLayer("comic/nene_win_kokona.png");
+                                                       this->addChild(layer);
+
                                                    });
         return neneWinKokona;
         
