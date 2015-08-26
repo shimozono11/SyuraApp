@@ -28,5 +28,15 @@
         <LastRunType Value="Mac" />
       </Value>
     </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="modal_csd_layer/ClearLayer.csd" />
+          <FilePathData Path="comic/haruka_win_kokona.csd" />
+          <FilePathData Path="modal_csd_layer/ComicList.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="modal_csd_layer/ComicList.csd" />
+      </Value>
+    </Item>
   </Properties>
 </UserData>
