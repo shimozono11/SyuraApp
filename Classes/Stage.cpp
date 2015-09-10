@@ -37,7 +37,7 @@ bool Stage::init()
     /*　地形レイヤーを取得 */
     //    auto terrainLayer = map->getLayer("Tile");
     // オブジェクトレイヤーを取得する
-    auto objectLayer = map->getLayer("Object");
+//    auto objectLayer = map->getLayer("Object");
     
     // 修羅場レイヤーを取得
     auto syurabaLayer = map->getLayer("Syuraba");
@@ -48,7 +48,7 @@ bool Stage::init()
         for (int j = 0; j < mapSize.height; j++) {
             auto coordinate = Vec2(i, j);
             //            this->addPhysicsBody(terrainLayer, coordinate);
-            this->addPhysicsBodyTMX(objectLayer, coordinate);
+//            this->addPhysicsBodyTMX(objectLayer, coordinate);
             this->addPhysicsBodyTMX(syurabaLayer, coordinate);
         }
     }
