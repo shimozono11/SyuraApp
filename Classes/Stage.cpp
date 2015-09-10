@@ -58,6 +58,8 @@ bool Stage::init()
     this->addChild(player);
     this->setPlayer(player);
     
+    /* 建物の設置 */
+    Stage::addBuildings();
     /* プレイヤーに画面を追従させる */
     winSize = Director::getInstance()->getWinSize();
     /*Rectは追従する範囲を決めている Rectは左下を原点としている*/
@@ -134,14 +136,15 @@ void Stage::addEnemyOnStage(){
     auto enemy = MobEnemy::create();
     Vec2  nowPos = _player->getPosition();
     /* 要リファクタリングTODO */
+    Vec2 pos = Vec2(100,100);
     /* 敵を配置する場所を指定 */
     /* プレイヤーからある程度離れた位置に敵追加する */
-    auto addEnemyPos0 = nowPos + Vec2(0,winSize.height/2) ;
-    auto addEnemyPos1 = nowPos + Vec2(winSize.width/2,0);
-    auto addEnemyPos2 = nowPos + winSize/2;
-    auto addEnemyPos3 = nowPos - Vec2(0,winSize.height/2);
-    auto addEnemyPos4 = nowPos - Vec2(winSize.width/2,0);
-    auto addEnemyPos5 = nowPos - winSize/2;
+    auto addEnemyPos0 = nowPos + Vec2(0,winSize.height/2) + pos;
+    auto addEnemyPos1 = nowPos + Vec2(winSize.width/2,0)+ pos;
+    auto addEnemyPos2 = nowPos + winSize/2 + pos;
+    auto addEnemyPos3 = nowPos - Vec2(0,winSize.height/2) - pos;
+    auto addEnemyPos4 = nowPos - Vec2(winSize.width/2,0) - pos;
+    auto addEnemyPos5 = nowPos - winSize/2 - pos;
     /* 敵の初期値を設定 */
     switch (rand()%6) {
         case 0:
@@ -325,6 +328,130 @@ Vec2 Stage::createEnemyPosition(Vec2 playerPos){
     return nullptr;
 }
 
+/**
+ * 建物（剛体）を設置するメソッド
+ */
+bool Stage::addBuildings(){
+    
+    //左上の横長の建物列の画像
+    auto build_left_top=Sprite::create("stage/build_long_2_2.png");
+    //位置を設定
+    build_left_top->setPosition(Vec2(0,1920));
+    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    //接触判定を円で生成 (半径:画像サイズの半分)
+    auto build_left_top_body = PhysicsBody::createBox(build_left_top->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    build_left_top_body->setDynamic(false);
+    //物理法則を画像に適用させる
+    build_left_top->setPhysicsBody(build_left_top_body);
+    //貼り付け
+    this->addChild(build_left_top);
+    
+    //右上の横長の建物列
+    auto build_right_top=Sprite::create("stage/build_long_2_1.png");
+    //位置を設定
+    build_right_top->setPosition(Vec2(2250,1920));
+    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    auto build_right_top_body = PhysicsBody::createBox(build_right_top->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    build_right_top_body->setDynamic(false);
+    //物理法則を画像に適用させる
+    build_right_top->setPhysicsBody(build_right_top_body);
+    //貼り付け
+    this->addChild(build_right_top);
+
+    //左下の横長の建物列
+    auto build_left_bottom=Sprite::create("stage/build_long_2_1.png");
+    //基準を画像の左下に
+    build_left_bottom->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    //位置を設定
+    build_left_bottom->setPosition(Vec2(0,0));
+    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    auto build_left_bottom_body = PhysicsBody::createBox(build_left_bottom->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    build_left_bottom_body->setDynamic(false);
+    //物理法則を画像に適用させる
+    build_left_bottom->setPhysicsBody(build_left_bottom_body);
+    //貼り付け
+    this->addChild(build_left_bottom);
+   
+    //右下の横長の建物列
+    auto build_right_bottom=Sprite::create("stage/build_long_1_1.png");
+    //基準を画像の左下に
+    build_right_bottom->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    //位置を設定
+    build_right_bottom->setPosition(Vec2(2200,0));
+    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    auto build_right_bottom_body = PhysicsBody::createBox(build_right_bottom->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    build_right_bottom_body->setDynamic(false);
+    //物理法則を画像に適用させる
+    build_right_bottom->setPhysicsBody(build_right_bottom_body);
+    //貼り付け
+    this->addChild(build_right_bottom);
+
+
+    
+    /* これ以降は小さな建物 */
+    
+    auto build01=Sprite::create("stage/build_1.png");
+    //基準を画像の左下に
+    build01->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    //位置を設定
+    build01->setPosition(Vec2(500,1500));
+    auto body01 = PhysicsBody::createBox(build01->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    body01->setDynamic(false);
+    //物理法則を画像に適用させる
+    build01->setPhysicsBody(body01);
+    //貼り付け
+    this->addChild(build01);
+    
+    auto build02=Sprite::create("stage/build_2.png");
+    //基準を画像の左下に
+    build02->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    //位置を設定
+    build02->setPosition(Vec2(2000,500));
+    auto body02 = PhysicsBody::createBox(build02->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    body02->setDynamic(false);
+    //物理法則を画像に適用させる
+    build02->setPhysicsBody(body02);
+    //貼り付け
+    this->addChild(build02);
+    
+    auto build03=Sprite::create("stage/build_2.png");
+    //基準を画像の左下に
+    build03->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    //位置を設定
+    build03->setPosition(Vec2(1000,600));
+    auto body03 = PhysicsBody::createBox(build03->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    body03->setDynamic(false);
+    //物理法則を画像に適用させる
+    build03->setPhysicsBody(body03);
+    //貼り付け
+    this->addChild(build03);
+
+    auto build04=Sprite::create("stage/build_2.png");
+    //基準を画像の左下に
+    build04->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+    //位置を設定
+    build04->setPosition(Vec2(2200,1400));
+    auto body04 = PhysicsBody::createBox(build04->getContentSize());
+    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    body04->setDynamic(false);
+    //物理法則を画像に適用させる
+    build04->setPhysicsBody(body04);
+    //貼り付け
+    this->addChild(build04);
+
+
+    
+    
+    return true;
+}
+
 /** ベクターからランダムに選んだ神5をステージに追加
  *
  *@param player
@@ -353,4 +480,5 @@ bool Stage::addSyuraEnemyOnStage(){
 
 void Stage::update(float dt)
 {
+    CCLOG("x : %f ¥n y : %f",_player->getPosition().x,_player->getPosition().y);
 }

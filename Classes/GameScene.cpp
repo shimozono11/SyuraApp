@@ -62,7 +62,7 @@ Scene* GameScene::createScene()
     /* デバッグビルドのとき */
 #if COCOS2D_DEBUG > 0
     /* 物理空間にデバッグ用の表示を追加する */
-//    world -> setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    world -> setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 #endif
     
     auto layer = GameScene::create();

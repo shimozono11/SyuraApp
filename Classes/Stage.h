@@ -93,6 +93,8 @@ private:
     cocos2d::Size winSize;
     //敵の追加する位置を作成
     cocos2d::Vec2 createEnemyPosition(cocos2d::Vec2 playerPos);
+    //建物を追加するメソッド
+    bool addBuildings();
 };
 
 
