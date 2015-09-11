@@ -55,7 +55,7 @@ bool Stage::init()
     
     /* プレイヤーの設置 */
     auto player = Player::create();
-    this->addChild(player);
+    this->addChild(player,10000);
     this->setPlayer(player);
     
     /* 建物の設置 */
@@ -345,7 +345,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build_left_top->setPhysicsBody(build_left_top_body);
     //貼り付け
-    this->addChild(build_left_top);
+    this->addChild(build_left_top,1);
     
     //右上の横長の建物列
     auto build_right_top=Sprite::create("stage/build_long_2_1.png");
@@ -358,7 +358,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build_right_top->setPhysicsBody(build_right_top_body);
     //貼り付け
-    this->addChild(build_right_top);
+    this->addChild(build_right_top,2);
 
     //左下の横長の建物列
     auto build_left_bottom=Sprite::create("stage/build_long_2_1.png");
@@ -373,7 +373,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build_left_bottom->setPhysicsBody(build_left_bottom_body);
     //貼り付け
-    this->addChild(build_left_bottom);
+    this->addChild(build_left_bottom,3);
    
     //右下の横長の建物列
     auto build_right_bottom=Sprite::create("stage/build_long_1_1.png");
@@ -388,7 +388,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build_right_bottom->setPhysicsBody(build_right_bottom_body);
     //貼り付け
-    this->addChild(build_right_bottom);
+    this->addChild(build_right_bottom,4);
 
 
     
@@ -405,7 +405,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build01->setPhysicsBody(body01);
     //貼り付け
-    this->addChild(build01);
+    this->addChild(build01,5);
     
     auto build02=Sprite::create("stage/build_2.png");
     //基準を画像の左下に
@@ -418,7 +418,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build02->setPhysicsBody(body02);
     //貼り付け
-    this->addChild(build02);
+    this->addChild(build02,6);
     
     auto build03=Sprite::create("stage/build_2.png");
     //基準を画像の左下に
@@ -431,7 +431,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build03->setPhysicsBody(body03);
     //貼り付け
-    this->addChild(build03);
+    this->addChild(build03,7);
 
     auto build04=Sprite::create("stage/build_2.png");
     //基準を画像の左下に
@@ -444,7 +444,7 @@ bool Stage::addBuildings(){
     //物理法則を画像に適用させる
     build04->setPhysicsBody(body04);
     //貼り付け
-    this->addChild(build04);
+    this->addChild(build04,8);
 
 
     
@@ -466,7 +466,7 @@ bool Stage::addSyuraEnemyOnStage(){
     }
     
     /* 適当に位置を設定　要 TODO */
-    syuraenemy->setPosition(Vec2(500, 500));
+    syuraenemy->setPosition(Vec2(200, 200));
     
     /* ステージに追加しenemyベクターにも追加 */
     this->addChild(syuraenemy);
@@ -480,5 +480,4 @@ bool Stage::addSyuraEnemyOnStage(){
 
 void Stage::update(float dt)
 {
-    CCLOG("x : %f ¥n y : %f",_player->getPosition().x,_player->getPosition().y);
 }
