@@ -187,7 +187,7 @@ void Stage::addEnemyOnStage(){
     enemy->setSpeed((int)rand()%MAX_ENEMY_SPEED + 1);
     
     /* ステージに敵を追加 */
-    this -> addChild(enemy);
+    this -> addChild(enemy,2000);
     /* _enemyベクターに敵を追加する */
     _enemys.pushBack(enemy);
     
@@ -469,7 +469,7 @@ bool Stage::addSyuraEnemyOnStage(){
     syuraenemy->setPosition(Vec2(200, 200));
     
     /* ステージに追加しenemyベクターにも追加 */
-    this->addChild(syuraenemy);
+    this->addChild(syuraenemy,1000);
     _enemys.pushBack(syuraenemy);
     
     /* 最後は元のベクターから削除 */
