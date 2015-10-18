@@ -86,8 +86,8 @@ bool TopScroll::init(char *filename)
     //閉じるボタンの設定
     _closeButton = ui::Button::create();
     this->makeUiButton(_closeButton);
-    
     this->addChild(_closeButton);
+    _closeButton->retain();
     _buttonView = true;
     
     // モーダル処理
@@ -99,8 +99,7 @@ bool TopScroll::init(char *filename)
             this->removeChild(_closeButton);
         }else{
             _buttonView = true;
-            auto button = ui::Button::create();
-            this->setCloseButton(makeUiButton(button));
+            
             this->addChild(_closeButton);
         }
         log("Touch!!");
