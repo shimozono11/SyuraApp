@@ -13,6 +13,16 @@ const int HORIZONTAL_COUNT = 3;
 //縦方向に配置されるコミックアイコンの数
 const int VERTICAL_COUNT = 4 ;
 // on "init" you need to initialize your instance
+
+ComicListModal::ComicListModal()
+{
+    
+}
+ComicListModal::~ComicListModal()
+{
+    
+}
+
 bool ComicListModal::init()
 {
     //初期化

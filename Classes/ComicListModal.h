@@ -17,6 +17,11 @@ USING_NS_CC;
 
 class ComicListModal : public cocos2d::Layer
 {
+protected:
+    // コンストラクタ
+    ComicListModal();
+    // デストラクタ
+    virtual ~ComicListModal();
     
 public:
     virtual bool init();

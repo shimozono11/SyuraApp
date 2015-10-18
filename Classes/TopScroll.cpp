@@ -7,7 +7,6 @@
 //
 
 #include "TopScroll.h"
-#include "TopScroll.h"
 // ScrollView インクルード
 #include "extensions/cocos-ext.h"
 
@@ -16,6 +15,7 @@ USING_NS_CC_EXT; // cocos2d::extension
 
 // _/_/_/ コンストラクタ プロパティー _/_/_/
 TopScroll::TopScroll()
+:_closeButton(nullptr)
 {
     
 }
@@ -23,7 +23,7 @@ TopScroll::TopScroll()
 // MainScene デストラクタで解放 メモリーリークを防ぐ
 TopScroll::~TopScroll()
 {
-    
+    CC_SAFE_RELEASE_NULL(_closeButton);
 }
 
 // createSceneはLayerをSceneに貼り付けて返すクラスメソッドです。
@@ -47,10 +47,8 @@ bool TopScroll::init(char *filename)
     }
     
     // 画面サイズ取得
-    auto winSize = Director::getInstance()->getVisibleSize();
+    winSize = Director::getInstance()->getVisibleSize();
     
-    
-
     
     // 画面サイズでスクロールビューを作る
     auto *pScrollView = ScrollView::create(winSize);
@@ -86,28 +84,26 @@ bool TopScroll::init(char *filename)
     
     /*ボタンの設置*/
     //閉じるボタンの設定
-    auto closebutton = ui::Button::create();
-    // タッチイベント True
-    closebutton->setTouchEnabled(true);
-    // ボタンの中心位置　アーカーポンイント
-    closebutton->setAnchorPoint( Vec2::ANCHOR_TOP_RIGHT);
-    // 通常状態の画像 押下状態の画像
-    closebutton->loadTextures("charadetail/charadetail_close.png","charadetail/charadetail_close_clicked.png", "");
-    // ボタンの配置
-    closebutton->setPosition(winSize);
-    // ボタンのイベント
-    closebutton->addTouchEventListener([this](Ref* pSender, cocos2d::ui::Widget::TouchEventType type){
-        if (type == cocos2d::ui::Widget::TouchEventType::ENDED)         {
-            // 処理
-            this->removeFromParentAndCleanup(true);
-        }
-    });
-    this->addChild(closebutton);
+    _closeButton = ui::Button::create();
+    this->makeUiButton(_closeButton);
+    
+    this->addChild(_closeButton);
+    _buttonView = true;
     
     // モーダル処理
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
-    listener->onTouchBegan = [](Touch *touch,Event*event)->bool{
+    listener->onTouchBegan = [ this](Touch *touch,Event*event)->bool{
+        if (_buttonView) {
+            _buttonView = false;
+            this->removeChild(_closeButton);
+        }else{
+            _buttonView = true;
+            auto button = ui::Button::create();
+            this->setCloseButton(makeUiButton(button));
+            this->addChild(_closeButton);
+        }
+        log("Touch!!");
         return true;
     };
     auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -139,4 +135,24 @@ TopScroll * TopScroll::createWithLayer(char *filename){
     }
     CC_SAFE_DELETE(ret);
     return nullptr;
+}
+ui::Button* TopScroll::makeUiButton(ui::Button *button){
+    
+    // タッチイベント True
+    button->setTouchEnabled(true);
+    // ボタンの中心位置　アーカーポンイント
+    button->setAnchorPoint( Vec2::ANCHOR_TOP_RIGHT);
+    // 通常状態の画像 押下状態の画像
+    button->loadTextures("charadetail/charadetail_close.png","charadetail/charadetail_close_clicked.png", "");
+    // ボタンの配置
+    button->setPosition(winSize);
+    // ボタンのイベント
+    button->addTouchEventListener([this](Ref* pSender, cocos2d::ui::Widget::TouchEventType type){
+        if (type == cocos2d::ui::Widget::TouchEventType::ENDED)         {
+            // 処理
+            this->removeFromParentAndCleanup(true);
+        }
+    });
+
+    return button;
 }

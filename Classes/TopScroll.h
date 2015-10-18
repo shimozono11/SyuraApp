@@ -23,9 +23,15 @@ protected:
     TopScroll();
     // デストラクタ
     virtual ~TopScroll();
+    
+    Size winSize;
     // メソッド CREATE_FUNCとの連携
     bool init(char *filename);
+    CC_SYNTHESIZE(bool , _buttonView, ButtonView);
+    /* closeボタン */
+    CC_SYNTHESIZE_RETAIN(ui::Button *, _closeButton, CloseButton);
     
+    ui::Button* makeUiButton(ui::Button *button);
 public:
     static cocos2d::Scene* createScene();
     static TopScroll* createWithLayer(char *filename);
