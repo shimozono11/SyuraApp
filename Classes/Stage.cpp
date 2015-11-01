@@ -333,121 +333,98 @@ Vec2 Stage::createEnemyPosition(Vec2 playerPos){
  */
 bool Stage::addBuildings(){
     
+    // デフォルトのマテリアルを作成する。
+    auto material = PHYSICSBODY_MATERIAL_DEFAULT;
+//    // 密度を設定する。
+//    material.density = 10.0f;
+//    // 反発係数を設定する。
+//    material.restitution = 1.0f;
+//    // 摩擦係数を設定する。
+//    material.friction = 0.5f;
+    
     //左上の横長の建物列の画像
     auto build_left_top=Sprite::create("stage/build_long_2_2.png");
-    //位置を設定
     build_left_top->setPosition(Vec2(0,1920));
-    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
-    //接触判定を円で生成 (半径:画像サイズの半分)
-    auto build_left_top_body = PhysicsBody::createBox(build_left_top->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+//    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    auto build_left_top_body = PhysicsBody::createBox(build_left_top->getContentSize(),material);
     build_left_top_body->setDynamic(false);
-    //物理法則を画像に適用させる
     build_left_top->setPhysicsBody(build_left_top_body);
-    //貼り付け
     this->addChild(build_left_top,1);
     
     //右上の横長の建物列
     auto build_right_top=Sprite::create("stage/build_long_2_1.png");
-    //位置を設定
     build_right_top->setPosition(Vec2(2250,1920));
-    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
-    auto build_right_top_body = PhysicsBody::createBox(build_right_top->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+//    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    auto build_right_top_body = PhysicsBody::createBox(build_right_top->getContentSize(),material);
     build_right_top_body->setDynamic(false);
-    //物理法則を画像に適用させる
     build_right_top->setPhysicsBody(build_right_top_body);
-    //貼り付け
     this->addChild(build_right_top,2);
 
     //左下の横長の建物列
     auto build_left_bottom=Sprite::create("stage/build_long_2_1.png");
-    //基準を画像の左下に
     build_left_bottom->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    //位置を設定
     build_left_bottom->setPosition(Vec2(0,0));
-    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
-    auto build_left_bottom_body = PhysicsBody::createBox(build_left_bottom->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+//    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
+    auto build_left_bottom_body = PhysicsBody::createBox(build_left_bottom->getContentSize(),material);
     build_left_bottom_body->setDynamic(false);
-    //物理法則を画像に適用させる
     build_left_bottom->setPhysicsBody(build_left_bottom_body);
-    //貼り付け
     this->addChild(build_left_bottom,3);
    
     //右下の横長の建物列
     auto build_right_bottom=Sprite::create("stage/build_long_1_1.png");
-    //基準を画像の左下に
     build_right_bottom->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    //位置を設定
     build_right_bottom->setPosition(Vec2(2200,0));
-    CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
-    auto build_right_bottom_body = PhysicsBody::createBox(build_right_bottom->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
+    auto build_right_bottom_body = PhysicsBody::createBox(build_right_bottom->getContentSize(),material);
     build_right_bottom_body->setDynamic(false);
-    //物理法則を画像に適用させる
     build_right_bottom->setPhysicsBody(build_right_bottom_body);
-    //貼り付け
     this->addChild(build_right_bottom,4);
 
 
     
     /* これ以降は小さな建物 */
-    
     auto build01=Sprite::create("stage/build_1.png");
-    //基準を画像の左下に
     build01->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    //位置を設定
     build01->setPosition(Vec2(500,1500));
     auto body01 = PhysicsBody::createBox(build01->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body01->setDynamic(false);
-    //物理法則を画像に適用させる
     build01->setPhysicsBody(body01);
-    //貼り付け
     this->addChild(build01,5);
     
     auto build02=Sprite::create("stage/build_2.png");
-    //基準を画像の左下に
     build02->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    //位置を設定
     build02->setPosition(Vec2(2000,500));
     auto body02 = PhysicsBody::createBox(build02->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body02->setDynamic(false);
-    //物理法則を画像に適用させる
     build02->setPhysicsBody(body02);
-    //貼り付け
     this->addChild(build02,6);
     
     auto build03=Sprite::create("stage/build_2.png");
-    //基準を画像の左下に
     build03->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    //位置を設定
     build03->setPosition(Vec2(1000,600));
     auto body03 = PhysicsBody::createBox(build03->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body03->setDynamic(false);
-    //物理法則を画像に適用させる
     build03->setPhysicsBody(body03);
-    //貼り付け
     this->addChild(build03,7);
 
     auto build04=Sprite::create("stage/build_2.png");
-    //基準を画像の左下に
     build04->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
-    //位置を設定
     build04->setPosition(Vec2(2200,1400));
     auto body04 = PhysicsBody::createBox(build04->getContentSize());
-    //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body04->setDynamic(false);
-    //物理法則を画像に適用させる
     build04->setPhysicsBody(body04);
-    //貼り付け
     this->addChild(build04,8);
-
-
     
+    body01->setCategoryBitmask(static_cast<int>(Stage::TileType::WALL));
+    body02->setCategoryBitmask(static_cast<int>(Stage::TileType::WALL));
+    body03->setCategoryBitmask(static_cast<int>(Stage::TileType::WALL));
+    body04->setCategoryBitmask(static_cast<int>(Stage::TileType::WALL));
+    
+    body01->setContactTestBitmask(INTMAX_MAX);
+    body02->setContactTestBitmask(INTMAX_MAX);
+    body03->setContactTestBitmask(INTMAX_MAX);
+    body04->setContactTestBitmask(INTMAX_MAX);
+    
+//    body01->setContactTestBitmask(1);
     
     return true;
 }
