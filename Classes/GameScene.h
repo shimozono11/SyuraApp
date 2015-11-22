@@ -15,12 +15,20 @@
 #include "cocos2d.h"
 #include "TopScroll.h"
 
+static const float TIME_STEP = 1.0f / 60.0f;
+static const int VELOCITY_ITERATIONS = 8;
+static const int POSITION_ITERATIONS = 3;
+
 
 class GameScene : public cocos2d::Layer
 {
 private:
     GameScene();
     virtual ~GameScene();
+    
+    b2World *mBox2DWorld;
+    b2Body *mBox2DBody;
+    RenderTexture *mRenderTexTarget;
 //    
 //    /** モーダル画面のタグ
 //     * TOP :トップ画面

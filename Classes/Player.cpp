@@ -49,7 +49,13 @@ bool Player::init()
     this -> setPosition(Vec2(600, 1100));
     /* 剛体の設置 */
     auto material = PhysicsMaterial();
+    // 密度を設定する。
+    material.density = 1000.0f;
+    // 反発係数を設定する。
+//    material.restitution = 100.0f;
+    // 摩擦係数を設定する。
     material.friction = 0;
+
 
     auto body = PhysicsBody::createCircle(this->getContentSize().width / 2.0);
     // 剛体の回転を無効にする

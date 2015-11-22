@@ -7,6 +7,7 @@
 //
 
 #include "GameScene.h"
+#include "Box2D/Box2D.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "TopModal.h"
@@ -20,11 +21,15 @@
 
 
 
+
 USING_NS_CC;
 using namespace cocostudio::timeline;
 /*  */
 int ADD_ENEMY_RATE = 60;
 int MAX_SYURAENEMY = 3;
+static const float SCREEN_W = 750.0f;
+static const float SCREEN_H = 1334.0f;
+static const float PTM_RATIO = 32.0f;
 
 /* 制限時間 */
 const float TIME_LIMIT_SECOND = 25;
@@ -36,7 +41,9 @@ GameScene::GameScene()
 , _stage(nullptr)
 , _virPad(nullptr)
 , _secondLabel(NULL)
-
+,mBox2DWorld(nullptr),
+mBox2DBody(nullptr),
+mRenderTexTarget(nullptr)
 {
     
 }
@@ -46,11 +53,16 @@ GameScene::~GameScene()
     //    CC_SAFE_RELEASE_NULL(_stage);なぜかここがエラーになる
     CC_SAFE_RELEASE_NULL(_virPad);
     CC_SAFE_RELEASE_NULL(_secondLabel);
+    delete mBox2DWorld;
+    mBox2DWorld = NULL;
+    CC_SAFE_RELEASE(mRenderTexTarget);
 }
 
 
 Scene* GameScene::createScene()
 {
+
+ 
     /* 物理エンジンを有効にしたシーンを作成 */
     auto scene = Scene::createWithPhysics();
     /* 物理空間を取り出す */
@@ -62,7 +74,7 @@ Scene* GameScene::createScene()
     /* デバッグビルドのとき */
 #if COCOS2D_DEBUG > 0
     /* 物理空間にデバッグ用の表示を追加する */
-//    world -> setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    world -> setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 #endif
     
     auto layer = GameScene::create();
@@ -86,6 +98,38 @@ bool GameScene::init()
     
     /* 画面サイズの取得 */
     winSize = Director::getInstance()->getVisibleSize();
+
+    b2Vec2 gravity;
+    //重力　今回は0
+    gravity.Set(0.0f, 0.0f);
+    mBox2DWorld = new b2World(gravity);
+    mBox2DWorld->SetAllowSleeping(true);
+    mBox2DWorld->SetContinuousPhysics(true);
+    
+    mRenderTexTarget = RenderTexture::create((float)winSize.width,(float)winSize.height,Texture2D::PixelFormat::RGBA8888);
+    
+    mRenderTexTarget->setPosition((float)winSize.width / 2, (float)winSize.height / 2);
+    addChild(mRenderTexTarget);
+
+    
+    b2BodyDef groundBodyDef;
+    groundBodyDef.position.Set(0, 0); // bottom-left corner
+    b2Body* groundBody = mBox2DWorld->CreateBody(&groundBodyDef);
+    
+    b2EdgeShape groundBox;
+    // bottom
+    groundBox.Set(b2Vec2(0,0), b2Vec2(SCREEN_W/PTM_RATIO,0));
+    groundBody->CreateFixture(&groundBox,0);
+    // top
+    groundBox.Set(b2Vec2(0,SCREEN_H/PTM_RATIO), b2Vec2(SCREEN_W/PTM_RATIO,SCREEN_H/PTM_RATIO));
+    groundBody->CreateFixture(&groundBox,0);
+    // left
+    groundBox.Set(b2Vec2(0,SCREEN_H/PTM_RATIO), b2Vec2(0,0));
+    groundBody->CreateFixture(&groundBox,0);
+    // right
+    groundBox.Set(b2Vec2(SCREEN_W/PTM_RATIO,SCREEN_H/PTM_RATIO), b2Vec2(SCREEN_W/PTM_RATIO,0));
+    groundBody->CreateFixture(&groundBox,0);
+    
     
     /* ステージの読み込み */
     auto stage = Stage::create();
@@ -261,16 +305,7 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         
         /* 修羅場に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
-            //
-            //            /* 修羅場エリアリストに挿入 */
-            //            auto syuraba = _stage->getSyuraarea();
-            //            syuraba.pushBack(bodyA->getNode());
-            //            _stage->setSyuraarea(syuraba);
-            //
-            //            //            CCLOG("%zd", _stage->getSyuraarea().size());
-            //            //            _stage->getSyuraarea().insert(_stage->getSyuraarea().size(), bodyB->getNode());
-            //            CCLOG("敵「修羅場なう」");
-            return true;
+             return true;
         }
         /* 壁に接触した場合 */
         if(categoryB & static_cast<int>(Stage::TileType::WALL)){
@@ -288,12 +323,6 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
         /*修羅場に接触した場合*/
         if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
             /* 修羅場リストにオブジェクトを追加 */
-            //            /* 修羅場エリアリストに挿入 */
-            //            auto syuraba = _stage->getSyuraarea();
-            //            syuraba.pushBack(bodyB->getNode());
-            //            _stage->setSyuraarea(syuraba);
-            //            //            CCLOG("%zd", _stage->getSyuraarea().size());
-            //            CCLOG("敵「修羅場なう」");
             return true;
         }
         /* 壁に接触した場合 */
@@ -378,10 +407,11 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
     if (category & static_cast<int>(Stage::TileType::MOB_ENEMY)+static_cast<int>(Stage::TileType::SYURA_ENEMY)) {
         // ゲームオーバー
         GameScene::onLose();
-    } else if (category & (int)Stage::TileType::WALL) {
-        //        CCLOG("プレイやー「壁なう」");
+    } else if (category & static_cast<int>(Stage::TileType::WALL)) {
+        CCLOG("プレイやー「壁なう」");
+        
     } else if (category & static_cast<int>(Stage::TileType::SYURABA_EREA)) {
-        //        CCLOG("プレイヤー「修羅場なう」");
+        CCLOG("プレイヤー「修羅場なう」");
     }
     return true;
 }
@@ -393,8 +423,135 @@ bool GameScene::onContactBegin(PhysicsContact& contact){
  */
 bool GameScene::onContactPresolve(PhysicsContact& contact){
     
+    /* 衝突した物体２つを取り出す */
+    auto bodyA = contact.getShapeA()->getBody();
+    auto bodyB = contact.getShapeB()->getBody();
     
+    /* 衝突した物体２つのカテゴリを取り出す */
+    auto categoryA = bodyA -> getCategoryBitmask();
+    auto categoryB = bodyB -> getCategoryBitmask();
+    
+    /* 衝突した剛体が双方ともMob敵の場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        //        CCLOG("Mob敵とMob敵がぶつかりました");
+        return true;
+    }
+    
+    /* MOB敵が衝突したとき、片方が敵でない場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        
+        /* 修羅場に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::WALL)){
+            //            CCLOG("敵「壁なう」");
+            return true;
+        }
+        /* 神５に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+            //            CCLOG("敵「神5なう」");
+            return true;
+        }
+        
+        
+    }else if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+        /*修羅場に接触した場合*/
+        if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            /* 修羅場リストにオブジェクトを追加 */
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::WALL)){
+            //            CCLOG("敵「壁なう」");
+            return true;
+        }
+        /* 神５に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+            //            CCLOG("敵「神5なう」");
+            return true;
+        }
+        
+    }
+    
+    /* 衝突した剛体が双方とも修羅キャラの場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)  && categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        //        CCLOG("修羅キャラと修羅キャラががぶつかりました");
+        return true;
+    }
+    
+    /* 修羅キャラが衝突したとき、片方が修羅キャラでない場合 */
+    if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        
+        /* 修羅場に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            
+            /* 修羅場エリアリストに挿入 */
+            auto syuraba = _stage->getSyuraarea();
+            syuraba.pushBack(bodyA->getNode());
+            _stage->setSyuraarea(syuraba);
+            CCLOG("神５「修羅場なう」");
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::WALL)){
+            CCLOG("神5「壁なう」");
+            return true;
+        }
+        /* Mob敵に接触した場合 */
+        if(categoryB & static_cast<int>(Stage::TileType::MOB_ENEMY)){
+            CCLOG("神５「モブ敵とぶつかりました」");
+            return true;
+        }
+        
+        
+    }else if(categoryB & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+        /*修羅場に接触した場合*/
+        if(categoryA & static_cast<int>(Stage::TileType::SYURABA_EREA)){
+            /* 修羅場リストにオブジェクトを追加 */
+            /* 修羅場エリアリストに挿入 */
+            auto syuraba = _stage->getSyuraarea();
+            syuraba.pushBack(bodyB->getNode());
+            _stage->setSyuraarea(syuraba);
+            //            CCLOG("%zd", _stage->getSyuraarea().size());
+            CCLOG("神5「修羅場なう」");
+            return true;
+        }
+        /* 壁に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::WALL)){
+            CCLOG("神5「壁なう」");
+            return true;
+        }
+        /* 神５に接触した場合 */
+        if(categoryA & static_cast<int>(Stage::TileType::SYURA_ENEMY)){
+            CCLOG("敵「神5なう」");
+            return true;
+        }
+        
+    }
+
+    /* 以下プレイヤーが衝突したときの処理 */
+    auto otherShape = contact.getShapeA()->getBody() == _stage->getPlayer()->getPhysicsBody() ? contact.getShapeB() : contact.getShapeA();
+    auto body = otherShape->getBody();
+    auto category = body->getCategoryBitmask();
+    
+    if (category & static_cast<int>(Stage::TileType::MOB_ENEMY)+static_cast<int>(Stage::TileType::SYURA_ENEMY)) {
+        // ゲームオーバー
+        GameScene::onLose();
+    } else if (category & static_cast<int>(Stage::TileType::WALL)) {
+        CCLOG("プレイやー「壁なう」");
+//        auto player = _stage->getPlayer();
+//        auto playerBody = player->getPhysicsBody();
+//        playerBody->setVelocity(Vec2(0,0));
+//        _stage->setPlayer(player);
+        
+        
+    } else if (category & static_cast<int>(Stage::TileType::SYURABA_EREA)) {
+        CCLOG("プレイヤー「修羅場なう」");
+    }
     return true;
+
 }
 
 /**
@@ -626,6 +783,18 @@ void GameScene::addReadyLabel()
 
 
 void GameScene::update(float dt){
+    
+    mBox2DWorld->Step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+    
+    for (b2Body *b = mBox2DWorld->GetBodyList(); b; b = b->GetNext()) {
+        if (b->GetUserData() != nullptr) {
+            auto myActor = (Node *)b->GetUserData();
+            myActor->setPosition(b->GetPosition().x * PTM_RATIO,b->GetPosition().y * PTM_RATIO);
+            myActor->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
+        }
+    }
+    
+    
     /* プレイヤーにスピードをセット */
     _stage->getPlayer()->setSpeed(_virPad->getSpeed());
     /* バーチャルパッドの操作 */
@@ -633,16 +802,27 @@ void GameScene::update(float dt){
         
         /*　バーチャルパッドの移動量でプレイヤーを操作 */
         /*　現在の位置を取得　*/
-        Vec2 nowPosition = _stage->getPlayer()->getPosition();
+//        Vec2 nowPosition = _stage->getPlayer()->getPosition();
         /* パッドから読み込んだ移動量を取得 */
         Vec2 padMovement = Vec2(_virPad->getCosX()*_virPad->getSpeed(), _virPad->getSinY()*_virPad->getSpeed());
-        /* プレイヤーwo新しい位置に設定 */
-        Vec2 newPosition = nowPosition + padMovement;
-        /* プレイヤーの位置を更新 */
-        //座標で更新
-        _stage->getPlayer()->setPosition(newPosition);
+//        /* プレイヤーwo新しい位置に設定 */
+//        Vec2 newPosition = nowPosition + padMovement;
+//        /* プレイヤーの位置を更新 */
+//        //座標で更新
+//        _stage->getPlayer()->setPosition(newPosition);
         //物理エンジンでキャラの位置を移動(本当は物理エンジンで実現するのが好ましいが現在は簡単のため座標で移動)
-        //        _stage->getPlayer()->getPhysicsBody()->setVelocity(padMovement);
+        
+        auto player = _stage->getPlayer();
+
+        auto playerBody = player->getPhysicsBody();
+        playerBody->setResting(false);
+        playerBody->setVelocityLimit(300);
+        playerBody->setMass(0.005);
+        playerBody->setVelocity(padMovement);
+//        playerBody->applyForce(3*padMovement);
+        _stage->setPlayer(player);
+
+        _stage->getPlayer()->setSpeed(0);
         
         /*プレイヤーが画面外に飛び出さないように設定*/
         auto position = _stage->getPlayer()->getPosition().getClampPoint(Vec2(0,0), _stage->getTiledMap()->getContentSize());
@@ -671,22 +851,8 @@ void GameScene::update(float dt){
                 }
                 
             }
-            
-            
-            //            auto itr = syuraba.begin();
-            //            while (itr != syuraba.end())
-            //            {
-            //                if((*itr) != (Node*)winEnemy){
-            //                    (*itr)->removeFromParent();
-            //                    itr = syuraba.erase(itr);
-            //
-            //                }
-            //            }
-            /* ベクターの中からも全てのオブジェクトを削除 */
-            //            syuraba.clear();
             _stage->setSyuraarea(syuraba);
         }
-        
         /* 残り時間を減らす */
         _second -= dt;
         /* 表示の更新 */
