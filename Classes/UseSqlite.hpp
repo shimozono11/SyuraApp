@@ -13,11 +13,13 @@
 #include "cocos2d.h"
 #include "sqlite3.h"
 
-class SaveSQL : public cocos2d::Node {
+class UseSqlite : public cocos2d::Node {
     
     
 public:
+    
     virtual  bool init();
+    
     
     static int sqliteOpen(sqlite3 **db);
     
@@ -28,6 +30,7 @@ public:
     static void sqliteUpdateValueForKey(const char *key,const char *value);
     
 };
+
 
 
 #endif /* UseSqlite_hpp */
