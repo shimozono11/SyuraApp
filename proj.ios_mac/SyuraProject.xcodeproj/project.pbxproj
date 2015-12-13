@@ -56,6 +56,7 @@
 		791EA94A1B5B1C3400068774 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA9471B5B1C3400068774 /* Player.cpp */; };
 		791EA94D1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
 		791EA94E1B5B1C4A00068774 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 791EA94B1B5B1C4A00068774 /* Enemy.cpp */; };
+		797D53FE1C1DC66500F33C43 /* UseSqlite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 797D53FC1C1DC66500F33C43 /* UseSqlite.cpp */; };
 		79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */; };
 		79A0B07F1B7EB0D600B5D928 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B07C1B7EB0D600B5D928 /* sqlite3.c */; };
 		79A0B0841B7F7BCC00B5D928 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79A0B0821B7F7BCC00B5D928 /* test.cpp */; };
@@ -146,6 +147,8 @@
 		791EA9481B5B1C3400068774 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		791EA94B1B5B1C4A00068774 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		791EA94C1B5B1C4A00068774 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		797D53FC1C1DC66500F33C43 /* UseSqlite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UseSqlite.cpp; sourceTree = "<group>"; };
+		797D53FD1C1DC66500F33C43 /* UseSqlite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UseSqlite.hpp; sourceTree = "<group>"; };
 		79A0B0791B7E686B00B5D928 /* ComicListModal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComicListModal.cpp; sourceTree = "<group>"; };
 		79A0B07A1B7E686B00B5D928 /* ComicListModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicListModal.h; sourceTree = "<group>"; };
 		79A0B07C1B7EB0D600B5D928 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				79A0B0831B7F7BCC00B5D928 /* test.h */,
 				791EA9471B5B1C3400068774 /* Player.cpp */,
 				791EA9481B5B1C3400068774 /* Player.h */,
+				797D53FC1C1DC66500F33C43 /* UseSqlite.cpp */,
+				797D53FD1C1DC66500F33C43 /* UseSqlite.hpp */,
 				79F0E2E81B8A7EFA0056E55F /* Comics */,
 				79E82BF41B7DCDCC000B843D /* ModalScene */,
 				79E82BF31B7DCD77000B843D /* EnemyClass */,
@@ -579,6 +584,7 @@
 				79CE4BDF1B79813600CD67E7 /* SyuraEnemy.cpp in Sources */,
 				79CE4BCD1B7979B600CD67E7 /* Haruka.cpp in Sources */,
 				79A0B07B1B7E686B00B5D928 /* ComicListModal.cpp in Sources */,
+				797D53FE1C1DC66500F33C43 /* UseSqlite.cpp in Sources */,
 				79F0E2EE1B8A80180056E55F /* TopScroll.cpp in Sources */,
 				79E82BFD1B7DCF2F000B843D /* CharaDetailModal.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
