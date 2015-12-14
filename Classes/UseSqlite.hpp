@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "sqlite3.h"
+#include <vector>
+#include <string>
 
 class UseSqlite : public cocos2d::Node {
     
@@ -19,7 +21,8 @@ class UseSqlite : public cocos2d::Node {
 public:
     
     virtual  bool init();
-    
+    CC_SYNTHESIZE(cocos2d::Vector<std::string>,_comicIdAll,ComicIdAll);
+
     
     static int sqliteOpen(sqlite3 **db);
     
@@ -28,6 +31,7 @@ public:
     static void sqliteSetValueForKey(const char *key,const char *value);
     
     static void sqliteUpdateValueForKey(const char *key,const char *value);
+    
     
 };
 
