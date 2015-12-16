@@ -7,82 +7,48 @@
 //
 
 #include "UseSqlite.hpp"
-#define dbName "syuraApp.db"
 
 USING_NS_CC;
 
-//データベースを開く
-int UseSqlite::sqliteOpen(sqlite3 **db){
+Scene* UseSqlite::createScene()
+{
+    auto scene = Scene::create();
+    auto layer = UseSqlite::create();
+    scene->addChild(layer);
+    return scene;
+}
+
+// on "init" you need to initialize your instance
+bool UseSqlite::init()
+{
+    if ( !Layer::init() ) return false;
     
+    //DBファイルの保存先のパス
     auto filePath = FileUtils::getInstance()->getWritablePath();
-    filePath += dbName;
+    filePath.append("Test.db");
+    CCLOG("%s", filePath.c_str());
+    //OPEN
+    auto status = sqlite3_open(filePath.c_str(), &useDataBase);
     
-    
-    return sqlite3_open(filePath.c_str(),db);
-    
-}
-
-
-//データベースのテーブルの作成
-void UseSqlite::sqliteCreateTable(){
-    
-    //データベースを作成
-    sqlite3 *db = NULL;
-    if(sqliteOpen(&db) == SQLITE_OK){
-        
-        // key とvalueの２つ値がある テーブル(test1)を作成
-        const char *sql_createtable = "CREATE TABLE comic_table(comic_id TEXT,flag integer)";
-        sqlite3_stmt *stmt = NULL;
-        if (sqlite3_prepare_v2(db, sql_createtable, -1, &stmt, NULL) == SQLITE_OK) {
-            
-            if (sqlite3_step(stmt) == SQLITE_DONE) {
-                
-                CCLOG("create table done");
-            }
-            
-            sqlite3_reset(stmt);
-        }
-        sqlite3_finalize(stmt);
-    }
-    sqlite3_close(db);
-}
-
-//初期データの挿入
-
-//keyとvalueを設定する(初期)
-void UseSqlite::sqliteSetValueForKey(const char *key,const char *value){
-    
-    
-    std::string fullpath = FileUtils::getInstance()->getWritablePath();
-    fullpath += dbName;
-    sqlite3 *db = NULL;
-    
-    if (sqlite3_open(fullpath.c_str(), &db) == SQLITE_OK) {
-        const char *sql_select = "INSERT INTO comic_table(comic_id,false)VALUES(?,0)";
-        sqlite3_stmt *stmt = NULL;
-        
-        if (sqlite3_prepare_v2(db, sql_select, -1, &stmt, NULL) == SQLITE_OK) {
-            
-            sqlite3_bind_text(stmt, 1, key, -1, SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 2, value, -1, SQLITE_TRANSIENT);
-            
-            if (sqlite3_step(stmt) == SQLITE_DONE) {
-                
-                CCLOG("replace comic_id:%s values:%s",key,value);
-            }
-            
-            sqlite3_reset(stmt);
-            
-        }
-        
-        sqlite3_finalize(stmt);
-
-    
+    //ステータスが0以外の場合はエラーを表示
+    if (status != SQLITE_OK){
+        CCLOG("opne failed : %s", errorMessage);
+    }else{
+        CCLOG("open sucessed");
     }
     
-    sqlite3_close(db);
+    //テーブル作成
+    auto create_sql = "CREATE TABLE user( id integer primary key autoincrement, name nvarchar(32), age int(2) )";
+    status = sqlite3_exec(useDataBase, create_sql, NULL, NULL, &errorMessage );
+    if( status != SQLITE_OK ) CCLOG("create table failed : %s", errorMessage);
     
+    //インサート
+    auto insert_sql = "INSERT INTO user(name, age) VALUES('raharu', 29)";
+    status = sqlite3_exec(useDataBase, insert_sql , NULL, NULL, &errorMessage);
     
+    //Close
+    sqlite3_close(useDataBase);
+    
+    return true;
 }
-
 

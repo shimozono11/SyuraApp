@@ -8,33 +8,39 @@
 
 #ifndef UseSqlite_hpp
 #define UseSqlite_hpp
+#include <iostream>
 
-#include <stdio.h>
 #include "cocos2d.h"
 #include "sqlite3.h"
-#include <vector>
-#include <string>
 
-class UseSqlite : public cocos2d::Node {
-    
+class UseSqlite : public cocos2d::Layer
+{
     
 public:
+    static cocos2d::Scene* createScene();
+    virtual bool init();
+    void menuCloseCallback(cocos2d::Ref* pSender);
+    CREATE_FUNC(UseSqlite);
     
-    virtual  bool init();
-    CC_SYNTHESIZE(cocos2d::Vector<std::string>,_comicIdAll,ComicIdAll);
+
+        //アイコンのファイルすべて
+    std::vector<std::string> _comicIds{\
+            "comic_icon_haruka_win_kokona.png",
+            "comic_icon_haruka_win_risa.png",
+            "comic_icon_kokona_win_miyu.png",
+            "comic_icon_kokona_win_risa.png",
+            "comic_icon_miyu_win_haruka.png",
+            "comic_icon_miyu_win_nene.png",
+            "comic_icon_nene_win_haruka.png",
+            "comic_icon_nene_win_kokona.png",
+            "comic_icon_risa_win_miyu.png",
+            "comic_icon_risa_win_nene.png"
+    };
 
     
-    static int sqliteOpen(sqlite3 **db);
-    
-    static void sqliteCreateTable();
-    static const char* sqliteGetValueForKey(const char *key);
-    static void sqliteSetValueForKey(const char *key,const char *value);
-    
-    static void sqliteUpdateValueForKey(const char *key,const char *value);
-    
+    //sqlite3
+    sqlite3* useDataBase = NULL;
+    char* errorMessage = NULL;
     
 };
-
-
-
 #endif /* UseSqlite_hpp */
