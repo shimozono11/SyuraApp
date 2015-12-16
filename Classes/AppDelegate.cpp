@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "GameScene.h"
+#include "UseSqlite.hpp"
 
 USING_NS_CC;
 
@@ -42,8 +43,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
 
     // create a scene. it's an autorelease object
-    auto scene = GameScene::createScene();
-
+//    auto scene = GameScene::createScene();
+    auto scene = UseSqlite::createScene();
     // run
     director->runWithScene(scene);
 
