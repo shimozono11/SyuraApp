@@ -7,7 +7,7 @@
 //
 
 #include "UseSqlite.hpp"
-
+#define DB_NAME  "Syura.db"
 USING_NS_CC;
 
 Scene* UseSqlite::createScene()
@@ -25,7 +25,7 @@ bool UseSqlite::init()
     
     //DBファイルの保存先のパス
     auto filePath = FileUtils::getInstance()->getWritablePath();
-    filePath.append("Test.db");
+    filePath.append(DB_NAME);
     CCLOG("%s", filePath.c_str());
     //OPEN
     auto status = sqlite3_open(filePath.c_str(), &useDataBase);
@@ -38,14 +38,19 @@ bool UseSqlite::init()
     }
     
     //テーブル作成
-    auto create_sql = "CREATE TABLE user( id integer primary key autoincrement, name nvarchar(32), age int(2) )";
+    auto create_sql = "CREATE TABLE comic_table( comic_id text , flag int(1))";
     status = sqlite3_exec(useDataBase, create_sql, NULL, NULL, &errorMessage );
     if( status != SQLITE_OK ) CCLOG("create table failed : %s", errorMessage);
     
     //インサート
-    auto insert_sql = "INSERT INTO user(name, age) VALUES('raharu', 29)";
-    status = sqlite3_exec(useDataBase, insert_sql , NULL, NULL, &errorMessage);
-    
+    for (const auto& comic_id : _comicIds)
+    {
+        CCLOG("insert value id : %s",comic_id.c_str());
+        char insert_sql[256]={0};
+        sprintf(insert_sql, "INSERT INTO comic_table(comic_id, flag) VALUES('%s', 0)",comic_id.c_str());
+        status = sqlite3_exec(useDataBase, insert_sql , NULL, NULL, &errorMessage);
+    }
+
     //Close
     sqlite3_close(useDataBase);
     
