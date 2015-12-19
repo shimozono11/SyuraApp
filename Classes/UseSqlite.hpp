@@ -23,7 +23,7 @@ public:
     CREATE_FUNC(UseSqlite);
     
 
-        //アイコンのファイルすべて
+    //アイコンのファイルすべて
     std::vector<std::string> _comicIds{\
             "comic_icon_haruka_win_kokona.png",
             "comic_icon_haruka_win_risa.png",
@@ -36,8 +36,9 @@ public:
             "comic_icon_risa_win_miyu.png",
             "comic_icon_risa_win_nene.png"
     };
-
-    
+    /*いい感じのラッパー見つからないから自作する*/
+    //DBを開いた時のハンドラーを返す
+    int openDB();
     //sqlite3
     sqlite3* useDataBase = NULL;
     char* errorMessage = NULL;

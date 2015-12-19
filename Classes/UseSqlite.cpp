@@ -24,19 +24,7 @@ bool UseSqlite::init()
     if ( !Layer::init() ) return false;
     
     //DBファイルの保存先のパス
-    auto filePath = FileUtils::getInstance()->getWritablePath();
-    filePath.append(DB_NAME);
-    CCLOG("%s", filePath.c_str());
-    //OPEN
-    auto status = sqlite3_open(filePath.c_str(), &useDataBase);
-    
-    //ステータスが0以外の場合はエラーを表示
-    if (status != SQLITE_OK){
-        CCLOG("opne failed : %s", errorMessage);
-    }else{
-        CCLOG("open sucessed");
-    }
-    
+    auto status = openDB();
     //テーブル作成
     auto create_sql = "CREATE TABLE comic_table( comic_id text , flag int(1))";
     status = sqlite3_exec(useDataBase, create_sql, NULL, NULL, &errorMessage );
@@ -57,3 +45,20 @@ bool UseSqlite::init()
     return true;
 }
 
+int UseSqlite::openDB(){
+    //DBファイルの保存先のパス
+    auto filePath = FileUtils::getInstance()->getWritablePath();
+    filePath.append(DB_NAME);
+    CCLOG("%s", filePath.c_str());
+    //OPEN
+    auto status = sqlite3_open(filePath.c_str(), &useDataBase);
+    
+    //ステータスが0以外の場合はエラーを表示
+    if (status != SQLITE_OK){
+        CCLOG("opne failed : %s", errorMessage);
+    }else{
+        CCLOG("open sucessed");
+    }
+    
+    return status;
+}
