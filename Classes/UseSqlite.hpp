@@ -9,7 +9,6 @@
 #ifndef UseSqlite_hpp
 #define UseSqlite_hpp
 #include <iostream>
-
 #include "cocos2d.h"
 #include "sqlite3.h"
 
@@ -39,6 +38,10 @@ public:
     /*いい感じのラッパー見つからないから自作する*/
     //DBを開いた時のハンドラーを返す
     int openDB();
+    
+    //渡された画像ファイル名が開放されているかどうかをチェックする関数
+    int isOpenImage(char* imageName);
+    static int callback(void *NotUsed, int argc, char **argv, char **azColName);
     //sqlite3
     sqlite3* useDataBase = NULL;
     char* errorMessage = NULL;
