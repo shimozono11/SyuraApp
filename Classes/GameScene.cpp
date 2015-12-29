@@ -27,7 +27,7 @@ int ADD_ENEMY_RATE = 60;
 int MAX_SYURAENEMY = 3;
 
 /* 制限時間 */
-const float TIME_LIMIT_SECOND = 25;
+const float TIME_LIMIT_SECOND = 31;
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
