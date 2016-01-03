@@ -9,6 +9,7 @@
 #include "Stage.h"
 USING_NS_CC;
 int  MAX_ENEMY_SPEED = 5;
+auto enemyAppearancePos = Vec2(1500,  1500);
 Stage::Stage()
 :_tiledMap(nullptr)
 ,_player(nullptr)
@@ -149,27 +150,28 @@ void Stage::addEnemyOnStage(){
     switch (rand()%6) {
         case 0:
             /* 敵の初期位置 */
-            enemy->setPosition(addEnemyPos0);
+            enemyAppearancePos = addEnemyPos0;
             CCLOG("0地点");
             break;
         case 1:
-            enemy->setPosition(addEnemyPos1);
+            enemyAppearancePos = addEnemyPos1;
             CCLOG("1地点");
             break;
         case 2:
-            enemy->setPosition(addEnemyPos2);
+            enemyAppearancePos = addEnemyPos2;
+
             CCLOG("2地点");
             break;
         case 3:
-            enemy->setPosition(addEnemyPos3);
+            enemyAppearancePos = addEnemyPos3;
             CCLOG("3地点");
             break;
         case 4:
-            enemy->setPosition(addEnemyPos4);
+            enemyAppearancePos = addEnemyPos4;
             CCLOG("4地点");
             break;
         case 5:
-            enemy->setPosition(addEnemyPos5);
+            enemyAppearancePos = addEnemyPos5;
             CCLOG("5地点");
             break;
         default:
@@ -177,6 +179,7 @@ void Stage::addEnemyOnStage(){
             CCLOG("デフォルト");
             break;
     }
+    enemy->setPosition(enemyAppearancePos);
     //    /* x軸のランダムな位置 */
     //    float enemyXPos = rand() % static_cast<int>(winSize.width);
     //    auto enemySize = enemy -> getContentSize();
@@ -466,7 +469,7 @@ bool Stage::addSyuraEnemyOnStage(){
     }
     
     /* 適当に位置を設定　要 TODO */
-    syuraenemy->setPosition(Vec2(200, 200));
+    syuraenemy->setPosition(enemyAppearancePos);
     
     /* ステージに追加しenemyベクターにも追加 */
     this->addChild(syuraenemy,1000);
