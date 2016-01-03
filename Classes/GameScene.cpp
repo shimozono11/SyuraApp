@@ -23,7 +23,7 @@
 USING_NS_CC;
 using namespace cocostudio::timeline;
 /*  */
-int ADD_ENEMY_RATE = 60;
+int ADD_ENEMY_RATE = 120;
 int MAX_SYURAENEMY = 3;
 
 /* 制限時間 */

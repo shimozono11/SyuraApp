@@ -398,7 +398,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build01->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build01->setPosition(Vec2(500,1500));
+    build01->setPosition(Vec2(700,1550));
     auto body01 = PhysicsBody::createBox(build01->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body01->setDynamic(false);
@@ -407,11 +407,11 @@ bool Stage::addBuildings(){
     //貼り付け
     this->addChild(build01,5);
     
-    auto build02=Sprite::create("stage/build_2.png");
+    auto build02=Sprite::create("stage/build_5.png");
     //基準を画像の左下に
     build02->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build02->setPosition(Vec2(2000,1000));
+    build02->setPosition(Vec2(1100,900));
     auto body02 = PhysicsBody::createBox(build02->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body02->setDynamic(false);
@@ -420,11 +420,11 @@ bool Stage::addBuildings(){
     //貼り付け
     this->addChild(build02,6);
     
-    auto build03=Sprite::create("stage/build_2.png");
+    auto build03=Sprite::create("stage/build_4.png");
     //基準を画像の左下に
     build03->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build03->setPosition(Vec2(1000,900));
+    build03->setPosition(Vec2(2000,1550));
     auto body03 = PhysicsBody::createBox(build03->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body03->setDynamic(false);
@@ -437,7 +437,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build04->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build04->setPosition(Vec2(2200,1600));
+    build04->setPosition(Vec2(2100,900));
     auto body04 = PhysicsBody::createBox(build04->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body04->setDynamic(false);
