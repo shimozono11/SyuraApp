@@ -30,7 +30,7 @@ bool Stage::init()
     }
     
     /* マップファイルからノードを作成 */
-    auto map = TMXTiledMap::create("map/stage1.tmx");
+    auto map = TMXTiledMap::create("map/stage3.tmx");
     this->addChild(map);
     this->setTiledMap(map);
     
@@ -336,7 +336,7 @@ bool Stage::addBuildings(){
     //左上の横長の建物列の画像
     auto build_left_top=Sprite::create("stage/build_long_2_2.png");
     //位置を設定
-    build_left_top->setPosition(Vec2(0,1920));
+    build_left_top->setPosition(Vec2(0,2120));
     CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
     //接触判定を円で生成 (半径:画像サイズの半分)
     auto build_left_top_body = PhysicsBody::createBox(build_left_top->getContentSize());
@@ -350,7 +350,7 @@ bool Stage::addBuildings(){
     //右上の横長の建物列
     auto build_right_top=Sprite::create("stage/build_long_2_1.png");
     //位置を設定
-    build_right_top->setPosition(Vec2(2250,1920));
+    build_right_top->setPosition(Vec2(2300,2120));
     CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
     auto build_right_top_body = PhysicsBody::createBox(build_right_top->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
@@ -365,7 +365,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build_left_bottom->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build_left_bottom->setPosition(Vec2(0,0));
+    build_left_bottom->setPosition(Vec2(0,350));
     CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
     auto build_left_bottom_body = PhysicsBody::createBox(build_left_bottom->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
@@ -380,7 +380,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build_right_bottom->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build_right_bottom->setPosition(Vec2(2200,0));
+    build_right_bottom->setPosition(Vec2(2200,350));
     CCLOG("heigt : %f ¥n widht : %f",winSize.height,winSize.width);
     auto build_right_bottom_body = PhysicsBody::createBox(build_right_bottom->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
@@ -411,7 +411,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build02->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build02->setPosition(Vec2(2000,500));
+    build02->setPosition(Vec2(2000,1000));
     auto body02 = PhysicsBody::createBox(build02->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body02->setDynamic(false);
@@ -424,7 +424,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build03->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build03->setPosition(Vec2(1000,600));
+    build03->setPosition(Vec2(1000,900));
     auto body03 = PhysicsBody::createBox(build03->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body03->setDynamic(false);
@@ -437,7 +437,7 @@ bool Stage::addBuildings(){
     //基準を画像の左下に
     build04->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     //位置を設定
-    build04->setPosition(Vec2(2200,1400));
+    build04->setPosition(Vec2(2200,1600));
     auto body04 = PhysicsBody::createBox(build04->getContentSize());
     //重力の影響を受けるか(trueだと下へ落ちていってしまう)
     body04->setDynamic(false);
