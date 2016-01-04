@@ -17,7 +17,7 @@
 #include "Kokona.h"
 #include "Risa.h"
 #include "Miyu.h"
-
+#include <array>
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -34,6 +34,16 @@ const float TIME_LIMIT_SECOND = 31;
 //サウンド処理
 auto soundEngineBGM = SimpleAudioEngine::getInstance();
 auto soundEngineSE = SimpleAudioEngine::getInstance();
+
+//効果音
+namespace {
+    const std::array<std::string, 4> SoundEffects = {
+        "sounds/SE/clear.wav", //0
+        "sounds/SE/lose.wav", //1
+        "sounds/SE/touch.wav", //2
+         "sounds/SE/run.wav", //3
+    };
+}
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
@@ -154,6 +164,11 @@ bool GameScene::init()
     /*bgm開始*/
     soundEngineBGM->playBackgroundMusic("sounds/BGM/playbgm.mp3");
     
+    /* SEの設定 */
+    soundEngineSE->setBackgroundMusicVolume(0.7f);
+    for (auto s : SoundEffects) {
+        soundEngineSE->preloadEffect(s.c_str());
+    }
     
     //    auto rootNode = CSLoader::createNode("GameScene.csb");
     //    addChild(rootNode);
@@ -521,6 +536,10 @@ void GameScene::onLose(){
     CCLOG("GameOver!!!");
     //bgm停止
     soundEngineBGM->stopBackgroundMusic();
+    
+    //ルーズ音
+    soundEngineSE->playEffect(SoundEffects[1].c_str());
+    
 
     // レイヤーを追加
     auto layer = LoseModal::create();
@@ -539,6 +558,9 @@ void GameScene::onClear(){
     //bgm停止
     soundEngineBGM->stopBackgroundMusic();
 
+    //クリア音
+    soundEngineSE->playEffect(SoundEffects[0].c_str());
+    
     // レイヤーを追加
     auto layer = ClearModal::create();
     layer->setName("ClearModal");
