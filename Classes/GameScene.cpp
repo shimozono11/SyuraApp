@@ -18,16 +18,22 @@
 #include "Risa.h"
 #include "Miyu.h"
 
-
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 using namespace cocostudio::timeline;
+using namespace CocosDenshion;
+
 /*  */
 int ADD_ENEMY_RATE = 120;
 int MAX_SYURAENEMY = 3;
 
 /* 制限時間 */
 const float TIME_LIMIT_SECOND = 31;
+
+//サウンド処理
+auto soundEngineBGM = SimpleAudioEngine::getInstance();
+auto soundEngineSE = SimpleAudioEngine::getInstance();
 
 /* コンストラクタ:プレイヤーを初期化 */
 GameScene::GameScene()
@@ -83,7 +89,7 @@ bool GameScene::init()
     {
         return false;
     }
-    
+
     /* 画面サイズの取得 */
     winSize = Director::getInstance()->getVisibleSize();
     
@@ -96,6 +102,8 @@ bool GameScene::init()
     auto virPad = VirtualPad::create();
     this->addChild(virPad);
     this->setVirtualPad(virPad);
+    
+    
     
     /* トップ画面の表示 */
     //////////////////////////////////////
@@ -139,6 +147,12 @@ bool GameScene::init()
     secondLabelHeader->enableOutline(Color4B::BLACK,1.5);
     secondLabelHeader->setPosition(Vec2(winSize.width /2.0 , winSize.height -20));
     this->addChild(secondLabelHeader);
+    
+    /* BGMの設定　*/
+    soundEngineBGM->setBackgroundMusicVolume(0.5f);
+    // soundEngine->preloadBackgroundMusic("sounds/BGM/playbgm.mp3");
+    /*bgm開始*/
+    soundEngineBGM->playBackgroundMusic("sounds/BGM/playbgm.mp3");
     
     
     //    auto rootNode = CSLoader::createNode("GameScene.csb");
@@ -184,6 +198,7 @@ void GameScene::onTouchesBegan(const std::vector<Touch *> &touches, cocos2d::Eve
             if(_state == GameState::READY){
                 _state = GameState::PLAYING;
                 this->onPlaying();
+                
             }
             _virPad->startPad((int)touch->getLocation().x,(int)touch->getLocation().y,touch->getID());
             _virPad->update((int)touch->getLocation().x,(int)touch->getLocation().y,touch->getID());
@@ -504,7 +519,9 @@ void GameScene::onReady(){
  */
 void GameScene::onLose(){
     CCLOG("GameOver!!!");
-    
+    //bgm停止
+    soundEngineBGM->stopBackgroundMusic();
+
     // レイヤーを追加
     auto layer = LoseModal::create();
     layer->setName("LoseModal");
@@ -519,6 +536,9 @@ void GameScene::onLose(){
  */
 void GameScene::onClear(){
     CCLOG("gameClear!!");
+    //bgm停止
+    soundEngineBGM->stopBackgroundMusic();
+
     // レイヤーを追加
     auto layer = ClearModal::create();
     layer->setName("ClearModal");
