@@ -138,6 +138,7 @@ void Stage::addEnemyOnStage(){
     Vec2  nowPos = _player->getPosition();
     /* 要リファクタリングTODO */
     Vec2 pos = Vec2(100,100);
+    
     /* 敵を配置する場所を指定 */
     /* プレイヤーからある程度離れた位置に敵追加する */
     auto addEnemyPos0 = nowPos + Vec2(0,winSize.height/2) + pos;
@@ -146,8 +147,12 @@ void Stage::addEnemyOnStage(){
     auto addEnemyPos3 = nowPos - Vec2(0,winSize.height/2) - pos;
     auto addEnemyPos4 = nowPos - Vec2(winSize.width/2,0) - pos;
     auto addEnemyPos5 = nowPos - winSize/2 - pos;
+    
+    
+    
     /* 敵の初期値を設定 */
-    switch (rand()%6) {
+    switch (getEnemyAppearenceNum(_player->getPositionX(),_player->getPositionY()))
+    {
         case 0:
             /* 敵の初期位置 */
             enemyAppearancePos = addEnemyPos0;
@@ -479,6 +484,26 @@ bool Stage::addSyuraEnemyOnStage(){
     _syuraenemys.eraseObject(syuraenemy);
     
     return true;
+}
+
+int Stage::getEnemyAppearenceNum(int nowPosX,int nowPosY)
+{
+    int enemyPos = rand()%6;
+    
+    if(winSize.width * 0.1 > nowPosX && enemyPos == 4){
+        enemyPos = 1;
+    }else if(winSize.width * 0.9 < nowPosX && enemyPos == 1){
+        enemyPos = 4;
+    }
+    
+    if(winSize.height * 0.2 > nowPosY && enemyPos == 3){
+        enemyPos = 0;
+    }else if(winSize.height * 0.9 < nowPosY && enemyPos == 0){
+        enemyPos = 3;
+    }
+    
+    return enemyPos;
+
 }
 
 void Stage::update(float dt)
