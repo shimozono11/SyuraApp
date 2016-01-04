@@ -19,6 +19,7 @@
 #include "Miyu.h"
 #include <array>
 #include "SimpleAudioEngine.h"
+#include "unistd.h"
 
 USING_NS_CC;
 using namespace cocostudio::timeline;
@@ -162,7 +163,7 @@ bool GameScene::init()
     soundEngineBGM->setBackgroundMusicVolume(0.5f);
     // soundEngine->preloadBackgroundMusic("sounds/BGM/playbgm.mp3");
     /*bgm開始*/
-    soundEngineBGM->playBackgroundMusic("sounds/BGM/playbgm.mp3");
+    soundEngineBGM->playBackgroundMusic("sounds/BGM/playbgm.mp3",true);
     
     /* SEの設定 */
     soundEngineSE->setBackgroundMusicVolume(0.7f);
@@ -537,8 +538,7 @@ void GameScene::onLose(){
     //bgm停止
     soundEngineBGM->stopBackgroundMusic();
     
-    //ルーズ音
-    soundEngineSE->playEffect(SoundEffects[1].c_str());
+   
     
 
     // レイヤーを追加
@@ -548,6 +548,10 @@ void GameScene::onLose(){
     /* 動きを止める処理 */
     this->swichPauseFlag();
     
+    
+    //0.5秒待ちからのルーズ音
+    usleep(500000);
+    soundEngineSE->playEffect(SoundEffects[1].c_str());
 }
 /** ゲームクリア処理
  *
@@ -558,10 +562,7 @@ void GameScene::onClear(){
     //bgm停止
     soundEngineBGM->stopBackgroundMusic();
 
-    //クリア音
-    soundEngineSE->playEffect(SoundEffects[0].c_str());
-    
-    // レイヤーを追加
+        // レイヤーを追加
     auto layer = ClearModal::create();
     layer->setName("ClearModal");
     this->addChild(layer);
@@ -584,6 +585,11 @@ void GameScene::onClear(){
     }else{
         
     }
+    
+    //0.2秒待ちからのクリア音
+    usleep(200000);
+    soundEngineSE->playEffect(SoundEffects[0].c_str());
+    
     
 
     /* 押せば漫画を見れるようにする！ */
