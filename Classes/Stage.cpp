@@ -10,6 +10,7 @@
 USING_NS_CC;
 int  MAX_ENEMY_SPEED = 5;
 auto enemyAppearancePos = Vec2(1500,  1500);
+
 Stage::Stage()
 :_tiledMap(nullptr)
 ,_player(nullptr)
@@ -45,7 +46,7 @@ bool Stage::init()
     
     // マップのサイズ
     auto mapSize = map->getMapSize();
-    for (int i = 0; i < mapSize.width; i++) {
+       for (int i = 0; i < mapSize.width; i++) {
         for (int j = 0; j < mapSize.height; j++) {
             auto coordinate = Vec2(i, j);
             //            this->addPhysicsBody(terrainLayer, coordinate);
@@ -64,6 +65,8 @@ bool Stage::init()
     /* プレイヤーに画面を追従させる */
     winSize = Director::getInstance()->getWinSize();
     /*Rectは追従する範囲を決めている Rectは左下を原点としている*/
+    
+   
     
     this ->runAction(CustomFollow::create(player,Rect(0, 0, _tiledMap->getContentSize().width, _tiledMap->getContentSize().height) ));
     /* x軸だけ、y軸だけと指定をする場合　この場合だとマップの範囲が扱えない */
@@ -148,7 +151,7 @@ void Stage::addEnemyOnStage(){
     auto addEnemyPos4 = nowPos - Vec2(winSize.width/2,0) - pos;
     auto addEnemyPos5 = nowPos - winSize/2 - pos;
     
-    
+  
     
     /* 敵の初期値を設定 */
     switch (getEnemyAppearenceNum(_player->getPositionX(),_player->getPositionY()))
@@ -486,19 +489,23 @@ bool Stage::addSyuraEnemyOnStage(){
     return true;
 }
 
-int Stage::getEnemyAppearenceNum(int nowPosX,int nowPosY)
+int Stage::getEnemyAppearenceNum(float nowPosX,float nowPosY)
 {
     int enemyPos = rand()%6;
+    auto mapSizeWidth = _tiledMap->getContentSize().width;
+    auto mapSizeHeight = _tiledMap->getContentSize().height;
+
     
-    if(winSize.width * 0.1 > nowPosX && enemyPos == 4){
+    if(mapSizeWidth * 0.2 > nowPosX && enemyPos == 4){
         enemyPos = 1;
-    }else if(winSize.width * 0.9 < nowPosX && enemyPos == 1){
+    }else if(mapSizeWidth * 0.8 < nowPosX && enemyPos == 1){
         enemyPos = 4;
     }
     
-    if(winSize.height * 0.2 > nowPosY && enemyPos == 3){
+    if(mapSizeHeight * 0.5 > nowPosY && (enemyPos == 5 || enemyPos == 3)){
         enemyPos = 0;
-    }else if(winSize.height * 0.9 < nowPosY && enemyPos == 0){
+    }
+    else if(mapSizeHeight * 0.8 < nowPosY && enemyPos == 0){
         enemyPos = 3;
     }
     

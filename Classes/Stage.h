@@ -60,7 +60,7 @@ public:
     void moveEnemys();
 
     //敵の出現場所調整のための
-    int getEnemyAppearenceNum(int nowPosX,int nowPosY);
+    int getEnemyAppearenceNum(float nowPosX,float nowPosY);
     
     /* タイルマップ */
     CC_SYNTHESIZE_RETAIN(cocos2d::TMXTiledMap *, _tiledMap, TiledMap);
