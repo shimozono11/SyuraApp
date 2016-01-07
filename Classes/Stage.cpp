@@ -8,7 +8,7 @@
 
 #include "Stage.h"
 USING_NS_CC;
-int  MAX_ENEMY_SPEED = 4.5;
+int  MAX_ENEMY_SPEED = 4;
 auto enemyAppearancePos = Vec2(1500,  1500);
 Stage::Stage()
 :_tiledMap(nullptr)
