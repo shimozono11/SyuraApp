@@ -42,7 +42,7 @@ namespace {
         "sounds/SE/clear.wav", //0
         "sounds/SE/lose.wav", //1
         "sounds/SE/touch.wav", //2
-         "sounds/SE/run.wav", //3
+         "sounds/SE/cut.mp3", //3
     };
 }
 
@@ -590,7 +590,6 @@ void GameScene::onClear(){
     usleep(200000);
     soundEngineSE->playEffect(SoundEffects[0].c_str());
     
-    
 
     /* 押せば漫画を見れるようにする！ */
     /* 動きを止める処理 */
@@ -604,6 +603,9 @@ void GameScene::onClear(){
 void GameScene::onSyuraba(){
     /* ゲームを中断する */
     this->swichPauseFlag();
+    //BGM一時停止　cutSE開始
+    soundEngineBGM->pauseBackgroundMusic();
+    auto cutID = soundEngineSE->playEffect(SoundEffects[3].c_str());
     /* 背景を暗くするレイヤーを作って貼る */
     auto syuraLayer = Layer::create();
     //    auto backPaper = Sprite::create("backpaper.png");
@@ -639,8 +641,14 @@ void GameScene::onSyuraba(){
     this->runAction(Sequence::create(DelayTime::create(2),CallFunc::create([=](){
         /* 2秒後に処理を実行 */
         syuraLayer->removeFromParent();
+        //BGM再開　cutSE中止
+        soundEngineBGM->resumeBackgroundMusic();
+        
+        soundEngineSE->stopEffect(cutID);
         /* アニメーションが終わったらゲームを再度開始 */
         this->swichPauseFlag();
+        
+        
     }),nullptr));
     /* レイヤーを消す */
     
