@@ -26,8 +26,8 @@ using namespace cocostudio::timeline;
 using namespace CocosDenshion;
 
 /*  */
-int ADD_ENEMY_RATE = 120;
-int MAX_SYURAENEMY = 3;
+int ADD_ENEMY_RATE = 220;
+int MAX_SYURAENEMY = 2;
 
 /* 制限時間 */
 const float TIME_LIMIT_SECOND = 31;

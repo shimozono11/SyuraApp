@@ -10,7 +10,7 @@
 #include "Stage.h"
 SyuraEnemy::SyuraEnemy()
 {
-    this->setSpeed(7);
+    this->setSpeed(6.5);
 }
 
 SyuraEnemy::~SyuraEnemy(){
